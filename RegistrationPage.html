@@ -1,470 +1,341 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" class="scroll-smooth" data-theme="dark">
-
+<html lang="en" data-theme="dark" dir="ltr" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>WaveKind FM - Create Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - WaveKind FM</title>
+    <meta name="description" content="Sign up for WaveKind FM - Community Radio Platform">
 
-    <script>
-        (function () {
-            var savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light') {
-                document.documentElement.setAttribute('data-theme', 'light');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-        })();
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="Boostrap/bootstrap-icons/bootstrap-icons.css">
-    <!-- Local Assets -->
-    <link rel="stylesheet" href="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css">
-    <script src="Tailwind/tailwind.min.js"></script>
-    <script src="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
-
+    <link rel="icon" type="image/jpeg" href="Asserts/Images/favicon.jpg">
+    
+    <script src="tailwind.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap Icons for WaveKind brand -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
-                        primary: '#ff4d6d',
-                        secondary: '#6366f1',
-                        accent: 'var(--accent)',
-                        bg: 'var(--bg)',
-                        bg2: 'var(--bg2)',
-                        card: 'var(--card)',
-                        textMain: 'var(--text-main)',
-                        textMuted: 'var(--text-muted)',
-                        border: 'var(--border)'
+                        primary: '#ff4d6d', secondary: '#ff4d6d', base: '#000000',
+                        cream: '#FFFFFF', warmgray: '#9CA3AF', charcoal: '#111827', 'card-dark': '#1f2937'
                     },
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                    },
+                    animation: { 'fadeInUp': 'fadeInUp 0.4s ease-out' },
                     keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-20px)' },
+                        fadeInUp: {
+                            'from': { opacity: '0', transform: 'translateY(20px)' },
+                            'to': { opacity: '1', transform: 'translateY(0)' }
                         }
                     }
                 }
             }
         }
     </script>
-
-    <style>
-        :root {
-            --accent: #ff4d6d;
-            --accent-dark: #e63956;
-            --secondary: #6366f1;
-            --bg: #ffffff;
-            --bg-glass: rgba(254, 252, 248, 0.85);
-            --bg2: #f8f9fa;
-            --bg3: #e9ecef;
-            --card: #ffffff;
-            --text-main: #2b2b2b;
-            --text-muted: #6c757d;
-            --border: rgba(0, 0, 0, 0.08);
-        }
-
-        [data-theme="dark"] {
-            --accent: #ff4d6d;
-            --accent-dark: #e63956;
-            --secondary: #6366f1;
-            --bg: #111827;
-            --bg-glass: rgba(20, 17, 14, 0.85);
-            --bg2: #1f2937;
-            --bg3: #374151;
-            --card: #1f2937;
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --border: rgba(255, 255, 255, 0.08);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            font-family: '"Plus Jakarta Sans"', sans-serif;
-            transition: all 0.3s ease;
-            min-height: 100vh;
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        .minimal-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1001;
-            padding: 1.25rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            pointer-events: none;
-        }
-
-        .minimal-header>* {
-            pointer-events: auto;
-        }
-
-        .auth-container {
-            min-height: 100vh;
-            display: flex;
-            width: 100%;
-        }
-
-        .auth-image-side {
-            width: 50%;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4rem;
-        }
-
-        .auth-image-side::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(17, 24, 39, 0.9));
-            z-index: 1;
-        }
-
-        .auth-bg-img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 12s ease-in-out;
-        }
-
-        .auth-form-side {
-            width: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2.5rem;
-            background: var(--bg);
-            position: relative;
-        }
-
-        .auth-card {
-            width: 100%;
-            max-width: 480px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .custom-input {
-            width: 100%;
-            background: var(--bg2);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 0.9rem 1.25rem;
-            color: var(--text-main);
-            transition: 0.3s;
-            outline: none;
-        }
-
-        .custom-input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(255, 77, 109, 0.1);
-            background: var(--bg);
-        }
-
-        .btn-auth {
-            width: 100%;
-            padding: 0.9rem;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.3s;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .btn-auth-primary {
-            background: var(--accent);
-            color: white;
-            box-shadow: 0 10px 20px -5px rgba(255, 77, 109, 0.3);
-        }
-
-        .btn-auth-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px -5px rgba(255, 77, 109, 0.4);
-            background: var(--accent-dark);
-        }
-
-        .social-btn {
-            background: var(--bg2);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-        }
-
-        .social-btn:hover {
-            background: var(--bg3);
-            transform: translateY(-2px);
-        }
-
-        .icon-btn {
-            background: var(--bg-glass);
-            backdrop-filter: blur(8px);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: var(--text-main);
-            transition: 0.3s;
-        }
-
-        .icon-btn:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .floating-badge {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            position: absolute;
-            z-index: 10;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @media (max-width: 1024px) {
-            .auth-image-side {
-                display: none;
+    
+    <style type="text/tailwindcss">
+        @layer components {
+            .form-input {
+                @apply w-full pl-10 pr-10 py-1.5 border bg-transparent rounded-xl focus:border-secondary focus:ring-1 focus:ring-secondary transition-all outline-none text-sm font-medium;
             }
-
-            .auth-form-side {
-                width: 100%;
-                padding: 1.5rem;
+            .input-icon {
+                @apply absolute top-1/2 -translate-y-1/2 text-gray-400 left-3.5 text-sm;
             }
-
-            .auth-form-side::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                background: url('Asserts/Images/MemberBg1.avif') center/cover no-repeat;
-                opacity: 0.03;
-                z-index: 0;
+            .form-label {
+                @apply block text-[var(--text-heading)] font-bold mb-1 text-[10px] md:text-xs uppercase tracking-wider;
             }
         }
     </style>
+    
+    <style>
+        :root {
+            --bg-color: #F3F4F6; --card-bg: #FFFFFF; --text-main: #374151;
+            --text-heading: #000000; --border-color: #E5E7EB; --input-border: #D1D5DB;
+        }
+        [data-theme="dark"] {
+            --bg-color: #111827; --card-bg: #1f2937; --text-main: #E5E7EB;
+            --text-heading: #FFFFFF; --border-color: #374151; --input-border: #4B5563;
+        }
+        html, body {
+            margin: 0; padding: 0; min-height: 100vh; font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color); color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .form-input { border-color: var(--input-border); color: var(--text-main); background-color: var(--bg-color); }
+        .form-input::placeholder { color: #9CA3AF; }
+        .card-toggle-btn { background-color: var(--bg-color); color: var(--text-main); border: 1px solid var(--border-color); }
+        .card-toggle-btn:hover { color: var(--secondary-color); border-color: var(--secondary-color); }
+    </style>
 </head>
+<body class="w-full overflow-x-hidden m-0 p-0 antialiased bg-theme-main text-body-theme relative">
 
-<body>
-    <header class="minimal-header">
-        <div class="flex gap-2 ml-auto">
-            <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme"><i class="bi bi-moon-stars-fill"
-                    id="theme-icon"></i></button>
-            <button id="rtl-toggle" class="icon-btn" aria-label="Toggle Direction"><i
-                    class="bi bi-translate"></i></button>
+    <nav class="fixed top-0 left-0 w-full h-[75px] z-50 flex justify-between items-center px-6 border-b border-[var(--border-color)] shadow-sm bg-[var(--bg-color)]/80 backdrop-blur-md transition-colors duration-300">
+        <a href="index.html" class="flex items-center gap-2.5 no-underline font-[800] text-2xl group">
+            <div class="bg-[#ff4d6d] w-[38px] h-[38px] rounded-[10px] flex items-center justify-center text-white">
+                <i class="bi bi-broadcast-pin"></i>
+            </div>
+            <span class="text-[var(--text-heading)] transition-colors duration-300 group-hover:text-[#ff4d6d]">WaveKind FM</span>
+        </a>
+        
+        <div class="flex items-center gap-[11.2px] shrink-0">
+            <button id="themeToggle" class="w-[40px] h-[40px] inline-flex items-center justify-center rounded-xl bg-[var(--card-bg)] border border-[var(--border-color)] text-[var(--text-main)] cursor-pointer transition-all duration-300 hover:bg-[#ff4d6d] hover:text-white hover:-translate-y-0.5 hover:border-[#ff4d6d]" title="Toggle Dark Mode">
+                <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+            </button>
+            <button id="rtlToggle" class="w-[40px] h-[40px] inline-flex items-center justify-center rounded-xl bg-[var(--card-bg)] border border-[var(--border-color)] text-[var(--text-main)] cursor-pointer transition-all duration-300 hover:bg-[#ff4d6d] hover:text-white hover:-translate-y-0.5 hover:border-[#ff4d6d]" title="Toggle RTL">
+                <i class="bi bi-text-paragraph text-lg"></i>
+            </button>
         </div>
-    </header>
+    </nav>
 
-    <main class="auth-container">
-        <!-- Image Side -->
-        <div class="auth-image-side">
-            <img src="Asserts/Images/MemberBg1.avif" alt="Community" class="auth-bg-img">
+<section class="flex flex-col items-center justify-center min-h-screen px-4 pt-16 pb-2">        <div class="absolute top-0 left-0 w-96 h-96 bg-[#ff4d6d]/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-[#ff4d6d]/20 dark:bg-white/5 rounded-full blur-[100px] pointer-events-none"></div>
 
-            <div class="floating-badge top-[20%] left-[10%]">
-                <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white shadow-lg"><i
-                        class="bi bi-megaphone-fill"></i></div>
-                <div class="text-white text-sm">
-                    <p class="font-black">Voice your story</p>
-                    <p class="opacity-70 text-xs">Be part of the dialogue</p>
+        <div class="w-full max-w-[340px] md:max-w-[360px] bg-[var(--card-bg)] rounded-3xl shadow-2xl border border-[var(--border-color)] animate-fadeInUp p-3 md:p-4 relative z-10 flex flex-col">
+            
+            <div class="mb-3 mt-1 text-center">
+                <div class="w-10 h-10 bg-[#ff4d6d]/10 rounded-2xl flex items-center justify-center mx-auto mb-2">
+                    <i class="bi bi-headphones text-xl text-[#ff4d6d]"></i>
                 </div>
+                <h1 class="text-xl md:text-2xl font-black text-[var(--text-heading)] mb-0.5">Create Account</h1>
+                <p class="text-[var(--text-main)] opacity-80 text-[10px] font-medium">Start your journey with WaveKind FM</p>
             </div>
 
-            <div class="floating-badge bottom-[25%] right-[12%]" style="animation-delay: -2.5s;">
-                <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white shadow-lg">
-                    <i class="bi bi-headset"></i></div>
-                <div class="text-white text-sm">
-                    <p class="font-black">24/7 Quality</p>
-                    <p class="opacity-70 text-xs">High-fidelity everywhere</p>
-                </div>
-            </div>
-
-            <div class="relative z-10 text-white">
-                <h1 class="text-6xl font-black mb-6 leading-[1.1]">Join the <br><span
-                        class="text-accent">WaveKind.</span></h1>
-                <p class="text-xl text-white/80 max-w-md font-medium leading-relaxed">No ads, no fillers. Just the best
-                    independent radio and podcasts from across the globe.</p>
-
-                <!-- Registration Specific Avatars (to match Login) -->
-                <div
-                    class="flex items-center gap-4 mt-12 p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl w-fit">
-                    <div class="flex -space-x-3">
-                        <img src="Asserts/Images/AboutHost1.jpg.jpeg" alt="Host 1"
-                            class="w-10 h-10 rounded-full border-2 border-white/20 shadow-lg">
-                        <img src="Asserts/Images/AboutHost2.jpg.jpeg" alt="Host 2"
-                            class="w-10 h-10 rounded-full border-2 border-white/20 shadow-lg">
-                        <img src="Asserts/Images/AboutHost3.jpg.jpeg" alt="Host 3"
-                            class="w-10 h-10 rounded-full border-2 border-white/20 shadow-lg">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Form Side -->
-        <div class="auth-form-side">
-            <div class="auth-card">
-                <div class="mb-10 text-center lg:text-left">
-                    <h2 class="text-4xl font-black mb-3 tracking-tight">Create Account</h2>
-                    <p class="text-textMuted font-medium">Join our global community of audio explorers for free.</p>
-                </div>
-
-                <div class="grid grid-cols-2 gap-4 mb-8">
-                    <button class="btn-auth social-btn font-bold"><i class="bi bi-google text-red-500"></i>
-                        Google</button>
-                    <button class="btn-auth social-btn font-bold"><i class="bi bi-apple"></i> Apple</button>
-                </div>
-
-                <div class="relative flex items-center mb-8">
-                    <div class="flex-grow border-t border-border"></div>
-                    <span class="px-4 text-[10px] font-black text-textMuted uppercase tracking-widest">Or register with
-                        email</span>
-                    <div class="flex-grow border-t border-border"></div>
-                </div>
-
-                <form onsubmit="event.preventDefault(); window.location.href='LoginPage.html';" class="space-y-5">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label
-                                class="block text-[10px] font-black uppercase tracking-widest text-textMuted mb-2">First
-                                Name</label>
-                            <input type="text" class="custom-input" placeholder="John" required>
-                        </div>
-                        <div>
-                            <label
-                                class="block text-[10px] font-black uppercase tracking-widest text-textMuted mb-2">Last
-                                Name</label>
-                            <input type="text" class="custom-input" placeholder="Doe" required>
-                        </div>
-                    </div>
+            <div id="signupForm" class="flex-1 flex flex-col justify-between">
+                <form id="signupFormElement" class="space-y-2.5">
+                    
                     <div>
-                        <label class="block text-[10px] font-black uppercase tracking-widest text-textMuted mb-2">Email
-                            Address</label>
-                        <input type="email" class="custom-input" placeholder="john@example.com" required>
-                    </div>
-                    <div>
-                        <label
-                            class="block text-[10px] font-black uppercase tracking-widest text-textMuted mb-2">Password</label>
+                        <label class="form-label" for="fullName">Full Name</label>
                         <div class="relative">
-                            <input type="password" id="regPassword" class="custom-input pr-12" placeholder="••••••••"
-                                required>
-                            <button type="button"
-                                class="absolute right-4 top-1/2 -translate-y-1/2 text-textMuted hover:text-accent transition-colors"
-                                onclick="window.togglePassword('regPassword', 'eye1')">
-                                <i class="bi bi-eye" id="eye1"></i>
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" placeholder="Alex Rivera" required class="form-input" id="fullName" autocomplete="name">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="form-label" for="signupEmail">Email Address</label>
+                        <div class="relative">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input type="email" placeholder="alex@wavekind.fm" required class="form-input" id="signupEmail" autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="form-label" for="signupPassword">Password</label>
+                        <div class="relative">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" id="signupPassword" placeholder="Create a strong password" required class="form-input" autocomplete="new-password">
+                            <button type="button" onclick="togglePasswordVisibility('signupPassword', 'signupEyeIcon')" class="absolute top-1/2 -translate-y-1/2 right-3.5 text-gray-400 hover:text-[var(--text-heading)] focus:outline-none cursor-pointer bg-transparent border-0 p-0 transition-colors">
+                                <i class="fas fa-eye text-sm" id="signupEyeIcon"></i>
                             </button>
                         </div>
                     </div>
-
-                    <div class="flex items-start gap-3 py-2">
-                        <input type="checkbox" id="terms"
-                            class="mt-1 w-4 h-4 rounded border-border text-accent focus:ring-accent accent-accent"
-                            required>
-                        <label for="terms"
-                            class="text-xs font-semibold text-textMuted leading-relaxed cursor-pointer select-none">
-                            I agree to the <a href="#"
-                                class="text-accent underline hover:opacity-80 transition-opacity">Terms of Service</a>
-                            and <a href="#" class="text-accent underline hover:opacity-80 transition-opacity">Privacy
-                                Policy</a>
+                    
+                    <div>
+                        <label class="form-label" for="signupConfirmPassword">Confirm Password</label>
+                        <div class="relative">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" id="signupConfirmPassword" placeholder="Repeat your password" required class="form-input" autocomplete="new-password">
+                            <button type="button" onclick="togglePasswordVisibility('signupConfirmPassword', 'signupConfirmEyeIcon')" class="absolute top-1/2 -translate-y-1/2 right-3.5 text-gray-400 hover:text-[var(--text-heading)] focus:outline-none cursor-pointer bg-transparent border-0 p-0 transition-colors">
+                                <i class="fas fa-eye text-sm" id="signupConfirmEyeIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+<div class="flex items-center gap-2">
+    <div class="flex items-center">
+                            <input id="terms" type="checkbox" required class="w-3.5 h-3.5 text-[#ff4d6d] rounded border-gray-300 focus:ring-[#ff4d6d] bg-transparent cursor-pointer">
+                        </div>
+                        <label for="terms" class="text-[var(--text-main)] text-[10px] font-medium leading-tight cursor-pointer">
+                            I agree to the <a href="#" class="text-[#ff4d6d] font-bold hover:underline">Terms</a> and <a href="#" class="text-[#ff4d6d] font-bold hover:underline">Privacy Policy</a>.
                         </label>
                     </div>
 
-                    <button type="submit" class="btn-auth btn-auth-primary text-lg py-4">Create My Account</button>
-
-                    <!-- Mobile End Session -->
-                    <a href="index.html"
-                        class="md:hidden flex items-center justify-center gap-2 w-full py-4 bg-secondary/10 text-secondary hover:bg-red-600 hover:text-white rounded-xl font-bold text-sm transition-all no-underline border border-secondary/20">
-                        <i class="bi bi-box-arrow-right"></i>
-                        End Session
-                    </a>
+                    <button type="submit" class="w-full bg-[#ff4d6d] text-white hover:bg-[#e63956] py-2 rounded-xl font-black text-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 border-0 cursor-pointer" id="signupButton">
+                        Create Accoudnt
+                    </button>
                 </form>
 
-                <p class="mt-8 text-center text-sm font-medium text-textMuted">
-                    Already a member? <a href="LoginPage.html"
-                        class="text-accent font-black hover:underline transition-all">Sign In here</a>
-                </p>
+                <!-- Social Sign Up Section -->
+                <div class="mt-3">
+                    <div class="relative flex items-center py-1 mb-2">
+                        <div class="flex-grow border-t border-[var(--border-color)]"></div>
+                        <span class="flex-shrink-0 mx-3 text-[var(--text-main)] opacity-60 text-[9px] font-bold uppercase tracking-wider">Or sign up with</span>
+                        <div class="flex-grow border-t border-[var(--border-color)]"></div>
+                    </div>
+
+                    <div class="flex gap-2 w-full mb-2">
+                        <button type="button" onclick="socialSignup('Google')" class="flex-1 flex items-center justify-center gap-2 py-2 border border-[var(--border-color)] rounded-xl transition-all duration-300 hover:border-[#ff4d6d] hover:bg-[#ff4d6d]/10 cursor-pointer bg-[var(--card-bg)]">
+                            <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-4 h-4" alt="Google">
+                            <span class="text-xs font-medium hidden sm:inline text-[var(--text-main)]">Google</span>
+                        </button>
+                        <button type="button" onclick="socialSignup('Apple')" class="flex-1 flex items-center justify-center gap-2 py-2 border border-[var(--border-color)] rounded-xl transition-all duration-300 hover:border-[#ff4d6d] hover:bg-[#ff4d6d]/10 cursor-pointer bg-[var(--card-bg)]">
+<i class="fab fa-apple text-base text-[var(--text-main)] dark:text-white"></i>                            <span class="text-xs font-medium hidden sm:inline text-[var(--text-main)]">Apple</span>
+                        </button>
+                       <button class="flex-1 flex items-center justify-center gap-2 py-2 border border-[var(--border-color)] rounded-xl transition-all duration-300 hover:border-[#1877F2] hover:bg-[#1877F2]/10 cursor-pointer bg-[var(--card-bg)]">
+    <i class="fab fa-facebook-f text-base !text-[#1877F2]"></i>
+    <span class="text-xs font-medium hidden sm:inline text-[var(--text-main)]">Facebook</span>
+</button>
+                    </div>
+
+                    <p class="text-center text-xs text-[var(--text-main)] font-medium">
+                        Already have an account? 
+                        <a href="LoginPage.html" class="text-[#ff4d6d] font-bold hover:underline ml-1">Log In</a>
+                    </p>
+                </div>
             </div>
+
         </div>
-    </main>
+    </section>
 
     <script>
         // Theme Logic
-        const html = document.documentElement;
-        const themeBtn = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-
-        function updateTheme(theme) {
-            html.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-            const isDark = theme === 'dark';
-            if (themeIcon) themeIcon.className = isDark ? 'bi bi-brightness-high-fill' : 'bi bi-moon-stars-fill';
+        const themeToggle = document.getElementById("themeToggle");
+        const htmlElement = document.documentElement;
+        
+        function updateThemeIcon() {
+            const isDark = htmlElement.classList.contains('dark');
+            const themeIcon = document.getElementById("themeIcon");
+            if (themeIcon) {
+                themeIcon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
+            }
         }
-
-        themeBtn?.addEventListener('click', () => updateTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+        
+        function toggleDarkMode() {
+            htmlElement.classList.toggle('dark');
+            const isDark = htmlElement.classList.contains('dark');
+            htmlElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateThemeIcon();
+        }
+        
+        if (themeToggle) themeToggle.addEventListener("click", toggleDarkMode);
+        
+        const savedTheme = localStorage.getItem('theme') || 'dark'; 
+        if (savedTheme === 'dark') {
+            htmlElement.classList.add("dark");
+            htmlElement.setAttribute('data-theme', 'dark');
+        } else {
+            htmlElement.classList.remove("dark");
+            htmlElement.setAttribute('data-theme', 'light');
+        }
+        updateThemeIcon();
 
         // RTL Logic
-        const rtlBtn = document.getElementById('rtl-toggle');
-        rtlBtn?.addEventListener('click', () => {
-            const isRTL = html.getAttribute('dir') === 'rtl';
-            html.setAttribute('dir', isRTL ? 'ltr' : 'rtl');
-        });
-
-        // Password Reveal
-        window.togglePassword = function (id, iconId) {
-            const input = document.getElementById(id);
-            const icon = document.getElementById(iconId);
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.className = 'bi bi-eye-slash-fill';
-            } else {
-                input.type = 'password';
-                icon.className = 'bi bi-eye-fill';
-            }
-        };
-
-        // Initialize state
-        if (localStorage.getItem('theme') === 'light') {
-            updateTheme('light');
-        } else {
-            updateTheme('dark');
+        const rtlToggle = document.getElementById("rtlToggle");
+        
+        function toggleRTL() {
+            const current = htmlElement.getAttribute("dir") || "ltr";
+            const next = current === "rtl" ? "ltr" : "rtl";
+            htmlElement.setAttribute("dir", next);
+            localStorage.setItem("direction", next);
         }
+        
+        if (rtlToggle) rtlToggle.addEventListener("click", toggleRTL);
+        
+        if (localStorage.getItem("direction") === "rtl") {
+            htmlElement.setAttribute("dir", "rtl");
+        }
+
+        // Password Visibility Toggle
+        function togglePasswordVisibility(inputId, iconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+            if (input && icon) {
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    input.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            }
+        }
+
+        // Social Signup Function
+        function socialSignup(provider) {
+            const btns = document.querySelectorAll('.flex-1.flex.items-center');
+            let targetBtn = null;
+            for (let btn of btns) {
+                if (btn.innerText.includes(provider)) {
+                    targetBtn = btn;
+                    break;
+                }
+            }
+            if (targetBtn) {
+                const originalHtml = targetBtn.innerHTML;
+                targetBtn.innerHTML = '<i class="fas fa-spinner fa-spin text-[#ff4d6d]"></i>';
+                targetBtn.disabled = true;
+                setTimeout(() => {
+                    localStorage.setItem('wavekind_logged_in', 'true');
+                    localStorage.setItem('wavekind_social_provider', provider);
+                    window.location.href = 'index.html';
+                }, 1000);
+            } else {
+                setTimeout(() => {
+                    localStorage.setItem('wavekind_logged_in', 'true');
+                    window.location.href = 'index.html';
+                }, 800);
+            }
+        }
+
+        // Sign Up Submission
+        document.getElementById('signupFormElement').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('signupEmail').value;
+            const pwd = document.getElementById('signupPassword').value;
+            const confirmPwd = document.getElementById('signupConfirmPassword').value;
+            const termsCheckbox = document.getElementById('terms');
+            
+            if (!fullName || !email || !pwd || !confirmPwd) {
+                alert("Please fill in all fields");
+                return;
+            }
+            
+            if (pwd !== confirmPwd) {
+                alert("Passwords do not match!");
+                return;
+            }
+            
+            if (pwd.length < 6) {
+                alert("Password must be at least 6 characters long");
+                return;
+            }
+            
+            if (!termsCheckbox.checked) {
+                alert("Please agree to the Terms and Privacy Policy");
+                return;
+            }
+
+            const btn = document.getElementById('signupButton');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Creating...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                // Store user data in localStorage
+                const users = JSON.parse(localStorage.getItem('wavekind_users') || '[]');
+                const newUser = {
+                    name: fullName,
+                    email: email,
+                    joinedDate: new Date().toISOString()
+                };
+                users.push(newUser);
+                localStorage.setItem('wavekind_users', JSON.stringify(users));
+                localStorage.setItem('wavekind_logged_in', 'true');
+                localStorage.setItem('wavekind_user_email', email);
+                localStorage.setItem('wavekind_user_name', fullName);
+                
+                alert('Account created successfully! Welcome to WaveKind FM!');
+                window.location.href = 'index.html';
+            }, 1500);
+        });
     </script>
 </body>
-
 </html>
