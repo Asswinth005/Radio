@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>WaveKind FM - LIVE ON AIR</title>
+
+    <script>
+        (function () {
+            var savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="Boostrap/bootstrap-icons/bootstrap-icons.css">
+    <!-- Local Assets -->
+    <link rel="stylesheet" href="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+    <script src="Tailwind/tailwind.min.js"></script>
+    <script src="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'var(--accent)',
+                        primaryDark: 'var(--accent-dark)',
+                        secondary: 'var(--secondary)',
+                        bg: 'var(--bg)',
+                        bg2: 'var(--bg2)',
+                        bg3: 'var(--bg3)',
+                        card: 'var(--card)',
+                        textMain: 'var(--text-main)',
+                        textMuted: 'var(--text-muted)',
+                        border: 'var(--border)'
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --accent: #ff4d6d;
+            --accent-dark: #e63956;
+            --secondary: #6366f1;
+            --bg: #ffffff;
+            --bg-glass: rgba(254, 252, 248, 0.85);
+            --bg2: #f8f9fa;
+            --bg3: #e9ecef;
+            --card: #ffffff;
+            --text-main: #2b2b2b;
+            --text-muted: #6c757d;
+            --border: rgba(0, 0, 0, 0.08);
+            --border-footer: rgba(0, 0, 0, 0.08);
+            --footer-bg: #f8f9fa;
+        }
+
+        [data-theme="dark"] {
+            --accent: #ff4d6d;
+            --accent-dark: #e63956;
+            --secondary: #6366f1;
+            --bg: #111827;
+            --bg-glass: rgba(20, 17, 14, 0.85);
+            --bg2: #1f2937;
+            --bg3: #374151;
+            --card: #1f2937;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-footer: rgba(255, 255, 255, 0.08);
+            --footer-bg: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: '"Plus Jakarta Sans"', system-ui, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg2);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0.7rem 1.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary-custom {
+            background-color: var(--accent);
+            color: #ffffff;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg3);
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* NAVBAR & DRAWER */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--border);
+            height: 75px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @media (min-width: 640px) {
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+
+        .logo-mark {
+            background: var(--accent);
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover .logo-mark {
+            transform: scale(1.05) rotate(-5deg);
+        }
+
+        .logo-text {
+            color: var(--text-main);
+            transition: color 0.3s ease;
+        }
+
+        .nav-logo:hover .logo-text {
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+            align-items: center;
+            margin: 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: block !important;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.5rem 0;
+            min-width: 170px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        /* Invisible bridge covering the gap so hover isn't lost */
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 0;
+            right: 0;
+            height: 12px;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            top: calc(100% + 8px);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.5rem 1.2rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: var(--bg2);
+            color: var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .icon-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .hamburger:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none !important;
+            }
+
+            .desktop-only {
+                display: none !important;
+            }
+
+            .nav-actions .icon-btn:not(.hamburger) {
+                display: none !important;
+            }
+
+            .hamburger {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1100;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 340px;
+            height: 100vh;
+            background: var(--card);
+            z-index: 1101;
+            display: flex;
+            flex-direction: column;
+            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 1px solid var(--border);
+        }
+
+        .mobile-drawer.active {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-nav-list {
+            list-style: none;
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .mobile-nav-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .mobile-nav-link:hover {
+            background: var(--bg2);
+            color: var(--accent);
+        }
+
+        .mobile-dropdown-content {
+            padding-left: 1.5rem;
+            display: none;
+            margin-top: 0.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-dropdown-item {
+            display: block;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .mobile-dropdown-item:hover {
+            color: var(--accent);
+        }
+
+        .drawer-footer {
+            padding: 1.2rem 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* FOOTER */
+        .site-footer {
+            background: var(--footer-bg);
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 20;
+        }
+
+        .footer-main-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            padding: 3rem 2rem;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 640px) {
+            .footer-main-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-main-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .footer-col p {
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0.8rem 0;
+            font-size: 0.85rem;
+            max-width: 260px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-main);
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            gap: 0.6rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-footer);
+            padding: 1.2rem 0;
+            background: var(--bg);
+        }
+
+        .bottom-wrapper {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .bottom-wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .trust-legal {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .trust-legal a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .trust-legal a:hover {
+            color: var(--accent);
+        }
+
+        /* ================= ANIMATIONS & UTILS ================= */
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background: #ef4444;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse-red 1.5s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% {
+                opacity: 0.4;
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+
+            70% {
+                opacity: 1;
+                box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+            }
+
+            100% {
+                opacity: 0.4;
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+            }
+        }
+
+        .hover-double-color {
+            transition: all 0.3s ease;
+        }
+
+        .group:hover .hover-double-color,
+        .hover-double-color:hover {
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+            background-color: var(--accent);
+        }
+
+        @keyframes slow-zoom {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.15);
+            }
+        }
+
+        .animate-slow-zoom {
+            animation: slow-zoom 20s linear infinite alternate;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 30s linear infinite;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chat-user {
+            transition: transform 0.2s ease;
+        }
+
+        .chat-user:hover {
+            transform: translateX(4px);
+        }
+
+        .host-badge {
+            background: var(--accent);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .upcoming-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            min-width: 260px;
+            max-width: 300px;
+        }
+
+        @media (min-width: 640px) {
+            .upcoming-card {
+                min-width: 280px;
+                max-width: 320px;
+            }
+        }
+
+        .upcoming-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px -5px rgba(255, 77, 109, 0.25);
+        }
+
+
+        /* ================= TURNTABLE PLAYER CSS ================= */
+        .player-deck {
+            background: var(--card);
+            border: 1px solid var(--border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            border-radius: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vinyl-record {
+            position: relative;
+            border-radius: 50%;
+            border: 8px solid #111;
+            box-shadow: 0 0 0 4px var(--border), 0 20px 30px rgba(0, 0, 0, 0.2);
+            animation: spin 6s linear infinite;
+        }
+
+        .vinyl-record::after {
+            content: '';
+            position: absolute;
+            inset: 6px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .vinyl-grooves {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: repeating-radial-gradient(#111 0px, #1a1a1a 2px, #111 4px);
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        .vinyl-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 45%;
+            height: 45%;
+            border-radius: 50%;
+            z-index: 2;
+            overflow: hidden;
+            border: 2px solid #222;
+        }
+
+        .vinyl-hole {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: var(--card);
+            border-radius: 50%;
+            z-index: 3;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .audio-wave {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 48px;
+            width: 100%;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .audio-wave .bar {
+            flex: 1;
+            border-radius: 4px;
+            background: var(--accent);
+            animation: wave-bounce 1s ease-in-out infinite alternate;
+            transform-origin: bottom;
+            min-height: 4px;
+            max-width: 8px;
+        }
+
+        .audio-wave .bar:nth-child(even) {
+            background: var(--secondary);
+        }
+
+        .audio-wave .bar:nth-child(1) {
+            animation-duration: 0.8s;
+        }
+
+        .audio-wave .bar:nth-child(2) {
+            animation-duration: 1.1s;
+            animation-delay: -0.2s;
+        }
+
+        .audio-wave .bar:nth-child(3) {
+            animation-duration: 0.9s;
+            animation-delay: -0.5s;
+        }
+
+        .audio-wave .bar:nth-child(4) {
+            animation-duration: 1.2s;
+            animation-delay: -0.8s;
+        }
+
+        .audio-wave .bar:nth-child(5) {
+            animation-duration: 0.7s;
+            animation-delay: -0.1s;
+        }
+
+        .audio-wave .bar:nth-child(6) {
+            animation-duration: 1.3s;
+            animation-delay: -0.4s;
+        }
+
+        .audio-wave .bar:nth-child(7) {
+            animation-duration: 1.0s;
+            animation-delay: -0.7s;
+        }
+
+        .audio-wave .bar:nth-child(8) {
+            animation-duration: 0.8s;
+            animation-delay: -0.3s;
+        }
+
+        .audio-wave .bar:nth-child(9) {
+            animation-duration: 1.4s;
+            animation-delay: -0.6s;
+        }
+
+        .audio-wave .bar:nth-child(10) {
+            animation-duration: 0.9s;
+            animation-delay: -0.9s;
+        }
+
+        .audio-wave .bar:nth-child(11) {
+            animation-duration: 1.1s;
+            animation-delay: -0.2s;
+        }
+
+        .audio-wave .bar:nth-child(12) {
+            animation-duration: 0.7s;
+            animation-delay: -0.5s;
+        }
+
+        .audio-wave .bar:nth-child(13) {
+            animation-duration: 1.2s;
+            animation-delay: -0.1s;
+        }
+
+        @keyframes wave-bounce {
+            0% {
+                height: 10%;
+            }
+
+            100% {
+                height: 100%;
+            }
+        }
+
+        /* ================= INJECTED FOOTER RESPONSIVENESS ================= */
+        .site-footer {
+            font-family: '"Plus Jakarta Sans"', system-ui, -apple-system, sans-serif;
+        }
+
+        @media (max-width: 1024px) {
+            .footer-main-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
+
+            .footer-main-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2.5rem;
+            }
+
+            .bottom-wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+        }
+
+        /* UX Overrides */
+        .pro-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border);
+        }
+
+        .pro-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: var(--accent);
+            z-index: 10;
+        }
+
+        .btn {
+            transition: all 0.3s ease;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .show-img {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .group:hover .show-img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo group">
+                <div class="logo-mark group-hover:scale-105 transition-transform"><i class="bi bi-broadcast-pin"></i>
+                </div>
+                <span class="logo-text group-hover:text-accent transition-colors">WaveKind FM</span>
+            </a>
+
+            <ul class="nav-menu">
+                <li class="dropdown">
+                    <a href="404.html" class="nav-link">Home <i class="bi bi-chevron-down"
+                            style="font-size: 0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html" class="dropdown-item">Home 1</a></li>
+                        <li><a href="Home2Page.html" class="dropdown-item">Home 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="AboutPage.html" class="nav-link">About</a></li>
+                <li><a href="ShowPage.html" class="nav-link">Shows</a></li>
+                <li><a href="PodcastPage.html" class="nav-link">Podcasts</a></li>
+                <li><a href="Fqa.html" class="nav-link">FAQ</a></li>
+                <li><a href="ContactPage.html" class="nav-link">Contact</a></li>
+                <li><a href="LivePage.html" class="nav-link text-primary"><i
+                            class="bi bi-record-circle-fill animate-pulse text-red-500"></i> Live</a></li>
+                <li class="dropdown">
+                    <a href="Dashborad/User/User.html" class="nav-link">Dashboard <i class="bi bi-chevron-down"
+                            style="font-size: 0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Dashborad/User/User.html" class="dropdown-item"><i
+                                    class="bi bi-person-circle text-lg text-primary mr-1"></i> User Panel</a></li>
+                        <li><a href="Dashborad/Admin/AdminPage.html" class="dropdown-item"><i
+                                    class="bi bi-shield-lock text-lg text-primary mr-1"></i> Admin Panel</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" class="icon-btn desktop-only"><i class="bi bi-moon-stars-fill"
+                        id="theme-icon"></i></button>
+                <button id="rtl-toggle" class="icon-btn desktop-only"><i class="bi bi-text-paragraph"></i></button>
+
+                <div class="dropdown desktop-only">
+                    <button class="icon-btn"><i class="bi bi-person-circle text-lg"></i></button>
+                    <ul class="dropdown-menu" style="right: 0; left: auto; min-width: 160px;">
+                        <li><a href="LoginPage.html" class="dropdown-item"><i
+                                    class="bi bi-box-arrow-in-right text-primary text-lg mr-1"></i> Log In</a></li>
+                        <li><a href="RegistrationPage.html" class="dropdown-item"><i
+                                    class="bi bi-person-plus text-primary text-lg mr-1"></i> Sign Up</a></li>
+                    </ul>
+                </div>
+
+                <button class="hamburger" id="hamburgerBtn"><i class="bi bi-list"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <a href="404.html" class="nav-logo" style="font-size:1.3rem;">
+                <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div>
+                <span class="logo-text">WaveKind FM</span>
+            </a>
+            <button class="icon-btn border-none" id="closeDrawerBtn" style="background:transparent; border:none;"><i
+                    class="bi bi-x-lg"></i></button>
+        </div>
+        <ul class="mobile-nav-list">
+            <li>
+                <div onclick="toggleMobileDropdown('homeDropdown')" class="mobile-nav-link">Home <i
+                        class="bi bi-chevron-down"></i></div>
+                <div id="homeDropdown" class="mobile-dropdown-content">
+                    <a href="index.html" class="mobile-dropdown-item">Home 1</a>
+                    <a href="Home2Page.html" class="mobile-dropdown-item">Home 2</a>
+                </div>
+            </li>
+            <li><a href="AboutPage.html" class="mobile-nav-link">About</a></li>
+            <li><a href="ShowPage.html" class="mobile-nav-link">Shows</a></li>
+            <li><a href="PodcastPage.html" class="mobile-nav-link">Podcasts</a></li>
+            <li><a href="Fqa.html" class="mobile-nav-link">FAQ</a></li>
+            <li><a href="ContactPage.html" class="mobile-nav-link">Contact</a></li>
+            <li><a href="LivePage.html" class="mobile-nav-link text-primary" style="color:var(--accent);">Live Stream <i
+                        class="bi bi-record-circle-fill"></i></a></li>
+            <li>
+                <div onclick="toggleMobileDropdown('dashDropdown')" class="mobile-nav-link">Dashboard <i
+                        class="bi bi-chevron-down"></i></div>
+                <div id="dashDropdown" class="mobile-dropdown-content">
+                    <a href="Dashborad/User/User.html" class="mobile-dropdown-item"><i
+                            class="bi bi-person-circle text-primary"></i> User Panel</a>
+                    <a href="Dashborad/Admin/AdminPage.html" class="mobile-dropdown-item"><i
+                            class="bi bi-shield-lock text-primary"></i> Admin Panel</a>
+                </div>
+            </li>
+        </ul>
+        <div class="drawer-footer">
+            <div class="flex gap-2">
+                <button id="mobileThemeBtn" class="icon-btn flex-1 rounded-lg"><i class="bi bi-moon-stars-fill"></i>
+                    Theme</button>
+                <button id="mobileRtlBtn" class="icon-btn flex-1 rounded-lg"><i class="bi bi-text-paragraph"></i>
+                    RTL</button>
+            </div>
+            <div class="flex flex-col gap-2 mt-2">
+                <button class="btn btn-outline w-full justify-center" id="mobileLoginBtn"><i
+                        class="bi bi-person-fill"></i><a href="LoginPage.html"> Log In</a></button>
+                <button class="btn btn-primary-custom w-full justify-center"><i class="bi bi-person-plus-fill"></i><a
+                        href="RegistrationPage.html"> Sign Up</a></button>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex-1 flex flex-col w-full relative z-10">
+
+        <!-- COMBINED LIVE HERO & PLAYER DECK -->
+        <section
+            class="relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden bg-[#0c0a08] pt-24 pb-20 border-b border-border">
+            <!-- Dynamic Background -->
+            <div class="absolute inset-0">
+                <div class="w-full h-full bg-cover bg-center animate-slow-zoom opacity-30 mix-blend-screen"
+                    style="background-image: url('Asserts/Images/LiveBg1.avif');"></div>
+            </div>
+            <div class="absolute inset-0 bg-[#0c0a08]/60">
+            </div>
+
+            <!-- Floating Colored Orbs -->
+            <div
+                class="absolute top-[20%] left-[10%] w-[30vw] h-[30vw] min-w-[300px] bg-accent/20 rounded-full blur-[100px] animate-pulse-slow">
+            </div>
+            <div class="absolute bottom-[10%] right-[10%] w-[25vw] h-[25vw] min-w-[250px] bg-secondary/15 rounded-full blur-[120px] animate-pulse-slow"
+                style="animation-delay: -2s;"></div>
+
+            <div
+                class="relative z-10 w-full max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+
+                <!-- Left: Hero Content & Controls -->
+                <div
+                    class="flex-1 w-full flex flex-col items-center lg:items-start text-center lg:text-left pt-8 lg:pt-0">
+                    <div
+                        class="flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500/30 bg-red-500/10 text-red-500 text-xs sm:text-sm font-bold uppercase tracking-widest mb-6 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+                        <span class="live-dot"></span> LIVE ON AIR
+                    </div>
+
+                    <h1
+                        class="text-5xl sm:text-6xl md:text-7xl font-black text-white mb-4 tracking-tight drop-shadow-2xl">
+                        The Underground<br><span class="text-accent">Hour</span></h1>
+                    <p class="text-xl sm:text-2xl text-gray-300 font-medium mb-10">Broadcasting live from Studio A</p>
+
+                    <!-- Integrated Player Controls -->
+                    <div
+                        class="w-full max-w-md bg-card/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 md:p-8 shadow-2xl flex flex-col gap-6 relative group border-t-white/20">
+                        <div class="audio-wave opacity-90 group-hover:opacity-100 transition-opacity">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar hidden sm:block"></div>
+                            <div class="bar hidden sm:block"></div>
+                            <div class="bar hidden sm:block"></div>
+                            <div class="bar hidden sm:block"></div>
+                        </div>
+
+                        <div class="w-full h-[1px] bg-accent  /20 "></div>
+
+                        <div class="flex items-center justify-between">
+                            <span class="font-mono font-bold text-gray-400 text-sm tracking-wider">03:45:12</span>
+
+                            <div class="flex items-center gap-3">
+                                <button
+                                    class="w-10 h-10 rounded-full text-white/50 hover:bg-white/10 hover:text-white transition-all flex items-center justify-center">
+                                    <i class="bi bi-skip-backward-fill"></i>
+                                </button>
+                                <button
+                                    class="w-14 h-14 rounded-full bg-accent text-white flex items-center justify-center text-2xl hover:scale-105 shadow-[0_5px_20px_rgba(255,77,109,0.5)] transition-all border border-white/20">
+                                    <i class="bi bi-pause-fill"></i>
+                                </button>
+                                <button
+                                    class="w-10 h-10 rounded-full text-white/50 hover:bg-white/10 hover:text-white transition-all flex items-center justify-center">
+                                    <i class="bi bi-skip-forward-fill"></i>
+                                </button>
+                            </div>
+
+                            <div class="flex items-center gap-3">
+                                <button class="text-white/50 hover:text-white transition-colors hover:scale-110"><i
+                                        class="bi bi-cast text-lg"></i></button>
+                                <button class="text-white/50 hover:text-white transition-colors hover:scale-110"><i
+                                        class="bi bi-volume-up-fill text-xl"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Spinning Vinyl Deck UI -->
+                <div
+                    class="relative shrink-0 flex items-center justify-center lg:justify-end w-full lg:w-auto h-[400px] sm:h-[500px]">
+                    <div
+                        class="player-deck rounded-[3rem] p-6 md:p-8 bg-card/5 backdrop-blur-3xl border border-white/5 shadow-[0_30px_60px_rgba(0,0,0,0.6)] relative overflow-visible border-t-white/10 border-l-white/10">
+                        <!-- Connecting Tonearm (Visual flavor) -->
+                        <div
+                            class="absolute top-0 right-8 md:right-12 w-8 h-40 bg-accent from-[#2a2a2a] via-[#1a1a1a] to-[#2a2a2a] rounded-full origin-top transform rotate-[22deg] border border-white/10 shadow-2xl z-20 hidden md:block">
+                            <!-- Pivot point -->
+                            <div
+                                class="absolute -top-4 -left-3 w-14 h-14 rounded-full bg-[#111] border-2 border-white/10 shadow-inner flex items-center justify-center">
+                                <div class="w-6 h-6 rounded-full bg-[#222] border border-black/50"></div>
+                            </div>
+                            <!-- Needle head -->
+                            <div
+                                class="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-20 bg-accent from-[#111] to-[#222] rounded-lg border border-white/10 shadow-xl rotate-[-10deg] origin-top">
+                                <div
+                                    class="absolute bottom-2 left-1/2 -translate-x-1/2 w-1 h-3 bg-red-500/80 rounded-full blur-[1px]">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Record Player Platter -->
+                        <div
+                            class="w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] rounded-full bg-accent from-[#111] to-[#050505] p-2 sm:p-3 shadow-[inset_0_4px_10px_rgba(0,0,0,1),0_10px_30px_rgba(0,0,0,0.8)] border border-white/5">
+                            <div
+                                class="vinyl-record w-full h-full bg-[#050505] shadow-[0_20px_50px_rgba(0,0,0,0.8)] border-[10px] border-[#1a1a1a]">
+                                <div class="vinyl-grooves opacity-60"></div>
+                                <div class="vinyl-label w-5/12 h-5/12 border-4 border-[#2a2a2a] shadow-inner">
+                                    <img src="Asserts/Images/LiveBg2.webp" class="w-full h-full object-cover"
+                                        alt="Cover Art">
+                                </div>
+                                <div
+                                    class="vinyl-hole bg-[#0c0a08] border border-black shadow-[inset_0_4px_8px_rgba(0,0,0,1)]">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Stats Bar Floating at Bottom -->
+            <div class="absolute bottom-0 left-0 w-full z-20 bg-black/40 backdrop-blur-xl border-t border-white/10">
+                <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+                    <!-- Marquee Integrated with Stats -->
+                    <div class="flex flex-col md:flex-row items-center justify-between">
+                        <div
+                            class="w-full md:w-1/2 overflow-hidden text-accent font-black text-xs md:text-sm py-4 uppercase tracking-widest flex items-center border-b md:border-b-0 border-white/5">
+                            <span class="shrink-0 mr-4 text-white"><i
+                                    class="bi bi-broadcast border border-white/20 p-1.5 rounded-lg bg-white/5"></i>
+                                ANNOUNCEMENT:</span>
+                            
+                                
+                        </div>
+
+                        <div
+                            class="w-full md:w-auto flex items-center justify-center gap-6 py-4 text-xs sm:text-sm font-bold text-gray-300 uppercase tracking-wider">
+                            <div class="flex items-center gap-2 group cursor-default">
+                                <i class="bi bi-people-fill text-accent group-hover:animate-pulse"></i>
+                                <span>2,451 Listening</span>
+                            </div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/20"></div>
+                            <div class="flex items-center gap-2 text-secondary group cursor-default">
+                                <i class="bi bi-soundwave group-hover:animate-pulse"></i>
+                                <span>320kbps HD</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 md:py-16 bg-bg flex-1 reveal">
+            <div class="max-w-[1200px] mx-auto px-4 sm:px-6 grid lg:grid-cols-3 gap-8 lg:gap-12">
+
+                <div class="lg:col-span-2 space-y-8">
+                    <div
+                        class="flex items-center justify-between border-b border-border pb-4 group cursor-pointer w-fit">
+                        <h2 class="text-2xl font-black text-textMain flex items-center gap-3">
+                            <i class="bi bi-broadcast text-accent group-hover:text-secondary transition-colors"></i>
+                            <span class="hover-double-color">Show Details</span>
+                        </h2>
+                    </div>
+
+                    <div
+                        class="bg-card border border-border rounded-3xl overflow-hidden shadow-lg group hover:border-accent transition-all duration-400 hover:shadow-[0_15px_30px_rgba(255,77,109,0.15)]">
+                        <div class="grid md:grid-cols-5 h-full">
+                            <div class="md:col-span-2 relative overflow-hidden h-56 sm:h-64 md:h-auto">
+                                <img src="Asserts/Images/LiveBg3.avif"
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    alt="DJ Nova">
+                                <div class="absolute inset-0 bg-black/40"></div>
+                                <div class="absolute bottom-5 left-5 text-white">
+                                    <span
+                                        class="bg-accent text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-sm">Host</span>
+                                    <h3
+                                        class="text-xl font-bold mt-2 tracking-wide group-hover:text-accent transition-colors">
+                                        DJ Nova</h3>
+                                </div>
+                            </div>
+
+                            <div class="md:col-span-3 p-5 sm:p-8 flex flex-col justify-center bg-card">
+                                <span
+                                    class="text-accent text-sm font-bold uppercase tracking-widest mb-2 group-hover:text-secondary transition-colors">Electronic
+                                    / House</span>
+                                <h3
+                                    class="text-2xl sm:text-3xl font-bold text-textMain mb-4 hover-double-color cursor-pointer w-fit transition-colors">
+                                    The Underground Hour</h3>
+                                <p class="text-textMuted text-sm sm:text-base leading-relaxed mb-6">
+                                    Nova brings the best of underground house, techno, and unreleased white labels
+                                    straight to your speakers. Call in for shoutouts at <strong
+                                        class="text-textMain group-hover:text-accent transition-colors">555-019-WAVE</strong>.
+                                </p>
+
+                                <div
+                                    class="mt-auto bg-bg2 rounded-2xl p-4 border border-border flex flex-col sm:flex-row items-center sm:items-stretch text-center sm:text-left gap-4 hover:border-accent hover:shadow-[0_5px_15px_rgba(255,77,109,0.1)] transition-all duration-300">
+                                    <div
+                                        class="w-12 h-12 sm:w-14 sm:h-14 bg-accent/10 rounded-full flex items-center justify-center text-xl sm:text-2xl text-accent border border-accent/20 shadow-sm shrink-0">
+                                        <i class="bi bi-music-note-beamed animate-bounce"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0 w-full">
+                                        <p
+                                            class="text-[10px] text-textMuted font-bold uppercase tracking-widest mb-1 flex items-center justify-center sm:justify-start gap-1.5">
+                                            <span
+                                                class="w-1.5 h-1.5 rounded-full bg-accent animate-ping hidden sm:block"></span>
+                                            Live Track ID
+                                        </p>
+                                        <p
+                                            class="font-bold text-textMain text-base sm:text-lg truncate group-hover:text-accent transition-colors">
+                                            Neon Streets (Original Mix)</p>
+                                        <p class="text-xs text-textMuted truncate">SynthRunner</p>
+                                    </div>
+                                    <button
+                                        class="w-full sm:w-auto flex flex-row sm:flex-col items-center justify-center gap-2 sm:gap-1 px-4 sm:px-3 py-2 rounded-xl bg-card border border-border text-textMuted hover:border-accent hover:text-accent transition-all group/hype hover:-translate-y-1 shadow-sm shrink-0">
+                                        <i
+                                            class="bi bi-fire text-lg sm:text-xl group-hover/hype:scale-125 transition-transform"></i>
+                                        <span class="text-xs font-bold">1.2k</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="lg:col-span-1 h-[450px] sm:h-[500px] lg:h-[600px] flex flex-col mt-4 lg:mt-0 reveal"
+                    style="transition-delay: 0.2s;">
+                    <div
+                        class="flex flex-col h-full bg-card rounded-3xl border border-border overflow-hidden shadow-lg relative group/chat hover:border-accent transition-colors duration-300">
+                        <div class="p-4 sm:p-5 border-b border-border bg-bg2 flex justify-between items-center z-10">
+                            <h3 class="font-bold text-textMain flex items-center gap-2 text-base sm:text-lg"><i
+                                    class="bi bi-chat-text-fill text-accent group-hover/chat:text-secondary transition-colors"></i>
+                                Studio Chat</h3>
+                            <span
+                                class="text-xs font-bold text-textMuted flex items-center gap-1.5 bg-card px-2 py-1 rounded-md border border-border">
+                                <div class="live-dot w-2 h-2 bg-green-500 shadow-none animation-none"></div> 1,204
+                            </span>
+                        </div>
+
+                        <div
+                            class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 sm:space-y-5 flex flex-col-reverse hide-scrollbar bg-[var(--bg)]/30 relative z-0">
+                            <div class="flex flex-col items-start chat-user">
+                                <span class="text-[11px] text-textMuted font-bold mb-1 ml-1 flex items-center gap-1"><i
+                                        class="bi bi-person-circle"></i> SarahJ99</span>
+                                <div
+                                    class="bg-bg2 border border-border text-textMain text-sm rounded-2xl rounded-tl-sm px-4 py-2.5 max-w-[85%] shadow-sm hover:border-accent transition-colors">
+                                    Drop that track ID please!! 🔥
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col items-end chat-user hover:-translate-x-1">
+                                <span class="text-[11px] host-badge font-black mb-1 mr-1 flex items-center gap-1"><i
+                                        class="bi bi-shield-fill-check text-accent"></i> WaveKind Bot</span>
+                                <div
+                                    class="bg-accent   text-white text-sm rounded-2xl rounded-tr-sm px-4 py-2.5 max-w-[90%] shadow-md hover:shadow-[0_5px_15px_rgba(255,77,109,0.3)] transition-shadow">
+                                    Now Playing: Neon Streets - SynthRunner 🎵
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col items-start chat-user">
+                                <span class="text-[11px] text-textMuted font-bold mb-1 ml-1 flex items-center gap-1"><i
+                                        class="bi bi-person-circle"></i> Mike_T</span>
+                                <div
+                                    class="bg-bg2 border border-border text-textMain text-sm rounded-2xl rounded-tl-sm px-4 py-2.5 max-w-[85%] shadow-sm hover:border-accent transition-colors">
+                                    Vibes are immaculate tonight. Listening from London. 🇬🇧
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col items-start chat-user">
+                                <span class="text-[11px] text-textMuted font-bold mb-1 ml-1 flex items-center gap-1"><i
+                                        class="bi bi-person-circle"></i> ElectroFan</span>
+                                <div
+                                    class="bg-bg2 border border-border text-textMain text-sm rounded-2xl rounded-tl-sm px-4 py-2.5 max-w-[85%] shadow-sm hover:border-accent transition-colors">
+                                    Yesssss Nova always delivers. Turn it up!
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-3 sm:p-4 border-t border-border bg-card z-10">
+                            <div class="relative group/input">
+                                <input type="text"
+                                    class="w-full bg-bg2 border border-border text-textMain text-sm rounded-full py-3 sm:py-3.5 pl-4 sm:pl-5 pr-12 sm:pr-14 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all shadow-inner"
+                                    placeholder="Join the conversation...">
+                                <button
+                                    class="absolute right-1.5 sm:right-2 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-accent text-white flex items-center justify-center hover:bg-secondary hover:scale-110 transition-all shadow-md group-focus-within/input:bg-secondary"><i
+                                        class="bi bi-send-fill text-xs sm:text-sm ml-0.5"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE LIVE POLL -->
+        <section class="py-12 md:py-16 bg-bg relative overflow-hidden reveal border-t border-border">
+            <div class="absolute inset-0 bg-accent/5"></div>
+
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 bg-card border border-border rounded-full text-xs font-bold uppercase tracking-widest text-textMuted mb-6 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span> Live Interactive Poll
+                </div>
+
+                <h2
+                    class="text-3xl sm:text-4xl md:text-5xl font-black text-textMain mb-4 hover-double-color cursor-default">
+                    You Choose The Next Track</h2>
+                <p class="text-textMuted text-base sm:text-lg mb-10 max-w-2xl mx-auto font-medium">DJ Nova is taking
+                    requests. Vote on the track you want to hear drop at the top of the hour. The winning track plays
+                    live!</p>
+
+                <div class="grid sm:grid-cols-2 gap-6 md:gap-8">
+                    <!-- Track Option 1 -->
+                    <div
+                        class="bg-card border-2 border-border hover:border-accent rounded-3xl p-6 relative group cursor-pointer transition-all duration-300 transform hover:-translate-y-2 shadow-lg hover:shadow-[0_15px_30px_rgba(255,77,109,0.2)]">
+                        <div
+                            class="absolute top-4 right-4 w-8 h-8 rounded-full border-2 border-border group-hover:border-accent flex items-center justify-center transition-colors">
+                            <div
+                                class="w-3 h-3 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                            </div>
+                        </div>
+
+                        <div
+                            class="w-20 h-20 mx-auto rounded-2xl overflow-hidden shadow-md mb-5 group-hover:scale-105 transition-transform">
+                            <img src="Asserts/Images/LiveCho1.avif" class="w-full h-full object-cover"
+                                alt="Track 1 Art">
+                        </div>
+
+                        <h3 class="text-xl font-bold text-textMain mb-1">Midnight City</h3>
+                        <p class="text-sm font-bold text-textMuted uppercase tracking-wider mb-4">M83 (Eric Prydz Remix)
+                        </p>
+
+                        <div class="w-full bg-bg2 rounded-full h-3 mb-2 overflow-hidden border border-border">
+                            <div class="bg-accent   h-full rounded-full w-[65%] relative">
+                                <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between text-xs font-bold text-textMuted">
+                            <span>65%</span>
+                            <i class="bi bi-fire text-accent"></i>
+                        </div>
+                    </div>
+
+                    <!-- Track Option 2 -->
+                    <div
+                        class="bg-card border-2 border-border hover:border-secondary rounded-3xl p-6 relative group cursor-pointer transition-all duration-300 transform hover:-translate-y-2 shadow-lg hover:shadow-[0_15px_30px_rgba(255,77,109,0.2)]">
+                        <div
+                            class="absolute top-4 right-4 w-8 h-8 rounded-full border-2 border-border group-hover:border-secondary flex items-center justify-center transition-colors">
+                            <div
+                                class="w-3 h-3 rounded-full bg-secondary opacity-0 group-hover:opacity-100 transition-opacity">
+                            </div>
+                        </div>
+
+                        <div
+                            class="w-20 h-20 mx-auto rounded-2xl overflow-hidden shadow-md mb-5 group-hover:scale-105 transition-transform">
+                            <img src="Asserts/Images/LI.avif" class="w-full h-full object-cover" alt="Track 2 Art">
+                        </div>
+
+                        <h3 class="text-xl font-bold text-textMain mb-1">Strobe</h3>
+                        <p class="text-sm font-bold text-textMuted uppercase tracking-wider mb-4">Deadmau5 (Club Edit)
+                        </p>
+
+                        <div class="w-full bg-bg2 rounded-full h-3 mb-2 overflow-hidden border border-border">
+                            <div class="bg-secondary/70 h-full rounded-full w-[35%] transition-all"></div>
+                        </div>
+                        <div class="flex justify-between text-xs font-bold text-textMuted">
+                            <span>35%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 sm:py-16 bg-bg2 border-t border-border relative">
+            <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+                <div class="flex flex-wrap justify-between items-end mb-6 sm:mb-8 gap-4">
+                    <h2
+                        class="text-xl sm:text-2xl font-black text-textMain group cursor-pointer w-fit hover-double-color">
+                        <i
+                            class="bi bi-calendar2-event-fill text-accent mr-2 group-hover:text-secondary transition-colors"></i>
+                        Coming Up Next
+                    </h2>
+                    <div class="flex gap-2">
+                        <button id="scrollLeftBtn"
+                            class="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-textMain hover:bg-accent hover:text-white hover:border-accent hover:scale-110 transition-all shadow-sm"><i
+                                class="bi bi-chevron-left text-base"></i></button>
+                        <button id="scrollRightBtn"
+                            class="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-textMain hover:bg-accent hover:text-white hover:border-accent hover:scale-110 transition-all shadow-sm"><i
+                                class="bi bi-chevron-right text-base"></i></button>
+                    </div>
+                </div>
+
+                <div id="schedule-carousel"
+                    class="flex overflow-x-auto snap-x gap-4 sm:gap-6 pb-6 hide-scrollbar cursor-grab active:cursor-grabbing">
+
+                    <div class="upcoming-card snap-start group cursor-pointer shrink-0 border-accent">
+                        <div class="h-36 sm:h-44 overflow-hidden relative">
+                            <div class="show-img" style="background-image:url('Asserts/Images/LiveNext1.avif');"></div>
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                            <div
+                                class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow-md uppercase tracking-wider animate-pulse">
+                                Starts in 45m</div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <h4 class="text-lg font-bold mb-0.5 hover-double-color">Late Night Talk</h4>
+                                <p class="text-xs text-white/80 font-medium">11:00 PM • with Mark Z.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="upcoming-card snap-start group cursor-pointer shrink-0">
+                        <div class="h-36 sm:h-44 overflow-hidden relative">
+                            <div class="show-img" style="background-image:url('Asserts/Images/LiveNext2.avif');"></div>
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <h4 class="text-lg font-bold mb-0.5 hover-double-color">The Indie Pulse</h4>
+                                <p class="text-xs text-white/80 font-medium">1:00 AM • Global Bands</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="upcoming-card snap-start group cursor-pointer shrink-0">
+                        <div class="h-36 sm:h-44 overflow-hidden relative">
+                            <div class="show-img" style="background-image:url('Asserts/Images/LiveNext3.avif');"></div>
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <h4 class="text-lg font-bold mb-0.5 hover-double-color">Night Owl Mixes</h4>
+                                <p class="text-xs text-white/80 font-medium">3:00 AM • Ambient Beats</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="upcoming-card snap-start group cursor-pointer shrink-0">
+                        <div class="h-36 sm:h-44 overflow-hidden relative">
+                            <div class="show-img" style="background-image:url('Asserts/Images/LiveNext4.avif');"></div>
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <h4 class="text-lg font-bold mb-0.5 hover-double-color">Morning Brew</h4>
+                                <p class="text-xs text-white/80 font-medium">6:00 AM • Local News</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="snap-start flex-shrink-0 w-2 md:w-6"></div>
+                </div>
+            </div>
+        </section>
+
+        <section
+            class="relative py-20 md:py-28 bg-bg overflow-hidden rounded-t-[2.5rem] md:rounded-t-[4rem] border-t border-border z-20 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] reveal">
+            <div
+                class="absolute top-[-20%] left-[-10%] w-96 h-96 bg-accent opacity-20 blur-[100px] rounded-full pointer-events-none animate-pulse-slow">
+            </div>
+            <div class="absolute bottom-[-20%] right-[-10%] w-[30rem] h-[30rem] bg-secondary opacity-10 blur-[120px] rounded-full pointer-events-none animate-pulse-slow"
+                style="animation-delay: 2s;"></div>
+
+            <div class="relative z-10 max-w-2xl mx-auto text-center px-6">
+                <div
+                    class="w-20 h-20 bg-card rounded-2xl flex items-center justify-center text-4xl mx-auto mb-8 shadow-xl border border-border rotate-3 hover:rotate-0 hover:scale-110 transition-transform cursor-pointer">
+                    <i class="bi bi-heart-fill text-accent"></i>
+                </div>
+                <h2
+                    class="text-3xl md:text-5xl font-black text-textMain mb-6 tracking-tight hover-double-color cursor-default">
+                    Keep the Signal Strong.</h2>
+                <p class="text-textMuted text-base sm:text-lg md:text-xl mb-10 leading-relaxed font-medium">
+                    WaveKind FM is 100% listener-supported. Help us keep the servers running, the artists paid, and the
+                    music ad-free.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <button
+                        class="btn-primary-custom px-8 py-4 text-base w-full sm:w-auto shadow-lg hover:shadow-[0_10px_25px_rgba(255,77,109,0.4)] hover:-translate-y-1 transition-all bg-accent border-0"><i
+                            class="bi bi-cup-hot-fill"></i> Buy us a Coffee ($5)</button>
+                    <button
+                        class="btn-outline px-8 py-4 text-base w-full sm:w-auto bg-card hover:bg-bg2 hover:-translate-y-1 transition-all shadow-sm"><a
+                            href="Mempership.html" class="text-inherit no-underline">Become
+                            a Member</a></button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+
+    <script>
+            (function () {
+                // Theme setup
+                const html = document.documentElement;
+                const themeToggle = document.getElementById('theme-toggle');
+                const themeIcon = document.getElementById('theme-icon');
+                const mobileTheme = document.getElementById('mobileThemeBtn');
+
+                const saved = localStorage.getItem('theme');
+                if (saved === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    if (themeIcon) themeIcon.classList.replace('bi-moon-stars-fill', 'bi-brightness-high-fill');
+                    if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-brightness-high-fill"></i> Theme';
+                }
+
+                function setTheme(theme) {
+                    if (theme === 'dark') {
+                        html.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        if (themeIcon) themeIcon.classList.replace('bi-moon-stars-fill', 'bi-brightness-high-fill');
+                        if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-brightness-high-fill"></i> Theme';
+                    } else {
+                        html.setAttribute('data-theme', 'light');
+                        localStorage.setItem('theme', 'light');
+                        if (themeIcon) themeIcon.classList.replace('bi-brightness-high-fill', 'bi-moon-stars-fill');
+                        if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-moon-stars-fill"></i> Theme';
+                    }
+                }
+
+                themeToggle?.addEventListener('click', () => {
+                    const isDark = html.getAttribute('data-theme') === 'dark';
+                    setTheme(isDark ? 'light' : 'dark');
+                });
+                mobileTheme?.addEventListener('click', () => {
+                    const isDark = html.getAttribute('data-theme') === 'dark';
+                    setTheme(isDark ? 'light' : 'dark');
+                });
+
+                // Direction (RTL) setup
+                let rtl = false;
+                const rtlBtn = document.getElementById('rtl-toggle');
+                const mobileRtl = document.getElementById('mobileRtlBtn');
+                function toggleRTL() { rtl = !rtl; html.setAttribute('dir', rtl ? 'rtl' : 'ltr'); }
+                rtlBtn?.addEventListener('click', toggleRTL);
+                mobileRtl?.addEventListener('click', toggleRTL);
+
+                // Drawer setup
+                const hamburger = document.getElementById('hamburgerBtn');
+                const drawer = document.getElementById('mobileDrawer');
+                const overlay = document.getElementById('drawerOverlay');
+                const closeDrawer = document.getElementById('closeDrawerBtn');
+
+                function openDrawer() { drawer.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+                function closeDrawerFunc() { drawer.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+
+                hamburger?.addEventListener('click', openDrawer);
+                closeDrawer?.addEventListener('click', closeDrawerFunc);
+                overlay?.addEventListener('click', closeDrawerFunc);
+
+                window.toggleMobileDropdown = function (id) {
+                    const el = document.getElementById(id);
+                    if (el) el.style.display = el.style.display === 'block' ? 'none' : 'block';
+                };
+
+                // Carousel Left/Right Scroll
+                const carousel = document.getElementById('schedule-carousel');
+                const scrollLeftBtn = document.getElementById('scrollLeftBtn');
+                const scrollRightBtn = document.getElementById('scrollRightBtn');
+
+                if (carousel && scrollLeftBtn && scrollRightBtn) {
+                    const getScrollAmount = () => window.innerWidth < 640 ? window.innerWidth * 0.8 : 320;
+                    scrollLeftBtn.addEventListener('click', () => { carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' }); });
+                    scrollRightBtn.addEventListener('click', () => { carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' }); });
+                }
+
+                // SMOOTH SCROLL REVEAL ANIMATION
+                const reveals = document.querySelectorAll('.reveal');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+                reveals.forEach(reveal => {
+                    observer.observe(reveal);
+                });
+
+            })();
+    </script>
+
+    <footer class="site-footer">
+        <div class="footer-main-grid">
+            <div class="footer-col">
+                <a href="index.html" class="nav-logo" style="margin-bottom: 0.5rem;">
+                    <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div>
+                    <span class="logo-text">WaveKind FM</span>
+                </a>
+                <div class="footer-brand">
+                    <p>Independent, community-powered radio platform. Discover local voices, live shows, and meaningful
+                        stories — anytime, anywhere.</p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="AboutPage.html">About</a></li>
+                    <li><a href="ShowPage.html">Shows</a></li>
+                    <li><a href="PodcastPage.html">Podcasts</a></li>
+                    <li><a href="ContactPage.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul class="footer-links">
+                    <li><a href="LivePage.html">Live Radio</a></li>
+                    <li><a href="ShowPage.html">Featured Shows</a></li>
+                    <li><a href="PodcastPage.html">Podcast Directory</a></li>
+                    <li><a href="MemperShip.html">Membership</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <div class="contact-item"><i class="bi bi-envelope-fill"></i><span>hello@wavekind.fm</span></div>
+                <div class="contact-item"><i class="bi bi-geo-alt-fill"></i><span>42 Frequency Ave, New York</span>
+                </div>
+                <div class="contact-item"><i class="bi bi-telephone-fill"></i><span>+1 (555) 019-8832</span></div>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" aria-label="Spotify"><i class="bi bi-spotify"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="bottom-wrapper">
+                <div class="copyright">© 2026 WaveKind FM. All rights reserved.</div>
+                <div class="trust-legal">
+                    <a href="#">Privacy Policy</a><span>|</span>
+                    <a href="#">Terms of Service</a><span>|</span>
+                    <a href="#">Cookie Settings</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

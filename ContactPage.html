@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Contact Us - WaveKind FM</title>
+
+    <script>
+        (function () {
+            var savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="Boostrap/bootstrap-icons/bootstrap-icons.css">
+    <!-- Local Assets -->
+    <link rel="stylesheet" href="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+    <script src="Tailwind/tailwind.min.js"></script>
+    <script src="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        :root {
+            --accent: #ff4d6d;
+            --accent-dark: #e63956;
+            --secondary: #6366f1;
+            --bg: #ffffff;
+            --bg-glass: rgba(254, 252, 248, 0.85);
+            --bg2: #f8f9fa;
+            --bg3: #e9ecef;
+            --card: #ffffff;
+            --text-main: #2b2b2b;
+            --text-muted: #6c757d;
+            --border: rgba(0, 0, 0, 0.08);
+            --border-footer: rgba(0, 0, 0, 0.08);
+            --footer-bg: #f8f9fa;
+        }
+
+        [data-theme="dark"] {
+            --accent: #ff4d6d;
+            --accent-dark: #e63956;
+            --secondary: #6366f1;
+            --bg: #111827;
+            --bg-glass: rgba(20, 17, 14, 0.85);
+            --bg2: #1f2937;
+            --bg3: #374151;
+            --card: #1f2937;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-footer: rgba(255, 255, 255, 0.08);
+            --footer-bg: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: '"Plus Jakarta Sans"', system-ui, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            width: 100%;
+            line-height: 1.5;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg2);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ==================== NAVBAR & DRAWER STYLES ==================== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--border);
+            height: 75px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+
+        .logo-mark {
+            background: var(--accent);
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .logo-text {
+            color: var(--text-main);
+            transition: color 0.3s ease;
+        }
+
+        .nav-logo:hover .logo-text {
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+            align-items: center;
+            margin: 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: block !important;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.5rem 0;
+            min-width: 170px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        /* Invisible bridge covering the gap so hover isn't lost */
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 0;
+            right: 0;
+            height: 12px;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            top: calc(100% + 8px);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.5rem 1.2rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: var(--bg2);
+            color: var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .icon-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .hamburger:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none !important;
+            }
+
+            .desktop-only {
+                display: none !important;
+            }
+
+            .nav-actions .icon-btn:not(.hamburger) {
+                display: none !important;
+            }
+
+            .hamburger {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1100;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 340px;
+            height: 100vh;
+            background: var(--card);
+            z-index: 1101;
+            display: flex;
+            flex-direction: column;
+            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 1px solid var(--border);
+        }
+
+        .mobile-drawer.active {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-nav-list {
+            list-style: none;
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .mobile-nav-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .mobile-nav-link:hover {
+            background: var(--bg2);
+            color: var(--accent);
+        }
+
+        .mobile-dropdown-content {
+            padding-left: 1.5rem;
+            display: none;
+            margin-top: 0.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-dropdown-item {
+            display: block;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .drawer-footer {
+            padding: 1.2rem 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* ==================== BUTTONS ==================== */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background-color: var(--accent);
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.875rem 2rem;
+            border-radius: 48px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(224, 124, 60, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            font-weight: 700;
+            padding: 0.875rem 2rem;
+            border-radius: 48px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg3);
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* ==================== CONTACT PAGE SECTIONS ==================== */
+        .section-bg {
+            background-color: var(--bg);
+        }
+
+        .section-bg2 {
+            background-color: var(--bg2);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--text-main);
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .color-primary {
+            color: var(--accent);
+        }
+
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 3rem;
+            }
+        }
+
+        /* HERO */
+        .hero {
+            padding: 5rem 0;
+            text-align: center;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        /* INFO STRIP */
+        .info-strip {
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .info-strip .strip-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: all 0.2s ease;
+        }
+
+        .info-item i {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            transition: color 0.25s ease;
+        }
+
+        .info-item:hover i {
+            color: var(--accent);
+        }
+
+        .info-item a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s ease;
+        }
+
+        .info-item a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 640px) {
+            .info-strip .strip-grid {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.25rem;
+            }
+        }
+
+        /* CONTACT FORM */
+        .contact-form-section {
+            padding: 5rem 0;
+        }
+
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .form-wrapper {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            background: var(--bg);
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(224, 124, 60, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .image-wrapper {
+            border-radius: 24px;
+            overflow: hidden;
+            height: 100%;
+            min-height: 400px;
+            background-color: var(--bg2);
+            border: 1px solid var(--border);
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .image-wrapper:hover img {
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 768px) {
+            .split-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .image-wrapper {
+                min-height: 280px;
+                order: -1;
+            }
+        }
+
+        /* MAP */
+        .map-section {
+            padding: 5rem 0;
+        }
+
+        .map-wrapper {
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+        }
+
+        .map-wrapper:hover {
+            transform: scale(1.01);
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 400px;
+            display: block;
+            border: 0;
+            filter: grayscale(20%) contrast(1.1);
+        }
+
+        [data-theme="dark"] .map-wrapper iframe {
+            filter: invert(90%) hue-rotate(180deg) brightness(85%) contrast(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .map-wrapper iframe {
+                height: 300px;
+            }
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 5rem 0;
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            background: transparent;
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+            background: none;
+            border: none;
+            font-size: 1.125rem;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: color 0.2s;
+            font-family: inherit;
+        }
+
+        .faq-question:hover {
+            color: var(--accent);
+        }
+
+        .faq-question i {
+            font-size: 1.25rem;
+            transition: transform 0.3s ease;
+            color: var(--text-muted);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+            color: var(--accent);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding-right: 1rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding-bottom: 1.25rem;
+        }
+
+        .faq-answer p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* SOCIAL CONNECT */
+        .social-section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .social-icons-row {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 60px;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon-link:hover {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px -5px rgba(224, 124, 60, 0.3);
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .cta-box {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-box h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .cta-box p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.125rem;
+        }
+
+        @media (min-width: 768px) {
+            .cta-box h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* ==================== FOOTER ==================== */
+        .site-footer {
+            background: var(--footer-bg);
+            border-top: 1px solid var(--border);
+            margin-top: auto;
+            font-family: '"Plus Jakarta Sans"', system-ui, -apple-system, sans-serif;
+        }
+
+        .footer-newsletter {
+            background: var(--bg2);
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-footer);
+        }
+
+        .footer-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .newsletter-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .newsletter-text h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter-text p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 450px;
+            justify-content: center;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.85rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--accent);
+        }
+
+        .newsletter-form button {
+            flex-shrink: 0;
+            background: var(--accent);
+            color: white;
+            font-weight: 700;
+            padding: 0.85rem 1.5rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+
+        .footer-main-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            margin-top: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 0.9rem;
+            max-width: 260px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(3px);
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-top: 2px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-main);
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-footer);
+            padding: 1.5rem 0;
+            background: var(--bg);
+        }
+
+        .bottom-wrapper {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .trust-legal {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .trust-legal a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .trust-legal a:hover {
+            color: var(--accent);
+        }
+
+        .trust-legal span {
+            color: var(--border-footer);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-main-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 3rem;
+                padding: 3rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .newsletter-form {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
+
+            .footer-main-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2.5rem;
+            }
+
+            .bottom-wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="404.html" class="nav-logo">
+                <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div>
+                <span class="logo-text">WaveKind FM</span>
+            </a>
+
+            <ul class="nav-menu">
+                <li class="dropdown">
+                    <a href="index.html" class="nav-link">Home <i class="bi bi-chevron-down"
+                            style="font-size: 0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html" class="dropdown-item">Home 1</a></li>
+                        <li><a href="Home2Page.html" class="dropdown-item">Home 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="AboutPage.html" class="nav-link">About</a></li>
+                <li><a href="ShowPage.html" class="nav-link">Shows</a></li>
+                <li><a href="PodcastPage.html" class="nav-link">Podcasts</a></li>
+                <li><a href="Fqa.html" class="nav-link">FAQ</a></li>
+                <li><a href="ContactPage.html" class="nav-link text-primary">Contact</a></li>
+                <li><a href="LivePage.html" class="nav-link" style="color:var(--accent);"><i
+                            class="bi bi-record-circle-fill"></i>
+                        Live</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">Dashboard <i class="bi bi-chevron-down"
+                            style="font-size: 0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Dashborad/User/User.html" class="dropdown-item"><i
+                                    class="bi bi-person-circle text-lg text-primary"></i>
+                                User Panel</a></li>
+                        <li><a href="Dashborad/Admin/AdminPage.html" class="dropdown-item"><i
+                                    class="bi bi-shield-lock text-lg text-primary"></i>
+                                Admin Panel</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" class="icon-btn desktop-only"><i class="bi bi-moon-stars-fill"
+                        id="theme-icon"></i></button>
+                <button id="rtl-toggle" class="icon-btn desktop-only"><i class="bi bi-text-paragraph"></i></button>
+
+                <div class="dropdown desktop-only">
+                    <button class="icon-btn"><i class="bi bi-person-circle text-lg"></i></button>
+                    <ul class="dropdown-menu" style="right: 0; left: auto; min-width: 160px;">
+                        <li><a href="LoginPage.html" class="dropdown-item"><i
+                                    class="bi bi-box-arrow-in-right text-primary text-lg"></i> Log In</a></li>
+                        <li><a href="RegistrationPage.html" class="dropdown-item"><i
+                                    class="bi bi-person-plus text-primary text-lg"></i>
+                                Sign Up</a></li>
+                    </ul>
+                </div>
+
+                <button class="hamburger" id="hamburgerBtn"><i class="bi bi-list"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <a href="404.html" class="nav-logo" style="font-size:1.3rem;">
+                <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div>
+                <span class="logo-text">WaveKind FM</span>
+            </a>
+            <button class="icon-btn border-none" id="closeDrawerBtn" style="background:transparent; border:none;"><i
+                    class="bi bi-x-lg"></i></button>
+        </div>
+        <ul class="mobile-nav-list">
+            <li>
+                <div onclick="toggleMobileDropdown('homeDropdown')" class="mobile-nav-link">Home <i
+                        class="bi bi-chevron-down"></i></div>
+                <div id="homeDropdown" class="mobile-dropdown-content">
+                    <a href="index.html" class="mobile-dropdown-item">Home 1</a>
+                    <a href="Home2Page.html" class="mobile-dropdown-item">Home 2</a>
+                </div>
+            </li>
+            <li><a href="AboutPage.html" class="mobile-nav-link">About</a></li>
+            <li><a href="ShowPage.html" class="mobile-nav-link">Shows</a></li>
+            <li><a href="PodcastPage.html" class="mobile-nav-link">Podcasts</a></li>
+            <li><a href="Fqa.html" class="mobile-nav-link">FAQ</a></li>
+            <li><a href="ContactPage.html" class="mobile-nav-link text-primary">Contact</a></li>
+            <li><a href="LivePage.html" class="mobile-nav-link" style="color:var(--accent);">Live Stream <i
+                        class="bi bi-record-circle-fill"></i></a></li>
+            <li>
+                <div onclick="toggleMobileDropdown('dashDropdown')" class="mobile-nav-link">Dashboard <i
+                        class="bi bi-chevron-down"></i></div>
+                <div id="dashDropdown" class="mobile-dropdown-content">
+                    <a href="Dashborad/User/User.html" class="mobile-dropdown-item"><i
+                            class="bi bi-person-circle text-primary"></i> User
+                        Panel</a>
+                    <a href="Dashborad/Admin/AdminPage.html" class="mobile-dropdown-item"><i
+                            class="bi bi-shield-lock text-primary"></i> Admin
+                        Panel</a>
+                </div>
+            </li>
+        </ul>
+        <div class="drawer-footer">
+            <div class="flex gap-2">
+                <button id="mobileThemeBtn" class="icon-btn flex-1 rounded-lg"><i class="bi bi-moon-stars-fill"></i>
+                    Theme</button>
+                <button id="mobileRtlBtn" class="icon-btn flex-1 rounded-lg"><i class="bi bi-text-paragraph"></i>
+                    RTL</button>
+            </div>
+            <div class="flex flex-col gap-2 mt-2">
+                <button class="btn btn-outline w-full justify-center" style="padding: 0.75rem;"><i
+                        class="bi bi-person-fill me-1"></i><a href="LoginPage.html">Log In</a></button>
+                <button class="btn-primary w-full justify-center" style="padding: 0.75rem;"><i
+                        class="bi bi-person-plus-fill me-1"></i><a href="RegistrationPage.html">Sign Up</a></button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section
+            class="relative w-full min-h-[90vh] flex flex-col lg:flex-row bg-bg overflow-hidden border-b border-border reveal">
+            <!-- Left Side: Content & Impact -->
+            <div class="w-full lg:w-1/2 flex flex-col justify-center px-8 lg:px-16 xl:px-24 py-20 relative z-10">
+                <div class="mb-6">
+                    <span
+                        class="inline-block px-4 py-1.5 rounded-full border border-accent text-accent text-xs font-bold uppercase tracking-widest mb-6 bg-accent/10">We're
+                        Listening</span>
+                    <h1
+                        class="text-6xl md:text-[5.5rem] font-black leading-[0.9] tracking-tighter text-textMain uppercase mb-6 drop-shadow-sm">
+                        Let's <span class="text-transparent bg-clip-text bg-accent  ">Talk.</span>
+                    </h1>
+                    <p class="text-xl text-textMuted font-medium max-w-md">
+                        Pitches, feedback, partnerships, or just finding the right frequency. Drop us a line.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-12">
+                    <div class="flex items-start gap-4 group">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-bg2 flex items-center justify-center border border-border group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                            <i
+                                class="bi bi-mic-fill text-xl text-textMain group-hover:text-white transition-colors"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-textMain font-bold text-lg mb-1">Studio Line</h4>
+                            <p class="text-textMuted text-sm">+1 (555) 019-8832</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 group">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-bg2 flex items-center justify-center border border-border group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                            <i
+                                class="bi bi-envelope-open-fill text-xl text-textMain group-hover:text-white transition-colors"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-textMain font-bold text-lg mb-1">Email Us</h4>
+                            <p class="text-textMuted text-sm">hello@wavekind.fm</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 group sm:col-span-2">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-bg2 flex items-center justify-center border border-border group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                            <i
+                                class="bi bi-geo-alt-fill text-xl text-textMain group-hover:text-white transition-colors"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-textMain font-bold text-lg mb-1">Headquarters</h4>
+                            <p class="text-textMuted text-sm">42 Frequency Ave, New York, NY 10012</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Background Image & Glassmorphic Form -->
+            <div class="w-full lg:w-1/2 relative flex items-center justify-center p-6 lg:p-12">
+                <!-- Background Cover -->
+                <div class="absolute inset-0 z-0">
+                    <img src="Asserts/Images/ContactBg.webp" class="w-full h-full object-cover" alt="Studio Gear">
+                    <div class="absolute inset-0 bg-black/40 mix-blend-multiply transition-colors"></div>
+                    <div class="absolute inset-0 bg-accent from-[#14110e]  lg:hidden opacity-80"></div>
+                </div>
+
+                <!-- Floating Glass Form -->
+                <div
+                    class="relative z-10 w-full max-w-lg bg-[rgba(255,255,255,0.05)] dark:bg-[rgba(0,0,0,0.3)] backdrop-blur-3xl border border-white/20 dark:border-white/10 rounded-[2rem] p-8 sm:p-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] transform hover:-translate-y-2 transition-transform duration-500 overflow-hidden">
+
+                    <div class="absolute top-0 left-0 w-full h-1 bg-accent  "></div>
+
+                    <h3 class="text-2xl font-bold text-white mb-2">Send a Message</h3>
+                    <p class="text-sm text-gray-300 mb-8 border-b border-white/10 pb-6">Our curation team reads
+                        everything within 24 hours.</p>
+
+                    <form id="contactForm" action="#" method="POST" class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div class="space-y-1.5">
+                                <label for="name"
+                                    class="text-xs font-bold text-white uppercase tracking-wider ml-1">Name</label>
+                                <input type="text" id="name" name="name" placeholder="John Carter" required
+                                    class="w-full bg-white/10 border border-white/20 focus:border-accent focus:bg-white/20 rounded-xl px-4 py-3 text-sm text-white outline-none transition-all placeholder:text-gray-400">
+                            </div>
+                            <div class="space-y-1.5">
+                                <label for="email"
+                                    class="text-xs font-bold text-white uppercase tracking-wider ml-1">Email</label>
+                                <input type="email" id="email" name="email" placeholder="hello@site.com" required
+                                    class="w-full bg-white/10 border border-white/20 focus:border-accent focus:bg-white/20 rounded-xl px-4 py-3 text-sm text-white outline-none transition-all placeholder:text-gray-400">
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label for="topic"
+                                class="text-xs font-bold text-white uppercase tracking-wider ml-1">Topic</label>
+                            <select id="topic"
+                                class="w-full bg-white/10 border border-white/20 focus:border-accent focus:bg-white/20 rounded-xl px-4 py-3 text-sm text-white outline-none transition-all appearance-none cursor-pointer">
+                                <option value="general" class="text-black">General Inquiry</option>
+                                <option value="pitch" class="text-black">Music / Show Pitch</option>
+                                <option value="partnership" class="text-black">Partnerships</option>
+                                <option value="support" class="text-black">Technical Support</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label for="message"
+                                class="text-xs font-bold text-white uppercase tracking-wider ml-1">Message</label>
+                            <textarea id="message" name="message" rows="4" placeholder="What's on your mind?" required
+                                class="w-full bg-white/10 border border-white/20 focus:border-accent focus:bg-white/20 rounded-xl px-4 py-3 text-sm text-white outline-none transition-all resize-none placeholder:text-gray-400"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full btn-primary py-4 rounded-xl font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform shadow-lg border-none">
+                            Transmit Message <i class="bi bi-send-fill"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-bg2 map-section">
+            <div class="container">
+                <div class="map-wrapper shadow-sm">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.98634812166!2d-73.99343868459423!3d40.74032547932881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a4119ce269%3A0x9dec0c979b575972!2sFlatiron%20Building!5e0!3m2!1sen!2sus!4v1683830230234!5m2!1sen!2sus"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-bg faq-section">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked <span class="color-primary">Questions</span></h2>
+                <p class="section-subtitle">Everything you need to know about connecting with us.</p>
+                <div class="faq-grid" style="margin-top: 3rem;">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How quickly do you respond to inquiries?</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We typically respond within 24 business hours. For urgent matters, please call our
+                                support line directly.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Do you accept guest submissions or pitches?</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes! We’re always looking for fresh voices. Please use the contact form with "PITCH" in
+                                the subject line, and our team will review your proposal.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Where are you located? Can I visit the studio?</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Our main studio is in downtown New York at 42 Frequency Avenue. We host open house events
+                                monthly — follow our social channels for updates.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How can I partner or advertise with WaveKind FM?</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We love collaborating with mission-aligned brands. Send a message with "Partnership" in
+                                the subject, and we’ll send you our media kit.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-bg2 social-section">
+            <div class="container">
+                <h2 class="section-title" style="font-size: 2rem;">Connect <span class="color-primary">Socially</span>
+                </h2>
+                <p class="section-subtitle">Follow us for updates, behind-the-scenes, and community stories.</p>
+                <div class="social-icons-row">
+                    <a href="#" class="social-icon-link" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="social-icon-link" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" class="social-icon-link" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                    <a href="#" class="social-icon-link" aria-label="Spotify"><i class="bi bi-spotify"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-bg cta-section">
+            <div class="container">
+                <div class="cta-box">
+                    <h2>Join our <span class="color-primary">Community</span></h2>
+                    <p>Be part of something bigger. Get exclusive content, early event access, and direct updates.</p>
+                    <button class="btn-primary">Join Our Community <i class="bi bi-people-fill"></i></button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+
+        <div class="footer-main-grid">
+            <div class="footer-col">
+                <a href="index.html" class="nav-logo" style="margin-bottom: 0.5rem;">
+                    <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div>
+                    <span class="logo-text">WaveKind FM</span>
+                </a>
+                <div class="footer-brand">
+                    <p>Independent, community-powered radio platform. Discover local voices, live shows, and meaningful
+                        stories — anytime, anywhere.</p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="AboutPage.html">About</a></li>
+                    <li><a href="ShowPage.html">Shows</a></li>
+                    <li><a href="PodcastPage.html">Podcasts</a></li>
+                    <li><a href="ContactPage.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul class="footer-links">
+                    <li><a href="LivePage.html">Live Radio</a></li>
+                    <li><a href="ShowPage.html">Featured Shows</a></li>
+                    <li><a href="PodcastPage.html">Podcast Directory</a></li>
+                    <li><a href="MemperShip.html">Membership</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <div class="contact-item"><i class="bi bi-envelope-fill"></i><span>hello@wavekind.fm</span></div>
+                <div class="contact-item"><i class="bi bi-geo-alt-fill"></i><span>42 Frequency Ave, New York</span>
+                </div>
+                <div class="contact-item"><i class="bi bi-telephone-fill"></i><span>+1 (555) 019-8832</span></div>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" aria-label="Spotify"><i class="bi bi-spotify"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="bottom-wrapper">
+                <div class="copyright">© 2026 WaveKind FM. All rights reserved.</div>
+                <div class="trust-legal">
+                    <a href="#">Privacy Policy</a><span>|</span>
+                    <a href="#">Terms of Service</a><span>|</span>
+                    <a href="#">Cookie Settings</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            // Theme setup
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const mobileTheme = document.getElementById('mobileThemeBtn');
+
+            const saved = localStorage.getItem('theme');
+            if (saved === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                if (themeIcon) themeIcon.classList.replace('bi-moon-stars-fill', 'bi-brightness-high-fill');
+                if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-brightness-high-fill"></i> Theme';
+            }
+
+            function setTheme(theme) {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                    if (themeIcon) themeIcon.classList.replace('bi-moon-stars-fill', 'bi-brightness-high-fill');
+                    if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-brightness-high-fill"></i> Theme';
+                } else {
+                    html.setAttribute('data-theme', 'light');
+                    localStorage.setItem('theme', 'light');
+                    if (themeIcon) themeIcon.classList.replace('bi-brightness-high-fill', 'bi-moon-stars-fill');
+                    if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-moon-stars-fill"></i> Theme';
+                }
+            }
+
+            themeToggle?.addEventListener('click', () => {
+                const isDark = html.getAttribute('data-theme') === 'dark';
+                setTheme(isDark ? 'light' : 'dark');
+            });
+
+            mobileTheme?.addEventListener('click', () => {
+                const isDark = html.getAttribute('data-theme') === 'dark';
+                setTheme(isDark ? 'light' : 'dark');
+            });
+
+            // Direction (RTL) setup
+            let rtl = false;
+            const rtlBtn = document.getElementById('rtl-toggle');
+            const mobileRtl = document.getElementById('mobileRtlBtn');
+            function toggleRTL() { rtl = !rtl; html.setAttribute('dir', rtl ? 'rtl' : 'ltr'); }
+            rtlBtn?.addEventListener('click', toggleRTL);
+            mobileRtl?.addEventListener('click', toggleRTL);
+
+            // Drawer setup
+            const hamburger = document.getElementById('hamburgerBtn');
+            const drawer = document.getElementById('mobileDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            const closeDrawer = document.getElementById('closeDrawerBtn');
+
+            function openDrawer() {
+                drawer.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeDrawerFunc() {
+                drawer.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            hamburger?.addEventListener('click', openDrawer);
+            closeDrawer?.addEventListener('click', closeDrawerFunc);
+            overlay?.addEventListener('click', closeDrawerFunc);
+
+            // Mobile dropdowns
+            window.toggleMobileDropdown = function (id) {
+                const el = document.getElementById(id);
+                if (el) el.style.display = el.style.display === 'block' ? 'none' : 'block';
+            };
+
+            // FAQ Accordion
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const button = item.querySelector('.faq-question');
+                button.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    if (!isActive) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            });
+
+            // Contact Form Demo Submit
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const name = document.getElementById('name')?.value || '';
+                    alert(`✨ Thanks ${name || 'friend'}! Your message has been sent. We’ll reply soon.`);
+                    contactForm.reset();
+                });
+            }
+
+            // Scroll reveal
+            const sections = document.querySelectorAll('section:not(.hero)');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+        })();
+    </script>
+
+</body>
+
+</html>

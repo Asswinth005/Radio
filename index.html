@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>WaveKind FM - Community Radio</title>
+
+    <script>
+        (function () {
+            var savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="Boostrap/bootstrap-icons/bootstrap-icons.css">
+    <!-- Local Assets -->
+    <link rel="stylesheet" href="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+    <script src="Tailwind/tailwind.min.js"></script>
+    <script src="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: 'var(--accent)',
+                        accentDark: 'var(--accent-dark)',
+                        primary: 'var(--accent)',
+                        primaryDark: 'var(--accent-dark)',
+                        bg: 'var(--bg)',
+                        bg2: 'var(--bg2)',
+                        bg3: 'var(--bg3)',
+                        card: 'var(--card)',
+                        textMain: 'var(--text-main)',
+                        textMuted: 'var(--text-muted)',
+                        border: 'var(--border)'
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ---------- STRICT SOLID COLOR PALETTE ---------- */
+        :root {
+            --accent: #ff4d6d;
+            --accent-dark: #e63956;
+            --secondary: #6366f1;
+            --bg: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.85);
+            --bg2: #f8f9fa;
+            --bg3: #e9ecef;
+            --card: #ffffff;
+            --text-main: #2b2b2b;
+            --text-muted: #6c757d;
+            --border: rgba(0, 0, 0, 0.08);
+            --border-footer: rgba(0, 0, 0, 0.08);
+            --footer-bg: #f8f9fa;
+        }
+
+        [data-theme="dark"] {
+            --accent: #ff4d6d;
+            --accent-dark: #e63956;
+            --secondary: #6366f1;
+            --bg: #111827;
+            --bg-glass: rgba(17, 24, 39, 0.85);
+            --bg2: #1f2937;
+            --bg3: #374151;
+            --card: #1f2937;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-footer: rgba(255, 255, 255, 0.08);
+            --footer-bg: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: '"Plus Jakarta Sans"', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg2);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        /* ================= BUTTONS & HOVERS ================= */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary-custom {
+            background-color: var(--accent);
+            color: #ffffff;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg3);
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .icon-hover {
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        a:hover .icon-hover,
+        .pro-card:hover .icon-hover {
+            color: var(--accent) !important;
+            transform: scale(1.1);
+        }
+
+        /* ================= NAVBAR ================= */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--border);
+            height: 75px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+
+        .logo-mark {
+            background: var(--accent);
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .logo-text {
+            color: var(--text-main);
+            transition: color 0.3s ease;
+        }
+
+        .nav-logo:hover .logo-text {
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+            align-items: center;
+            margin: 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: block !important;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.6rem 0;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        /* Invisible bridge covering the gap so hover isn't lost */
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 0;
+            right: 0;
+            height: 12px;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+            top: calc(100% + 8px);
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.6rem 1.2rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: var(--bg2);
+            color: var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 0.7rem;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+        }
+
+        .icon-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: 0.2s;
+            padding-left: 0.25rem;
+        }
+
+        .hamburger:hover {
+            color: var(--accent);
+        }
+
+        /* ================= CARDS & UI ELEMENTS ================= */
+        .pro-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pro-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -5px rgba(255, 77, 109, 0.15);
+        }
+
+        .show-img {
+            transition: transform 0.5s ease;
+            height: 100%;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .pro-card:hover .show-img {
+            transform: scale(1.05);
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 1.4s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.4;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        .wave-bars {
+            display: flex;
+            gap: 3px;
+            align-items: center;
+            height: 24px;
+        }
+
+        .wave-bar {
+            width: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+            animation: wave 0.9s infinite ease alternate;
+        }
+
+        .wave-bar:nth-child(2) {
+            animation-delay: 0.2s;
+            height: 18px;
+        }
+
+        .wave-bar:nth-child(3) {
+            animation-delay: 0.4s;
+            height: 24px;
+        }
+
+        .wave-bar:nth-child(4) {
+            animation-delay: 0.1s;
+            height: 12px;
+        }
+
+        @keyframes wave {
+            0% {
+                height: 6px;
+            }
+
+            100% {
+                height: 22px;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ================= MOBILE DRAWER ================= */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1100;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 320px;
+            height: 100vh;
+            background: var(--card);
+            z-index: 1101;
+            display: flex;
+            flex-direction: column;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 1px solid var(--border);
+        }
+
+        .mobile-drawer.active {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-nav-list {
+            list-style: none;
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .mobile-nav-link {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .mobile-nav-link:hover {
+            background: var(--bg2);
+            color: var(--accent);
+        }
+
+        .mobile-dropdown-content {
+            padding-left: 1.5rem;
+            display: none;
+            margin-top: 0.5rem;
+        }
+
+        .mobile-dropdown-item {
+            display: block;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .mobile-dropdown-item:hover {
+            color: var(--accent);
+        }
+
+        .drawer-footer {
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none !important;
+            }
+
+            .desktop-only {
+                display: none !important;
+            }
+
+            .nav-actions .icon-btn:not(.hamburger) {
+                display: none !important;
+            }
+
+            .hamburger {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
+
+        /* ================= CENTERED FOOTER - FIXED ALIGNMENT ================= */
+        .site-footer {
+            background: var(--footer-bg);
+            margin-top: auto;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-newsletter {
+            background: var(--bg2);
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-footer);
+        }
+
+        .footer-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .newsletter-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .newsletter-text h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter-text p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 450px;
+            justify-content: center;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.85rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text-main);
+            outline: none;
+            text-align: center;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--accent);
+        }
+
+        /* FOOTER MAIN GRID - PERFECTLY CENTERED 4 COLUMNS */
+        .footer-main-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            max-width: 260px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: left;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 12px;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-main);
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-footer);
+            padding: 1.5rem 0;
+            background: var(--bg);
+        }
+
+        .bottom-wrapper {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .trust-legal {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .trust-legal a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .trust-legal a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none !important;
+            }
+
+            .desktop-only {
+                display: none !important;
+            }
+
+            .nav-actions .icon-btn:not(.hamburger) {
+                display: none !important;
+            }
+
+            .hamburger {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
+
+            .footer-main-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .bottom-wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* ================= INJECTED FOOTER RESPONSIVENESS ================= */
+        .site-footer {
+            font-family: '"Plus Jakarta Sans"', system-ui, -apple-system, sans-serif;
+        }
+
+        @media (max-width: 1024px) {
+            .footer-main-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
+
+            .footer-main-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2.5rem;
+            }
+
+            .bottom-wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+        }
+
+        /* UX Overrides */
+        .pro-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border);
+        }
+
+        .pro-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: var(--accent);
+            z-index: 10;
+        }
+
+        .btn {
+            transition: all 0.3s ease;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        /* ================= UNIFIED FOOTER CSS FOR ALIGNMENT AND FONT ================= */
+        .site-footer {
+            font-family: inherit;
+            background: var(--footer-bg);
+            margin-top: auto;
+            border-top: 1px solid var(--border);
+            width: 100%;
+        }
+
+        .site-footer * {
+            font-family: inherit;
+        }
+
+        .footer-newsletter {
+            background: var(--bg2);
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-footer);
+        }
+
+        .footer-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .newsletter-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .newsletter-text h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter-text p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 450px;
+            justify-content: center;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.85rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--accent);
+        }
+
+        .newsletter-form button {
+            flex-shrink: 0;
+        }
+
+        .footer-main-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            margin-top: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 0.9rem;
+            max-width: 260px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(3px);
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-top: 2px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-main);
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-footer);
+            padding: 1.5rem 0;
+            background: var(--bg);
+        }
+
+        .bottom-wrapper {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .trust-legal {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .trust-legal a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .trust-legal a:hover {
+            color: var(--accent);
+        }
+
+        .trust-legal span {
+            color: var(--border-footer);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-main-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 3rem;
+                padding: 3rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .newsletter-form {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
+
+            .footer-main-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2.5rem;
+            }
+
+            .bottom-wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="404.html" class="nav-logo">
+                <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div>
+                <span class="logo-text">WaveKind FM</span>
+            </a>
+
+            <ul class="nav-menu">
+                <li class="dropdown">
+                    <a href="index.html" class="nav-link text-primary">Home <i class="bi bi-chevron-down"
+                            style="font-size: 0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html" class="dropdown-item">Home 1</a></li>
+                        <li><a href="Home2Page.html" class="dropdown-item">Home 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="AboutPage.html" class="nav-link">About</a></li>
+                <li><a href="ShowPage.html" class="nav-link">Shows</a></li>
+                <li><a href="PodcastPage.html" class="nav-link">Podcasts</a></li>
+                <li><a href="Fqa.html" class="nav-link">FAQ</a></li>
+                <li><a href="ContactPage.html" class="nav-link">Contact</a></li>
+                <li><a href="LivePage.html" class="nav-link" style="color:var(--accent);"><i
+                            class="bi bi-record-circle-fill"></i>
+                        Live</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">Dashboard <i class="bi bi-chevron-down"
+                            style="font-size: 0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Dashborad/User/User.html" class="dropdown-item"><i
+                                    class="bi bi-person-circle text-lg text-primary"></i>
+                                User Panel</a></li>
+                        <li><a href="Dashborad/Admin/AdminPage.html" class="dropdown-item"><i
+                                    class="bi bi-shield-lock text-lg text-primary"></i>
+                                Admin Panel</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" class="icon-btn desktop-only"><i class="bi bi-moon-stars-fill"
+                        id="theme-icon"></i></button>
+                <button id="rtl-toggle" class="icon-btn desktop-only"><i class="bi bi-text-paragraph"></i></button>
+
+                <div class="dropdown desktop-only">
+                    <button class="icon-btn"><i class="bi bi-person-circle text-lg"></i></button>
+                    <ul class="dropdown-menu" style="right: 0; left: auto; min-width: 160px;">
+                        <li><a href="LoginPage.html" class="dropdown-item" id="desktopLoginBtn"><i
+                                    class="bi bi-box-arrow-in-right text-primary text-lg"></i> Log In</a></li>
+                        <li><a href="RegistrationPage.html" class="dropdown-item"><i
+                                    class="bi bi-person-plus text-primary text-lg"></i>
+                                Sign Up</a></li>
+                    </ul>
+                </div>
+
+                <button class="hamburger" id="hamburgerBtn"><i class="bi bi-list"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <a href="index.html" class="nav-logo" style="font-size:1.3rem;">
+                <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div>
+                <span class="logo-text">WaveKind FM</span>
+            </a>
+            <button class="icon-btn border-none" id="closeDrawerBtn"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <ul class="mobile-nav-list">
+            <li>
+                <div onclick="toggleMobileDropdown('homeDropdown')" class="mobile-nav-link text-primary">Home <i
+                        class="bi bi-chevron-down"></i></div>
+                <div id="homeDropdown" class="mobile-dropdown-content" style="display:block;">
+                    <a href="index.html" class="mobile-dropdown-item">Home 1</a>
+                    <a href="Home2Page.html" class="mobile-dropdown-item">Home 2</a>
+                </div>
+            </li>
+            <li><a href="AboutPage.html" class="mobile-nav-link">About</a></li>
+            <li><a href="ShowPage.html" class="mobile-nav-link">Shows</a></li>
+            <li><a href="PodcastPage.html" class="mobile-nav-link">Podcasts</a></li>
+            <li><a href="Fqa.html" class="mobile-nav-link">FAQ</a></li>
+            <li><a href="ContactPage.html" class="mobile-nav-link">Contact</a></li>
+            <li><a href="LivePage.html" class="mobile-nav-link" style="color:var(--accent);">Live Stream <i
+                        class="bi bi-record-circle-fill"></i></a></li>
+            <li>
+                <div onclick="toggleMobileDropdown('dashDropdown')" class="mobile-nav-link">Dashboard <i
+                        class="bi bi-chevron-down"></i></div>
+                <div id="dashDropdown" class="mobile-dropdown-content">
+                    <a href="Dashborad/User/User.html" class="mobile-dropdown-item"><i
+                            class="bi bi-person-circle text-primary"></i> User
+                        Panel</a>
+                    <a href="Dashborad/Admin/AdminPage.html" class="mobile-dropdown-item"><i
+                            class="bi bi-shield-lock text-primary"></i> Admin
+                        Panel</a>
+                </div>
+            </li>
+        </ul>
+        <div class="drawer-footer">
+            <div class="flex gap-2">
+                <button id="mobileThemeBtn" class="icon-btn flex-1 rounded-lg"><i class="bi bi-moon-stars-fill"></i>
+                    Theme</button>
+                <button id="mobileRtlBtn" class="icon-btn flex-1 rounded-lg"><i class="bi bi-text-paragraph"></i>
+                    RTL</button>
+            </div>
+            <div class="flex flex-col gap-2 mt-2">
+                <button class="btn btn-outline w-full justify-center" id="mobileLoginBtn"><i class="bi bi-person-fill"></i><a href="LoginPage.html"> Log In</a></button>
+                <button class="btn btn-primary-custom w-full justify-center"><i class="bi bi-person-plus-fill"></i><a
+                        href="RegistrationPage.html"> Sign Up</a></button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+
+        <section id="hero"
+            class="relative w-full min-h-[80vh] md:min-h-screen flex items-center justify-center overflow-hidden border-b border-border group pt-16">
+            <div class="absolute inset-0 z-0 bg-[#14110e]"></div>
+            <div class="absolute inset-0 z-0">
+                <img src="Asserts/Images/HomeHeroBG.avif"
+                    class="w-full h-full object-cover opacity-20 transition-transform duration-[10s] group-hover:scale-110"
+                    alt="Studio">
+            </div>
+
+            <div class="relative z-10 px-6 max-w-[1200px] mx-auto text-center">
+                <div
+                    class="bg-[#26201b] border border-[#3a3129] rounded-full px-5 py-2 inline-flex items-center gap-3 mb-8 shadow-lg">
+                    <div class="wave-bars">
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                        <div class="wave-bar"></div>
+                    </div>
+                    <span class="text-white text-sm font-bold tracking-wide">LIVE: Evening Flow with DJ Nova</span>
+                    <i class="bi bi-play-circle-fill text-accent text-xl ml-2"></i>
+                </div>
+
+                <h1 class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white mb-6">
+                    Your Soundtrack.<br><span class="text-accent">Independent & Local.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 font-medium">
+                    Discover underground artists, compelling stories, and live broadcasts — free from corporate
+                    playlists.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="btn btn-primary-custom px-10 py-4 text-lg rounded-full border-0">
+                        <i class="bi bi-headphones"></i> Listen Live
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 max-w-4xl mx-auto -mt-10 sm:-mt-16 mb-16 sm:mb-20 reveal z-20 relative">
+            <div class="pro-card p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 relative shadow-xl">
+                <div
+                    class="w-32 h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden flex-shrink-0 relative shadow-md bg-bg2 border border-border mx-auto sm:mx-0">
+                    <div class="w-full h-full bg-cover bg-center show-img"
+                        style="background-image: url('Asserts/Images/Hero1.avif');">
+                        <div class="absolute bottom-2 right-2 bg-black/60 rounded p-1 flex items-center justify-center">
+                            <i class="bi bi-broadcast text-lg text-white"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-1 text-center md:text-left z-10 w-full">
+                    <div class="text-primary font-bold tracking-wider text-xs mb-2 uppercase text-accent">Now Playing
+                    </div>
+                    <h3 class="text-2xl font-extrabold mb-1 text-textMain">The Underground <span
+                            class="text-primary">Hour</span></h3>
+                    <p class="text-textMuted mb-6 font-medium">Featuring Sarah Jenkins & The Local Crew</p>
+
+                    <div
+                        class="flex flex-col sm:flex-row items-center justify-between w-full bg-bg2 p-4 rounded-2xl border border-border gap-4 sm:gap-0">
+                        <button
+                            class="w-12 h-12 rounded-xl bg-accent text-white flex items-center justify-center text-xl hover:bg-accent-dark transition-colors border-0 play-btn">
+                            <i class="bi bi-play-fill ml-1" id="inlinePlayIcon"></i>
+                        </button>
+                        <div class="flex items-end gap-1.5 h-8 px-4">
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                        </div>
+                        <div class="flex gap-4 text-textMuted">
+                            <button class="bg-transparent border-0 icon-hover"><i
+                                    class="bi bi-suit-heart text-xl text-textMuted"></i></button>
+                            <button class="bg-transparent border-0 icon-hover"><i
+                                    class="bi bi-share text-xl text-textMuted"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-bg2 py-24 px-6 border-y border-border reveal">
+            <div class="max-w-[1200px] mx-auto">
+                <div
+                    class="flex flex-col sm:flex-row justify-between items-center sm:items-end mb-12 text-center sm:text-left gap-4">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-textMain mb-2">Featured <span
+                                class="text-primary">Shows</span></h2>
+                        <p class="text-textMuted font-medium text-sm sm:text-base">Curated broadcasts from our
+                            community.</p>
+                    </div>
+                    <button class="btn btn-outline hidden sm:inline-flex bg-bg">All Shows <i
+                            class="bi bi-arrow-right"></i></button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="pro-card group cursor-pointer">
+                        <div class="h-48 relative overflow-hidden bg-bg3 border-b border-border">
+                            <div class="show-img absolute inset-0"
+                                style="background-image:url('Asserts/Images/HomeFutue1.avif');"></div>
+                        </div>
+                        <div class="p-6 bg-card flex flex-col justify-center">
+                            <span
+                                class="text-accent text-xs font-bold tracking-wider mb-2 block uppercase">Electronic</span>
+                            <h3 class="text-xl font-bold text-textMain flex justify-between items-center">
+                                Midnight Waves <i
+                                    class="bi bi-arrow-right-short text-3xl opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-accent"></i>
+                            </h3>
+                            <p class="text-textMuted text-sm mt-1 font-medium"><i
+                                    class="bi bi-calendar-event text-accent mr-1"></i> Fridays 10 PM</p>
+                        </div>
+                    </div>
+                    <div class="pro-card group cursor-pointer">
+                        <div class="h-48 relative overflow-hidden bg-bg3 border-b border-border">
+                            <div class="show-img absolute inset-0"
+                                style="background-image:url('Asserts/Images/HomeFutue2.avif');"></div>
+                        </div>
+                        <div class="p-6 bg-card flex flex-col justify-center">
+                            <span class="text-accent text-xs font-bold tracking-wider mb-2 block uppercase">Talk</span>
+                            <h3 class="text-xl font-bold text-textMain flex justify-between items-center">
+                                Morning Brew <i
+                                    class="bi bi-arrow-right-short text-3xl opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-accent"></i>
+                            </h3>
+                            <p class="text-textMuted text-sm mt-1 font-medium"><i
+                                    class="bi bi-calendar-event text-accent mr-1"></i> Weekdays 8 AM</p>
+                        </div>
+                    </div>
+                    <div class="pro-card group cursor-pointer hidden lg:flex">
+                        <div class="h-48 relative overflow-hidden bg-bg3 border-b border-border">
+                            <div class="show-img absolute inset-0"
+                                style="background-image:url('Asserts/Images/HomeFutue3.webp');"></div>
+                        </div>
+                        <div class="p-6 bg-card flex flex-col justify-center">
+                            <span
+                                class="text-accent text-xs font-bold tracking-wider mb-2 block uppercase">Culture</span>
+                            <h3 class="text-xl font-bold text-textMain flex justify-between items-center">
+                                City Soundscapes <i
+                                    class="bi bi-arrow-right-short text-3xl opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-accent"></i>
+                            </h3>
+                            <p class="text-textMuted text-sm mt-1 font-medium"><i
+                                    class="bi bi-calendar-event text-accent mr-1"></i> Sundays 2 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-bg py-24 px-6 border-b border-border reveal">
+            <div class="max-w-[1200px] mx-auto">
+                <div
+                    class="flex flex-col sm:flex-row justify-between items-center mb-12 gap-4 text-center sm:text-left">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-textMain mb-2">Meet the <span
+                                class="text-primary">Voices</span></h2>
+                        <p class="text-textMuted font-medium">The personalities behind your favorite shows.</p>
+                    </div>
+                    <button class="btn btn-outline hidden sm:inline-flex bg-bg">View All Hosts <i
+                            class="bi bi-arrow-right"></i></button>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                    <div class="pro-card p-8 text-center group bg-card">
+                        <div
+                            class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-5 border-4 border-bg3 group-hover:border-primary transition-all duration-300">
+                            <img src="Asserts/Images/HomePer1.avif"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                                alt="Host">
+                        </div>
+                        <h4 class="font-bold text-lg text-textMain">DJ Nova</h4>
+                        <p class="text-accent text-xs font-semibold uppercase tracking-widest mb-4">Evening Flow</p>
+                        <div class="flex justify-center gap-4 border-t border-border pt-4">
+                            <a href="#" class="text-textMuted hover:text-primary transition-colors text-lg"><i
+                                    class="bi bi-instagram"></i></a>
+                            <a href="#" class="text-textMuted hover:text-primary transition-colors text-lg"><i
+                                    class="bi bi-twitter-x"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="pro-card p-8 text-center group bg-card">
+                        <div
+                            class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-5 border-4 border-bg3 group-hover:border-primary transition-all duration-300">
+                            <img src="Asserts/Images/HomePer2.avif"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                                alt="Host">
+                        </div>
+                        <h4 class="font-bold text-lg text-textMain">Sarah Jenkins</h4>
+                        <p class="text-accent text-xs font-semibold uppercase tracking-widest mb-4">Morning Brew</p>
+                        <div class="flex justify-center gap-4 border-t border-border pt-4">
+                            <a href="#" class="text-textMuted hover:text-primary transition-colors text-lg"><i
+                                    class="bi bi-instagram"></i></a>
+                            <a href="#" class="text-textMuted hover:text-primary transition-colors text-lg"><i
+                                    class="bi bi-facebook"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="pro-card p-8 text-center group bg-card">
+                        <div
+                            class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-5 border-4 border-bg3 group-hover:border-primary transition-all duration-300">
+                            <img src="Asserts/Images/HomePer3.avif"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                                alt="Host">
+                        </div>
+                        <h4 class="font-bold text-lg text-textMain">Chloe Bennett</h4>
+                        <p class="text-accent text-xs font-semibold uppercase tracking-widest mb-4">City Soundscapes</p>
+                        <div class="flex justify-center gap-4 border-t border-border pt-4">
+                            <a href="#" class="text-textMuted hover:text-primary transition-colors text-lg"><i
+                                    class="bi bi-instagram"></i></a>
+                            <a href="#" class="text-textMuted hover:text-primary transition-colors text-lg"><i
+                                    class="bi bi-twitter-x"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="pro-card p-8 text-center group bg-card">
+                        <div
+                            class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-5 border-4 border-bg3 group-hover:border-primary transition-all duration-300">
+                            <img src="Asserts/Images/HomePer4.avif"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                                alt="Host">
+                        </div>
+                        <h4 class="font-bold text-lg text-textMain">Marcus Ray</h4>
+                        <p class="text-accent text-xs font-semibold uppercase tracking-widest mb-4">Tech Unfiltered</p>
+                        <div class="flex justify-center gap-4 border-t border-border pt-4">
+                            <a href="#" class="text-textMuted hover:text-primary transition-colors text-lg"><i
+                                    class="bi bi-linkedin"></i></a>
+                            <a href="#" class="text-textMuted hover:text-primary transition-colors text-lg"><i
+                                    class="bi bi-twitter-x"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-bg2 py-24 px-6 border-b border-border reveal">
+            <div class="max-w-[1200px] mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-textMain mb-2">Latest <span
+                            class="text-primary">Soundwaves</span></h2>
+                    <p class="text-textMuted font-medium text-lg">Music news, artist interviews, and station updates.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                    <div class="pro-card group cursor-pointer bg-card">
+                        <div class="h-48 overflow-hidden relative border-b border-border">
+                            <div class="show-img absolute inset-0"
+                                style="background-image:url('Asserts/Images/HomeLatest1.webp');">
+                            </div>
+                            <div
+                                class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">
+                                Interview</div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <span class="text-textMuted text-xs font-semibold mb-3 flex items-center gap-2"><i
+                                    class="bi bi-calendar3 text-accent"></i> Oct 12, 2026</span>
+                            <h3 class="text-xl font-bold text-textMain mb-3 group-hover:text-primary transition-colors">
+                                The Rise of Indie Synthpop in Brooklyn</h3>
+                            <p class="text-textMuted text-sm mb-6 line-clamp-3">We sat down with local producers to
+                                discuss the sudden resurgence of analog synths in the underground scene and what it
+                                means for the future of live performances.</p>
+                            <span
+                                class="mt-auto text-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Read
+                                Full Article <i class="bi bi-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="pro-card group cursor-pointer bg-card">
+                        <div class="h-48 overflow-hidden relative border-b border-border">
+                            <div class="show-img absolute inset-0"
+                                style="background-image:url('Asserts/Images/HomeLatest2.avif');">
+                            </div>
+                            <div
+                                class="absolute top-4 left-4 bg-[#14110e] text-white text-[10px] font-bold px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm border border-border">
+                                Station News</div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <span class="text-textMuted text-xs font-semibold mb-3 flex items-center gap-2"><i
+                                    class="bi bi-calendar3 text-accent"></i> Oct 05, 2026</span>
+                            <h3 class="text-xl font-bold text-textMain mb-3 group-hover:text-primary transition-colors">
+                                WaveKind Announces Fall Festival Lineup</h3>
+                            <p class="text-textMuted text-sm mb-6 line-clamp-3">Get ready for three days of
+                                uninterrupted live music, live podcast tapings, and community events coming to the
+                                historic downtown district.</p>
+                            <span
+                                class="mt-auto text-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Read
+                                Full Article <i class="bi bi-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="pro-card group cursor-pointer bg-card">
+                        <div class="h-48 overflow-hidden relative border-b border-border">
+                            <div class="show-img absolute inset-0"
+                                style="background-image:url('Asserts/Images/HomeLatest3.avif');">
+                            </div>
+                            <div
+                                class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">
+                                Review</div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <span class="text-textMuted text-xs font-semibold mb-3 flex items-center gap-2"><i
+                                    class="bi bi-calendar3 text-accent"></i> Sep 28, 2026</span>
+                            <h3 class="text-xl font-bold text-textMain mb-3 group-hover:text-primary transition-colors">
+                                Album of the Week: "Echoes" by The Midnight</h3>
+                            <p class="text-textMuted text-sm mb-6 line-clamp-3">Our resident music critics break down
+                                the highly anticipated debut album that's been dominating the local airwaves this month.
+                            </p>
+                            <span
+                                class="mt-auto text-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Read
+                                Full Article <i class="bi bi-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="schedule" class="bg-bg3 py-24 px-6 border-y border-border reveal relative">
+            <div class="max-w-[1200px] mx-auto relative z-10">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
+                    <div class="text-center md:text-left">
+                        <h2 class="text-3xl md:text-4xl font-extrabold mb-3 text-textMain">Broadcast <span
+                                class="text-primary">Schedule</span></h2>
+                        <p class="text-textMuted text-lg font-medium">Your weekly guide to on-air shows.</p>
+                    </div>
+                    <div
+                        class="flex flex-wrap justify-center gap-2 p-1.5 bg-card rounded-xl border border-border shadow-sm w-full md:w-auto">
+                        <button
+                            class="btn btn-primary-custom px-5 py-2.5 rounded-lg text-sm font-bold border-0">MON</button>
+                        <button
+                            class="px-5 py-2.5 rounded-lg text-sm font-semibold text-textMain hover:bg-bg2 border-0 bg-transparent transition-colors">TUE</button>
+                        <button
+                            class="px-5 py-2.5 rounded-lg text-sm font-semibold text-textMain hover:bg-bg2 border-0 bg-transparent transition-colors">WED</button>
+                        <button
+                            class="px-5 py-2.5 rounded-lg text-sm font-semibold text-textMain hover:bg-bg2 border-0 bg-transparent transition-colors">THU</button>
+                        <button
+                            class="px-5 py-2.5 rounded-lg text-sm font-semibold text-textMain hover:bg-bg2 border-0 bg-transparent transition-colors">FRI</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="pro-card group flex flex-col">
+                        <div class="bg-bg2 border-b border-border p-4 flex justify-between items-center">
+                            <div class="flex items-center gap-2">
+                                <i class="bi bi-clock text-textMuted"></i>
+                                <span class="text-lg font-extrabold text-textMain">07:00 AM</span>
+                            </div>
+                            <span class="bg-primary/10 text-primary text-xs font-bold px-2 py-1 rounded">LIVE NOW</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <div
+                                class="w-14 h-14 rounded-xl bg-bg border border-border flex items-center justify-center text-3xl text-primary mb-5 icon-hover">
+                                <i class="bi bi-cup-hot"></i>
+                            </div>
+                            <div class="text-primary font-bold tracking-widest text-xs mb-1 uppercase">Morning Show
+                            </div>
+                            <h4 class="text-xl font-bold text-textMain mb-2">Morning Brew</h4>
+                            <p class="text-textMuted text-sm mb-6 line-clamp-2">Local news, coffee reviews, and
+                                community interviews.</p>
+                            <div class="mt-auto border-t border-border pt-5 flex items-center justify-between">
+                                <span class="text-sm font-bold text-textMuted">Studio A</span>
+                                <button
+                                    class="text-sm font-bold text-textMain group-hover:text-primary transition-colors flex items-center gap-1 border-0 bg-transparent">
+                                    Tune In <i class="bi bi-play-circle-fill"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pro-card group flex flex-col">
+                        <div class="bg-bg2 border-b border-border p-4 flex justify-between items-center">
+                            <div class="flex items-center gap-2">
+                                <i class="bi bi-clock text-textMuted"></i>
+                                <span class="text-lg font-extrabold text-textMain">10:00 AM</span>
+                            </div>
+                            <span
+                                class="bg-card border border-border text-textMuted text-xs font-bold px-2 py-1 rounded">UPCOMING</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <div
+                                class="w-14 h-14 rounded-xl bg-bg border border-border flex items-center justify-center text-3xl text-primary mb-5 icon-hover">
+                                <i class="bi bi-vinyl"></i>
+                            </div>
+                            <div class="text-primary font-bold tracking-widest text-xs mb-1 uppercase">Music</div>
+                            <h4 class="text-xl font-bold text-textMain mb-2">The Vinyl Frontier</h4>
+                            <p class="text-textMuted text-sm mb-6 line-clamp-2">Deep dives into classic and rare records
+                                with Host Ben.</p>
+                            <div class="mt-auto border-t border-border pt-5 flex items-center justify-between">
+                                <span class="text-sm font-bold text-textMuted">Studio B</span>
+                                <button
+                                    class="text-sm font-bold text-textMain group-hover:text-primary transition-colors flex items-center gap-1 border-0 bg-transparent">
+                                    Remind Me <i class="bi bi-bell"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pro-card group flex flex-col hidden md:flex">
+                        <div class="bg-bg2 border-b border-border p-4 flex justify-between items-center">
+                            <div class="flex items-center gap-2">
+                                <i class="bi bi-clock text-textMuted"></i>
+                                <span class="text-lg font-extrabold text-textMain">02:00 PM</span>
+                            </div>
+                            <span
+                                class="bg-card border border-border text-textMuted text-xs font-bold px-2 py-1 rounded">UPCOMING</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <div
+                                class="w-14 h-14 rounded-xl bg-bg border border-border flex items-center justify-center text-3xl text-primary mb-5 icon-hover">
+                                <i class="bi bi-globe"></i>
+                            </div>
+                            <div class="text-primary font-bold tracking-widest text-xs mb-1 uppercase">Culture</div>
+                            <h4 class="text-xl font-bold text-textMain mb-2">City Soundscapes</h4>
+                            <p class="text-textMuted text-sm mb-6 line-clamp-2">Exploring the diverse cultural heartbeat
+                                of our city.</p>
+                            <div class="mt-auto border-t border-border pt-5 flex items-center justify-between">
+                                <span class="text-sm font-bold text-textMuted">Studio A</span>
+                                <button
+                                    class="text-sm font-bold text-textMain group-hover:text-primary transition-colors flex items-center gap-1 border-0 bg-transparent">
+                                    Remind Me <i class="bi bi-bell"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-bg py-24 px-6 border-b border-border reveal">
+            <div class="max-w-[1200px] mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-textMain mb-2">Station <span
+                            class="text-primary">Events</span></h2>
+                    <p class="text-textMuted font-medium text-lg">Join us in person or tune in for special live
+                        broadcasts.</p>
+                </div>
+                <div class="flex flex-col gap-6">
+                    <div class="pro-card p-6 flex flex-col md:flex-row items-center gap-6">
+                        <div
+                            class="bg-bg2 text-textMain rounded-xl p-4 min-w-[100px] text-center border border-border w-full md:w-auto">
+                            <div class="text-xs font-bold uppercase tracking-wider text-primary">OCT</div>
+                            <div class="text-3xl font-extrabold mt-1">14</div>
+                        </div>
+                        <div class="flex-1 text-center md:text-left w-full">
+                            <h4 class="text-xl font-bold text-textMain mb-2">Local Artist Showcase: Indie Rock</h4>
+                            <p class="text-textMuted text-sm font-medium"><i
+                                    class="bi bi-geo-alt-fill text-primary mr-1 icon-hover"></i> Main Broadcast Studio
+                                (Live Audience)</p>
+                        </div>
+                        <button class="btn btn-secondary w-full md:w-auto bg-bg">RSVP</button>
+                    </div>
+
+                    <div class="pro-card p-6 flex flex-col md:flex-row items-center gap-6">
+                        <div
+                            class="bg-bg2 text-textMain rounded-xl p-4 min-w-[100px] text-center border border-border w-full md:w-auto">
+                            <div class="text-xs font-bold uppercase tracking-wider text-primary">NOV</div>
+                            <div class="text-3xl font-extrabold mt-1">02</div>
+                        </div>
+                        <div class="flex-1 text-center md:text-left w-full">
+                            <h4 class="text-xl font-bold text-textMain mb-2">Podcast Mastery Workshop</h4>
+                            <p class="text-textMuted text-sm font-medium"><i
+                                    class="bi bi-camera-video-fill text-primary mr-1 icon-hover"></i> Virtual Webinar
+                                (Online)</p>
+                        </div>
+                        <button class="btn btn-secondary w-full md:w-auto bg-bg">RSVP</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-bg2 py-24 px-6 border-b border-border reveal">
+            <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <div class="pro-card p-10 md:p-14 relative overflow-hidden group bg-card">
+                    <div
+                        class="absolute -right-8 -bottom-8 opacity-5 text-primary group-hover:scale-110 transition-transform duration-700">
+                        <i class="bi bi-music-note-beamed" style="font-size: 16rem;"></i>
+                    </div>
+                    <div class="relative z-10 text-center md:text-left">
+                        <h3 class="text-3xl sm:text-4xl font-extrabold text-textMain mb-4">Are You an <span
+                                class="text-primary">Artist?</span></h3>
+                        <p class="text-textMuted text-lg mb-10 max-w-sm mx-auto md:mx-0 font-medium">We're always
+                            looking for fresh, local sounds. Submit your unreleased tracks for a chance to be featured
+                            on our Daily Discovery segment.</p>
+                        <button class="btn btn-primary-custom px-8 py-3 text-base shadow-md w-full sm:w-auto"><i
+                                class="bi bi-cloud-arrow-up-fill text-lg"></i><a href="MemperShip.html"> Submit
+                                Music</a></button>
+                    </div>
+                </div>
+
+                <div class="pro-card p-10 md:p-14 relative overflow-hidden group bg-card">
+                    <div
+                        class="absolute -right-8 -bottom-8 opacity-5 text-textMain group-hover:scale-110 transition-transform duration-700">
+                        <i class="bi bi-mic-fill" style="font-size: 16rem;"></i>
+                    </div>
+                    <div class="relative z-10 text-center md:text-left">
+                        <h3 class="text-3xl sm:text-4xl font-extrabold text-textMain mb-4">Join the <span
+                                class="text-primary">Crew</span></h3>
+                        <p class="text-textMuted text-lg mb-10 max-w-sm mx-auto md:mx-0 font-medium">WaveKind is built
+                            by the community, for the community. We need local producers, event organizers, and
+                            passionate sound engineers.</p>
+                        <button
+                            class="btn btn-outline bg-bg border-2 hover:border-primary px-8 py-3 text-base shadow-sm w-full sm:w-auto"><i
+                                class="bi bi-person-lines-fill text-lg"></i> Volunteer</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="bg-bg py-20 px-6 border-b border-border reveal">
+            <div class="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                <div class="pro-card p-8 border-t-4 border-t-accent"><i
+                        class="bi bi-broadcast-pin text-4xl text-accent mb-4 block icon-hover"></i>
+                    <div class="text-4xl font-extrabold text-textMain mb-1 counter" data-target="24">0</div>
+                    <p class="text-textMuted text-xs font-bold tracking-widest uppercase">Hours Live</p>
+                </div>
+                <div class="pro-card p-8 border-t-4 border-t-accent"><i
+                        class="bi bi-mic text-4xl text-accent mb-4 block icon-hover"></i>
+                    <div class="text-4xl font-extrabold text-textMain mb-1"><span class="counter"
+                            data-target="140">0</span>+</div>
+                    <p class="text-textMuted text-xs font-bold tracking-widest uppercase">Active Shows</p>
+                </div>
+                <div class="pro-card p-8 border-t-4 border-t-accent"><i
+                        class="bi bi-headphones text-4xl text-accent mb-4 block icon-hover"></i>
+                    <div class="text-4xl font-extrabold text-textMain mb-1"><span class="counter"
+                            data-target="65">0</span>k</div>
+                    <p class="text-textMuted text-xs font-bold tracking-widest uppercase">Monthly Listeners</p>
+                </div>
+                <div class="pro-card p-8 border-t-4 border-t-accent"><i
+                        class="bi bi-collection-play text-4xl text-accent mb-4 block icon-hover"></i>
+                    <div class="text-4xl font-extrabold text-textMain mb-1"><span class="counter"
+                            data-target="1250">0</span>+</div>
+                    <p class="text-textMuted text-xs font-bold tracking-widest uppercase">Episodes</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="bg-bg py-24 px-6 border-b border-border reveal">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-textMain mb-2">Frequently Asked <span
+                            class="text-primary">Questions</span></h2>
+                    <p class="text-textMuted font-medium text-lg">Everything you need to know about WaveKind FM.</p>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <details class="pro-card bg-card group [&_summary::-webkit-details-marker]:hidden">
+                        <summary
+                            class="flex justify-between items-center p-6 cursor-pointer list-none font-bold text-lg text-textMain group-hover:text-primary transition-colors">
+                            How do I submit my music to WaveKind FM?
+                            <span class="transition transform group-open:rotate-180"><i
+                                    class="bi bi-chevron-down text-textMuted group-hover:text-primary"></i></span>
+                        </summary>
+                        <div class="px-6 pb-6 text-textMuted text-sm border-t border-border pt-4">
+                            You can submit your music through our "Are You an Artist" portal. We accept high-quality WAV
+                            or MP3 files. Our curation team reviews all submissions weekly.
+                        </div>
+                    </details>
+
+                    <details class="pro-card bg-card group [&_summary::-webkit-details-marker]:hidden">
+                        <summary
+                            class="flex justify-between items-center p-6 cursor-pointer list-none font-bold text-lg text-textMain group-hover:text-primary transition-colors">
+                            Is WaveKind FM free to listen to?
+                            <span class="transition transform group-open:rotate-180"><i
+                                    class="bi bi-chevron-down text-textMuted group-hover:text-primary"></i></span>
+                        </summary>
+                        <div class="px-6 pb-6 text-textMuted text-sm border-t border-border pt-4">
+                            Yes! Our live broadcasts and standard podcast episodes are 100% free. We also offer a
+                            premium membership for ad-free listening and exclusive content.
+                        </div>
+                    </details>
+
+                    <details class="pro-card bg-card group [&_summary::-webkit-details-marker]:hidden">
+                        <summary
+                            class="flex justify-between items-center p-6 cursor-pointer list-none font-bold text-lg text-textMain group-hover:text-primary transition-colors">
+                            How can I become a volunteer?
+                            <span class="transition transform group-open:rotate-180"><i
+                                    class="bi bi-chevron-down text-textMuted group-hover:text-primary"></i></span>
+                        </summary>
+                        <div class="px-6 pb-6 text-textMuted text-sm border-t border-border pt-4">
+                            We are always looking for passionate individuals! Click on the "Volunteer" button in the
+                            "Join the Crew" section to fill out an application form.
+                        </div>
+                    </details>
+
+                    <details class="pro-card bg-card group [&_summary::-webkit-details-marker]:hidden">
+                        <summary
+                            class="flex justify-between items-center p-6 cursor-pointer list-none font-bold text-lg text-textMain group-hover:text-primary transition-colors">
+                            Does the station host live events?
+                            <span class="transition transform group-open:rotate-180"><i
+                                    class="bi bi-chevron-down text-textMuted group-hover:text-primary"></i></span>
+                        </summary>
+                        <div class="px-6 pb-6 text-textMuted text-sm border-t border-border pt-4">
+                            Absolutely! We regularly host live acoustic sessions, artist interviews, and local music
+                            festivals. Check out our Station Events section for upcoming dates.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 px-6 bg-bg2 reveal">
+            <div
+                class="max-w-5xl mx-auto bg-[var(--accent)] rounded-3xl p-12 md:p-16 text-center relative overflow-hidden shadow-[0_20px_40px_-10px_rgba(224,124,60,0.3)] border border-[var(--accent-dark)]">
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-white opacity-10 rounded-full pointer-events-none">
+                </div>
+                <div
+                    class="absolute -bottom-24 -left-24 w-64 h-64 bg-white opacity-10 rounded-full pointer-events-none">
+                </div>
+
+                <div class="relative z-10">
+                    <h2 class="text-3xl md:text-5xl font-extrabold mb-5 text-white">Support <span
+                            class="text-[#14110e]">Independent Radio</span></h2>
+                    <p class="text-lg text-white mb-10 max-w-2xl mx-auto font-medium">Become a member. Enjoy ad-free
+                        podcasts, early event access, and high-quality streams from $5/month.</p>
+                    <button
+                        class="btn bg-white text-[var(--accent-dark)] px-10 py-4 text-lg hover:scale-105 transition-transform w-full sm:w-auto shadow-lg border-0">
+                        <a href="MemperShip.html" class="text-[var(--accent-dark)] hover:text-[var(--accent)]">Become a
+                            Member Today</a>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+       
+        <div class="footer-main-grid">
+            <div class="footer-col"> <a href="index.html" class="nav-logo" style="margin-bottom: 0.5rem;">
+                    <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div> <span class="logo-text">WaveKind
+                        FM</span>
+                </a>
+                <div class="footer-brand">
+                    <p>Independent, community-powered radio platform. Discover local voices, live shows, and meaningful
+                        stories — anytime, anywhere.</p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="AboutPage.html">About</a></li>
+                    <li><a href="ShowPage.html">Shows</a></li>
+                    <li><a href="PodcastPage.html">Podcasts</a></li>
+                    <li><a href="ContactPage.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul class="footer-links">
+                    <li><a href="LivePage.html">Live Radio</a></li>
+                    <li><a href="ShowPage.html">Featured Shows</a></li>
+                    <li><a href="PodcastPage.html">Podcast Directory</a></li>
+                    <li><a href="MemperShip.html">Membership</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <div class="contact-item"><i class="bi bi-envelope-fill"></i><span>hello@wavekind.fm</span></div>
+                <div class="contact-item"><i class="bi bi-geo-alt-fill"></i><span>42 Frequency Ave, New York</span></div>
+                <div class="contact-item"><i class="bi bi-telephone-fill"></i><span>+1 (555) 019-8832</span></div>
+                <div class="social-icons"> <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a> <a
+                        href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a> <a href="#"
+                        aria-label="Spotify"><i class="bi bi-spotify"></i></a> </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="bottom-wrapper">
+                <div class="copyright">© 2026 WaveKind FM. All rights reserved.</div>
+                <div class="trust-legal"> <a href="#">Privacy Policy</a><span>|</span> <a href="#">Terms of
+                        Service</a><span>|</span> <a href="#">Cookie Settings</a> </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <!-- Player Modal -->
+    <div id="playerModal" class="fixed inset-0 z-[2000] hidden flex items-end sm:items-center justify-center sm:p-4">
+        <div id="playerBackdrop"
+            class="absolute inset-0 bg-black/80 backdrop-blur-md opacity-0 transition-opacity duration-300"></div>
+        <div id="playerModalContent"
+            class="relative w-full sm:max-w-lg bg-card rounded-t-[2rem] sm:rounded-[2rem] border border-border shadow-[0_-10px_40px_rgba(0,0,0,0.3)] overflow-hidden opacity-0 translate-y-full sm:translate-y-10 sm:scale-95 transition-all duration-400 ease-out flex flex-col">
+            <div class="h-32 sm:h-48 relative overflow-hidden bg-bg2">
+                <div class="absolute inset-0 bg-cover bg-center blur-2xl scale-125 opacity-40 mix-blend-screen"
+                    style="background-image: url('Asserts/Images/HomePer1.avif');" id="playerBgImage"></div>
+                <div class="absolute inset-0 bg-accent  "></div>
+                <button id="closePlayerModal"
+                    class="absolute top-4 right-4 w-10 h-10 bg-black/40 text-white rounded-full flex items-center justify-center hover:bg-accent transition-colors z-10"><i
+                        class="bi bi-chevron-down text-xl"></i></button>
+            </div>
+            <div class="px-6 sm:px-8 pb-8 pt-0 relative z-10 flex flex-col items-center">
+                <div
+                    class="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden shadow-2xl border-4 border-card -mt-14 sm:-mt-18 mb-4 relative bg-bg3">
+                    <img src="Asserts/Images/Hero1.avif" class="w-full h-full object-cover" id="playerCoverImage">
+                    <div class="absolute inset-0 border border-white/10 rounded-2xl pointer-events-none"></div>
+                </div>
+                <span
+                    class="text-[10px] font-bold text-accent uppercase tracking-widest mb-1 bg-accent/10 px-2 py-0.5 rounded border border-accent/20"
+                    id="playerStatus"><i class="bi bi-broadcast me-1"></i>Now On Air</span>
+                <h3 class="text-2xl sm:text-3xl font-black text-textMain mb-1 text-center truncate w-full"
+                    id="playerTitle">The Underground Hour</h3>
+                <p class="text-textMuted font-medium text-sm mb-6 text-center" id="playerShow">WaveKind FM Live</p>
+
+                <div class="w-full mb-6 relative">
+                    <div class="flex justify-between text-xs font-mono font-bold text-textMuted mb-2">
+                        <span id="playerCurrentTime" class="text-accent">LIVE</span>
+                        <span id="playerDuration">--:--</span>
+                    </div>
+                    <div class="h-2.5 bg-bg2 border border-border rounded-full overflow-hidden cursor-pointer group">
+                        <div class="h-full bg-accent relative w-[100%] rounded-full opacity-80 group-hover:bg-accent transition-colors shadow-[0_0_10px_rgba(255,77,109,0.5)] animate-pulse"
+                            id="playerProgressBar">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-center gap-4 sm:gap-6 w-full">
+                    <button class="text-textMuted hover:text-textMain transition-colors text-xl"><i
+                            class="bi bi-shuffle"></i></button>
+                    <button class="text-textMain hover:text-accent transition-colors text-3xl"><i
+                            class="bi bi-skip-backward-fill"></i></button>
+                    <button
+                        class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-accent   text-white shadow-lg shadow-accent/40 flex items-center justify-center text-4xl sm:text-5xl hover:scale-105 transition-transform"
+                        id="playerPlayPauseBtn"><i class="bi bi-pause-fill"></i></button>
+                    <button class="text-textMain hover:text-accent transition-colors text-3xl"><i
+                            class="bi bi-skip-forward-fill"></i></button>
+                    <button class="text-textMuted hover:text-textMain transition-colors text-xl"><i
+                            class="bi bi-repeat"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Mini Player Bar -->
+    <div id="stickyPlayer" class="fixed bottom-0 left-0 w-full z-[1500] bg-card/90 backdrop-blur-xl border-t border-border translate-y-full transition-transform duration-500 shadow-[0_-10px_30px_rgba(0,0,0,0.15)] flex items-center px-4 py-3 sm:px-8">
+        <div class="max-w-[1200px] mx-auto w-full flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3 overflow-hidden cursor-pointer" id="miniPlayerTrackInfo">
+                <img src="Asserts/Images/Hero1.avif" alt="Cover" class="w-12 h-12 rounded-lg object-cover shadow-md flex-shrink-0">
+                <div class="overflow-hidden">
+                    <p class="text-sm font-bold text-textMain truncate leading-tight">The Underground Hour</p>
+                    <p class="text-xs text-textMuted font-medium truncate">WaveKind FM • LIVE</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-2 sm:gap-4">
+                <div class="hidden sm:flex items-center gap-1.5 h-6 px-4">
+                    <div class="wave-bar-mini h-2 w-1 bg-accent"></div>
+                    <div class="wave-bar-mini h-4 w-1 bg-accent"></div>
+                    <div class="wave-bar-mini h-3 w-1 bg-accent"></div>
+                    <div class="wave-bar-mini h-5 w-1 bg-accent"></div>
+                </div>
+                <button class="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center text-xl shadow-lg shadow-accent/20 border-0" id="stickyPlayBtn">
+                    <i class="bi bi-pause-fill"></i>
+                </button>
+                <button class="icon-btn sm:flex border-none bg-transparent" id="openFullPlayer"><i class="bi bi-arrows-angle-expand"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+            (function () {
+                const html = document.documentElement;
+
+                const themeToggle = document.getElementById('theme-toggle');
+                const themeIcon = document.getElementById('theme-icon');
+                const mobileTheme = document.getElementById('mobileThemeBtn');
+
+                const saved = localStorage.getItem('theme');
+                if (saved === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    if (themeIcon) themeIcon.classList.replace('bi-moon-stars-fill', 'bi-brightness-high-fill');
+                    if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-brightness-high-fill"></i> Theme';
+                }
+
+                function setTheme(theme) {
+                    if (theme === 'dark') {
+                        html.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        if (themeIcon) themeIcon.classList.replace('bi-moon-stars-fill', 'bi-brightness-high-fill');
+                        if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-brightness-high-fill"></i> Theme';
+                    } else {
+                        html.setAttribute('data-theme', 'light');
+                        localStorage.setItem('theme', 'light');
+                        if (themeIcon) themeIcon.classList.replace('bi-brightness-high-fill', 'bi-moon-stars-fill');
+                        if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-moon-stars-fill"></i> Theme';
+                    }
+                }
+
+                themeToggle?.addEventListener('click', () => {
+                    const isDark = html.getAttribute('data-theme') === 'dark';
+                    setTheme(isDark ? 'light' : 'dark');
+                });
+                mobileTheme?.addEventListener('click', () => {
+                    const isDark = html.getAttribute('data-theme') === 'dark';
+                    setTheme(isDark ? 'light' : 'dark');
+                });
+
+                let rtl = false;
+                const rtlBtn = document.getElementById('rtl-toggle');
+                const mobileRtl = document.getElementById('mobileRtlBtn');
+                function toggleRTL() { rtl = !rtl; html.setAttribute('dir', rtl ? 'rtl' : 'ltr'); }
+                rtlBtn?.addEventListener('click', toggleRTL);
+                mobileRtl?.addEventListener('click', toggleRTL);
+
+                const hamburger = document.getElementById('hamburgerBtn');
+                const drawer = document.getElementById('mobileDrawer');
+                const overlay = document.getElementById('drawerOverlay');
+                const closeDrawer = document.getElementById('closeDrawerBtn');
+
+                function openDrawer() {
+                    drawer.style.right = '0';
+                    overlay.style.visibility = 'visible';
+                    overlay.style.opacity = '1';
+                    document.body.style.overflow = 'hidden';
+                }
+                function closeDrawerFunc() {
+                    drawer.style.right = '-100%';
+                    overlay.style.visibility = 'hidden';
+                    overlay.style.opacity = '0';
+                    document.body.style.overflow = '';
+                }
+
+                hamburger?.addEventListener('click', openDrawer);
+                closeDrawer?.addEventListener('click', closeDrawerFunc);
+                overlay?.addEventListener('click', closeDrawerFunc);
+
+                window.toggleMobileDropdown = function (id) {
+                    const el = document.getElementById(id);
+                    if (el) el.style.display = el.style.display === 'block' ? 'none' : 'block';
+                };
+
+
+
+                const counters = document.querySelectorAll('.counter');
+                let counted = false;
+
+                function startCounters() {
+                    counters.forEach(c => {
+                        const target = +c.getAttribute('data-target');
+                        let curr = 0;
+                        const step = Math.ceil(target / 50);
+                        const timer = setInterval(() => {
+                            curr += step;
+                            if (curr >= target) {
+                                c.innerText = target;
+                                clearInterval(timer);
+                            } else {
+                                c.innerText = curr;
+                            }
+                        }, 30);
+                    });
+                }
+
+                if (counters.length > 0) {
+                    const statsObserver = new IntersectionObserver((entries) => {
+                        if (entries[0].isIntersecting && !counted) {
+                            counted = true;
+                            startCounters();
+                        }
+                    }, { threshold: 0.2 });
+
+                    const statsSec = counters[0].closest('section');
+                    if (statsSec) {
+                        statsObserver.observe(statsSec);
+                    }
+                }
+
+                const reveals = document.querySelectorAll('.reveal');
+                const revealObs = new IntersectionObserver((entries) => {
+                    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+                }, { threshold: 0.1 });
+                reveals.forEach(r => revealObs.observe(r));
+
+                // Player Modal Logic
+                const playerModal = document.getElementById('playerModal');
+                const playerBackdrop = document.getElementById('playerBackdrop');
+                const playerModalContent = document.getElementById('playerModalContent');
+                const closePlayerModal = document.getElementById('closePlayerModal');
+                const playerPlayPauseBtn = document.getElementById('playerPlayPauseBtn');
+
+                function openPlayerModal(e) {
+                    if (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                    playerModal.classList.remove('hidden');
+                    // Slight delay for transition application
+                    setTimeout(() => {
+                        playerBackdrop.classList.remove('opacity-0');
+                        playerBackdrop.classList.add('opacity-100');
+                        playerModalContent.classList.remove('opacity-0', 'translate-y-full', 'sm:translate-y-10', 'sm:scale-95');
+                        playerModalContent.classList.add('opacity-100', 'translate-y-0', 'sm:translate-y-0', 'sm:scale-100');
+                    }, 10);
+                }
+
+                function closePlayerModalFunc() {
+                    playerBackdrop.classList.remove('opacity-100');
+                    playerBackdrop.classList.add('opacity-0');
+                    playerModalContent.classList.remove('opacity-100', 'translate-y-0', 'sm:translate-y-0', 'sm:scale-100');
+                    playerModalContent.classList.add('opacity-0', 'translate-y-full', 'sm:translate-y-10', 'sm:scale-95');
+                    setTimeout(() => playerModal.classList.add('hidden'), 400);
+                }
+
+                if (closePlayerModal) closePlayerModal.addEventListener('click', closePlayerModalFunc);
+                if (playerBackdrop) playerBackdrop.addEventListener('click', closePlayerModalFunc);
+
+                // Add event listeners to all 'Listen Live', 'Tune In' and Play buttons
+                const playTriggers = document.querySelectorAll('.play-btn, .btn-primary-custom, .bi-play-circle-fill, .bi-play-fill, #miniPlayerTrackInfo, #openFullPlayer');
+
+                function toggleStickyPlayer(show) {
+                    const sticky = document.getElementById('stickyPlayer');
+                    if (sticky) {
+                        sticky.classList.toggle('translate-y-full', !show);
+                        sticky.classList.toggle('translate-y-0', show);
+                    }
+                }
+
+                playTriggers.forEach(btn => {
+                    const text = btn.innerText || btn.textContent || '';
+                    const isPlayTrigger = text.includes('Listen Live') || 
+                                        text.includes('Tune In') || 
+                                        btn.classList.contains('bi-play-circle-fill') || 
+                                        btn.classList.contains('play-btn') || 
+                                        btn.id === 'miniPlayerTrackInfo' || 
+                                        btn.id === 'openFullPlayer' ||
+                                        btn.closest('.btn')?.innerText.includes('Listen Live');
+
+                    if (isPlayTrigger) {
+                        // Exclude modal internally
+                        if (!btn.closest('#playerModal')) {
+                            btn.addEventListener('click', (e) => {
+                                openPlayerModal(e);
+                                toggleStickyPlayer(true);
+                            });
+                            btn.style.cursor = 'pointer';
+                        }
+                    }
+                });
+
+                let isPlaying = true;
+                const stickyPlayBtn = document.getElementById('stickyPlayBtn');
+
+                function togglePlayStates() {
+                    isPlaying = !isPlaying;
+                    const playIcons = document.querySelectorAll('#playerPlayPauseBtn i, #stickyPlayBtn i, #inlinePlayIcon');
+                    playIcons.forEach(icon => {
+                        icon.className = isPlaying ? 'bi bi-pause-fill' : 'bi bi-play-fill ml-1';
+                    });
+                    
+                    const progressBars = document.querySelectorAll('#playerProgressBar, .wave-bar, .wave-bar-mini');
+                    progressBars.forEach(p => {
+                        if (isPlaying) p.classList.add('animate-pulse');
+                        else p.classList.remove('animate-pulse');
+                    });
+                }
+
+                if (playerPlayPauseBtn) playerPlayPauseBtn.addEventListener('click', togglePlayStates);
+                if (stickyPlayBtn) stickyPlayBtn.addEventListener('click', togglePlayStates);
+            })();
+    </script>
+</body>
+</html>

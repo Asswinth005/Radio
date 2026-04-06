@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>WaveKind FM - Help Center & FAQ</title>
+
+    <script>
+        (function () {
+            var savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="Boostrap/bootstrap-icons/bootstrap-icons.css">
+    <!-- Local Assets -->
+    <link rel="stylesheet" href="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+    <script src="Tailwind/tailwind.min.js"></script>
+    <script src="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'var(--accent)',
+                        primaryDark: 'var(--accent-dark)',
+                        secondary: 'var(--secondary)',
+                        bg: 'var(--bg)',
+                        bg2: 'var(--bg2)',
+                        bg3: 'var(--bg3)',
+                        card: 'var(--card)',
+                        textMain: 'var(--text-main)',
+                        textMuted: 'var(--text-muted)',
+                        border: 'var(--border)'
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --accent: #ff4d6d;
+            --accent-dark: #e63956;
+            --secondary: #6366f1;
+            --bg: #ffffff;
+            --bg-rgb: 255, 255, 255;
+            --bg2: #f8f9fa;
+            --bg3: #e9ecef;
+            --card: #ffffff;
+            --text-main: #2b2b2b;
+            --text-muted: #6c757d;
+            --border: rgba(0, 0, 0, 0.08);
+            --border-footer: rgba(0, 0, 0, 0.08);
+            --footer-bg: #f8f9fa;
+        }
+
+        [data-theme="dark"] {
+            --accent: #ff4d6d;
+            --accent-dark: #e63956;
+            --secondary: #6366f1;
+            --bg: #111827;
+            --bg-rgb: 17, 24, 39;
+            --bg2: #1f2937;
+            --bg3: #374151;
+            --card: #1f2937;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-footer: rgba(255, 255, 255, 0.08);
+            --footer-bg: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: '"Plus Jakarta Sans"', system-ui, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg2);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0.7rem 1.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary-custom {
+            background-color: var(--accent);
+            color: #ffffff;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px -5px rgba(255, 77, 109, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg3);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* NAVBAR & DRAWER */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: var(--bg);
+            border-bottom: 1px solid var(--border);
+            height: 75px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @media (min-width: 640px) {
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+
+        .logo-mark {
+            background: var(--accent);
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover .logo-mark {
+            transform: scale(1.05) rotate(-5deg);
+        }
+
+        .logo-text {
+            color: var(--text-main);
+            transition: color 0.3s ease;
+        }
+
+        .nav-logo:hover .logo-text {
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+            align-items: center;
+            margin: 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: block !important;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.5rem 0;
+            min-width: 170px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        /* Invisible bridge covering the gap so hover isn't lost */
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 0;
+            right: 0;
+            height: 12px;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            top: calc(100% + 8px);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.5rem 1.2rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: var(--bg2);
+            color: var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .icon-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .hamburger:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none !important;
+            }
+
+            .desktop-only {
+                display: none !important;
+            }
+
+            .nav-actions .icon-btn:not(.hamburger) {
+                display: none !important;
+            }
+
+            .hamburger {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1100;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 340px;
+            height: 100vh;
+            background: var(--card);
+            z-index: 1101;
+            display: flex;
+            flex-direction: column;
+            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 1px solid var(--border);
+        }
+
+        .mobile-drawer.active {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-nav-list {
+            list-style: none;
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .mobile-nav-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .mobile-nav-link:hover {
+            background: var(--bg2);
+            color: var(--accent);
+        }
+
+        .mobile-dropdown-content {
+            padding-left: 1.5rem;
+            display: none;
+            margin-top: 0.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-dropdown-item {
+            display: block;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .mobile-dropdown-item:hover {
+            color: var(--accent);
+        }
+
+        .drawer-footer {
+            padding: 1.2rem 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* FOOTER */
+        .site-footer {
+            background: var(--footer-bg);
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 20;
+        }
+
+        .footer-main-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            padding: 3rem 2rem;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 640px) {
+            .footer-main-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-main-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        @media (min-width: 640px) {
+            .footer-col {
+                align-items: flex-start;
+                text-align: left;
+            }
+        }
+
+        .footer-col p {
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0.8rem 0;
+            font-size: 0.85rem;
+            max-width: 260px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-main);
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            gap: 0.6rem;
+        }
+
+        @media (min-width: 640px) {
+            .footer-links {
+                align-items: flex-start;
+            }
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        @media (min-width: 640px) {
+            .contact-item {
+                flex-direction: row;
+                text-align: left;
+                gap: 10px;
+            }
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+
+        @media (min-width: 640px) {
+            .social-icons {
+                justify-content: flex-start;
+            }
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-footer);
+            padding: 1.2rem 0;
+            background: var(--bg);
+        }
+
+        .bottom-wrapper {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .bottom-wrapper {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .trust-legal {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .trust-legal a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .trust-legal a:hover {
+            color: var(--accent);
+        }
+
+        /* ================= PREMIUM ANIMATIONS & SPECIFICS ================= */
+        .hover-double-color {
+            transition: all 0.3s ease;
+        }
+
+        .group:hover .hover-double-color,
+        .hover-double-color:hover {
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+            background-image: linear-gradient(to right, var(--accent), var(--secondary));
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes pulse-slow {
+            0% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(1.1);
+            }
+
+            100% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+        }
+
+        .animate-pulse-slow {
+            animation: pulse-slow 8s infinite alternate;
+        }
+
+        @keyframes fade-in-up {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fade-in-up 0.4s ease forwards;
+        }
+
+        /* 1. STICKY SEARCH & TABS */
+        .sticky-search-bar {
+            position: sticky;
+            top: 75px;
+            /* Right below navbar */
+            z-index: 40;
+        }
+
+        /* 2. CATEGORY TABS */
+        .cat-tab {
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .cat-tab.active {
+            background-color: var(--text-main);
+            color: var(--bg);
+            border-color: var(--text-main);
+        }
+
+        /* 3. LEFT BORDER FAQ LIST */
+        .faq-q-item {
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .faq-q-item:hover {
+            border-left-color: var(--border);
+            background-color: var(--bg2);
+        }
+
+        .faq-q-item.active {
+            border-left-color: var(--accent);
+            background-color: var(--bg2);
+        }
+
+        .faq-q-item.active h3 {
+            color: var(--accent);
+        }
+
+        /* Mobile Accordion Toggle Icon */
+        .mobile-toggle-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-q-item.active .mobile-toggle-icon {
+            transform: rotate(180deg);
+            color: var(--accent);
+        }
+
+        @media (min-width: 1024px) {
+            .sticky-sidebar {
+                position: -webkit-sticky;
+                position: sticky;
+                top: 100px;
+                z-index: 30;
+                align-self: start;
+                height: fit-content;
+            }
+        }
+
+
+        /* ================= INJECTED FOOTER RESPONSIVENESS ================= */
+        .site-footer {
+            font-family: '"Plus Jakarta Sans"', system-ui, -apple-system, sans-serif;
+        }
+
+        @media (max-width: 1024px) {
+            .footer-main-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
+
+            .footer-main-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2.5rem;
+            }
+
+            .bottom-wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+        }
+
+        /* UX Overrides */
+        .pro-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border);
+        }
+
+        .pro-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: var(--accent);
+            z-index: 10;
+        }
+
+        .btn {
+            transition: all 0.3s ease;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        /* ================= UNIFIED FOOTER CSS FOR ALIGNMENT AND FONT ================= */
+        .site-footer {
+            font-family: inherit;
+            background: var(--footer-bg);
+            margin-top: auto;
+            border-top: 1px solid var(--border);
+            width: 100%;
+        }
+
+        .site-footer * {
+            font-family: inherit;
+        }
+
+        .footer-newsletter {
+            background: var(--bg2);
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-footer);
+        }
+
+        .footer-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .newsletter-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .newsletter-text h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter-text p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 450px;
+            justify-content: center;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.85rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--accent);
+        }
+
+        .newsletter-form button {
+            flex-shrink: 0;
+        }
+
+        .footer-main-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            margin-top: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 0.9rem;
+            max-width: 260px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(3px);
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-top: 2px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-main);
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-footer);
+            padding: 1.5rem 0;
+            background: var(--bg);
+        }
+
+        .bottom-wrapper {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .trust-legal {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .trust-legal a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .trust-legal a:hover {
+            color: var(--accent);
+        }
+
+        .trust-legal span {
+            color: var(--border-footer);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-main-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 3rem;
+                padding: 3rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .newsletter-form {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
+
+            .footer-main-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2.5rem;
+            }
+
+            .bottom-wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="404.html" class="nav-logo group">
+                <div class="logo-mark group-hover:scale-105 transition-transform"><i class="bi bi-broadcast-pin"></i>
+                </div>
+                <span class="logo-text group-hover:text-accent transition-colors">WaveKind FM</span>
+            </a>
+
+            <ul class="nav-menu">
+                <li class="dropdown">
+                    <a href="index.html" class="nav-link">Home <i class="bi bi-chevron-down"
+                            style="font-size: 0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html" class="dropdown-item">Home 1</a></li>
+                        <li><a href="Home2Page.html" class="dropdown-item">Home 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="AboutPage.html" class="nav-link">About</a></li>
+                <li><a href="ShowPage.html" class="nav-link">Shows</a></li>
+                <li><a href="PodcastPage.html" class="nav-link">Podcasts</a></li>
+                <li><a href="Fqa.html" class="nav-link text-primary">FAQ</a></li>
+                <li><a href="ContactPage.html" class="nav-link">Contact</a></li>
+                <li><a href="LivePage.html" class="nav-link" style="color:var(--accent);"><i
+                            class="bi bi-record-circle-fill"></i>
+                        Live</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">Dashboard <i class="bi bi-chevron-down"
+                            style="font-size: 0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Dashborad/User/User.html" class="dropdown-item"><i
+                                    class="bi bi-person-circle text-lg text-primary"></i>
+                                User Panel</a></li>
+                        <li><a href="Dashborad/Admin/AdminPage.html" class="dropdown-item"><i
+                                    class="bi bi-shield-lock text-lg text-primary"></i>
+                                Admin Panel</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" class="icon-btn desktop-only"><i class="bi bi-moon-stars-fill"
+                        id="theme-icon"></i></button>
+                <button id="rtl-toggle" class="icon-btn desktop-only"><i class="bi bi-text-paragraph"></i></button>
+
+                <div class="dropdown desktop-only">
+                    <button class="icon-btn"><i class="bi bi-person-circle text-lg"></i></button>
+                    <ul class="dropdown-menu" style="right: 0; left: auto; min-width: 160px;">
+                        <li><a href="LoginPage.html" class="dropdown-item"><i
+                                    class="bi bi-box-arrow-in-right text-primary text-lg mr-1"></i> Log In</a></li>
+                        <li><a href="RegistrationPage.html" class="dropdown-item"><i
+                                    class="bi bi-person-plus text-primary text-lg mr-1"></i> Sign Up</a></li>
+                    </ul>
+                </div>
+
+                <button class="hamburger" id="hamburgerBtn"><i class="bi bi-list"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <a href="index.html" class="nav-logo" style="font-size:1.3rem;">
+                <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div>
+                <span class="logo-text">WaveKind FM</span>
+            </a>
+            <button class="icon-btn border-none" id="closeDrawerBtn" style="background:transparent; border:none;"><i
+                    class="bi bi-x-lg"></i></button>
+        </div>
+        <ul class="mobile-nav-list">
+            <li>
+                <div onclick="toggleMobileDropdown('homeDropdown')" class="mobile-nav-link">Home <i
+                        class="bi bi-chevron-down"></i></div>
+                <div id="homeDropdown" class="mobile-dropdown-content">
+                    <a href="index.html" class="mobile-dropdown-item">Home 1</a>
+                    <a href="Home2Page.html" class="mobile-dropdown-item">Home 2</a>
+                </div>
+            </li>
+            <li><a href="AboutPage.html" class="mobile-nav-link">About</a></li>
+            <li><a href="ShowPage.html" class="mobile-nav-link">Shows</a></li>
+            <li><a href="PodcastPage.html" class="mobile-nav-link">Podcasts</a></li>
+            <li><a href="Fqa.html" class="mobile-nav-link text-primary">FAQ</a></li>
+            <li><a href="ContactPage.html" class="mobile-nav-link">Contact</a></li>
+            <li><a href="LivePage.html" class="mobile-nav-link" style="color:var(--accent);">Live Stream <i
+                        class="bi bi-record-circle-fill"></i></a></li>
+            <li>
+                <div onclick="toggleMobileDropdown('dashDropdown')" class="mobile-nav-link">Dashboard <i
+                        class="bi bi-chevron-down"></i></div>
+                <div id="dashDropdown" class="mobile-dropdown-content">
+                    <a href="Dashborad/User/User.html" class="mobile-dropdown-item"><i
+                            class="bi bi-person-circle text-primary"></i> User
+                        Panel</a>
+                    <a href="Dashborad/Admin/AdminPage.html" class="mobile-dropdown-item"><i
+                            class="bi bi-shield-lock text-primary"></i> Admin
+                        Panel</a>
+                </div>
+            </li>
+        </ul>
+        <div class="drawer-footer">
+            <div class="flex gap-2">
+                <button id="mobileThemeBtn" class="icon-btn flex-1 rounded-lg"><i class="bi bi-moon-stars-fill"></i>
+                    Theme</button>
+                <button id="mobileRtlBtn" class="icon-btn flex-1 rounded-lg"><i class="bi bi-text-paragraph"></i>
+                    RTL</button>
+            </div>
+            <div class="flex flex-col gap-2 mt-2">
+                <button class="btn btn-outline w-full justify-center" id="mobileLoginBtn"><i class="bi bi-person-fill"></i><a href="LoginPage.html"> Log In</a></button>
+                <button class="btn btn-primary-custom w-full justify-center"><i class="bi bi-person-plus-fill"></i><a
+                        href="RegistrationPage.html"> Sign Up</a></button>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex-1 flex flex-col w-full relative z-10 bg-bg2">
+
+        <section class="w-full pt-16 pb-12 md:pt-32 md:pb-24 px-6 relative overflow-hidden bg-bg grayscale-[0.3] hover:grayscale-0 transition-all duration-700" style="background-image: linear-gradient(rgba(var(--bg-rgb), 0.85), rgba(var(--bg-rgb), 0.95)), url('Asserts/Images/FqaBg.jpg'); background-size: cover; background-position: center;">
+            <!-- Dark Mode Overlay for BG Image -->
+            <div class="absolute inset-0 bg-transparent dark:bg-black/40 pointer-events-none"></div>
+            <div
+                class="absolute top-[-20%] left-[-10%] w-96 h-96 bg-accent opacity-20 blur-[100px] rounded-full pointer-events-none animate-pulse-slow">
+            </div>
+
+            <div class="max-w-[1200px] mx-auto relative z-10 reveal flex flex-col md:flex-row items-center gap-10">
+                <div class="flex-1 text-center md:text-left">
+                    <span class="text-accent text-sm font-bold uppercase tracking-widest mb-3 block">WaveKind FM
+                        Support</span>
+                    <h1
+                        class="text-4xl md:text-5xl lg:text-6xl font-black text-textMain mb-6 hover-double-color cursor-default w-fit mx-auto md:mx-0 leading-tight">
+                        How can we help you?</h1>
+                    <p class="text-lg md:text-xl text-textMuted font-medium max-w-xl mx-auto md:mx-0">Find answers,
+                        manage your account, or get in touch with our broadcast team.</p>
+                </div>
+
+                <!-- Right side premium image layout -->
+                <div class="flex-1 w-full relative h-[300px] md:h-[400px] mt-8 md:mt-0">
+                    <div class="absolute right-0 top-0 w-[80%] h-[80%] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white/10 group reveal">
+                        <img src="Asserts/Images/FqaBg.jpg" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" alt="FAQ Main">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    </div>
+                    <div class="absolute left-0 bottom-0 w-[60%] h-[60%] rounded-[2rem] overflow-hidden shadow-2xl border-4 border-primary/30 z-20 reveal" style="transition-delay: 200ms;">
+                        <img src="Asserts/Images/HomeFutue3.webp" class="w-full h-full object-cover" alt="FAQ Secondary">
+                        <div class="absolute inset-0 bg-accent/20 mix-blend-overlay"></div>
+                    </div>
+                    <!-- Decorative element -->
+                    <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-accent/10 blur-3xl rounded-full"></div>
+                </div>
+        </section>
+
+        <section class="sticky-search-bar bg-bg/80 backdrop-blur-xl border-b border-border shadow-sm">
+            <div class="max-w-[1200px] mx-auto px-4 sm:px-6 py-4">
+                <div class="flex flex-col md:flex-row items-center gap-4">
+
+                    <div class="w-full md:w-1/3 relative group">
+                        <i
+                            class="bi bi-search absolute left-4 top-1/2 -translate-y-1/2 text-textMuted group-focus-within:text-accent transition-colors"></i>
+                        <input type="text"
+                            class="w-full bg-card border border-border text-textMain text-sm rounded-full py-3 pl-10 pr-4 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all shadow-inner"
+                            placeholder="Search for help...">
+                    </div>
+
+                    <div class="w-full md:w-2/3 flex overflow-x-auto hide-scrollbar gap-2 pb-1 md:pb-0">
+                        <button
+                            class="cat-tab active px-5 py-2 rounded-full border border-border bg-card text-sm font-bold shadow-sm shrink-0">General
+                            FAQ</button>
+                        <button
+                            class="cat-tab px-5 py-2 rounded-full border border-border bg-card text-textMuted text-sm font-bold shadow-sm hover:text-textMain hover:border-textMain shrink-0">Listening
+                            & Apps</button>
+                        <button
+                            class="cat-tab px-5 py-2 rounded-full border border-border bg-card text-textMuted text-sm font-bold shadow-sm hover:text-textMain hover:border-textMain shrink-0">Membership
+                            & Billing</button>
+                        <button
+                            class="cat-tab px-5 py-2 rounded-full border border-border bg-card text-textMuted text-sm font-bold shadow-sm hover:text-textMain hover:border-textMain shrink-0">For
+                            Hosts</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 md:py-16 px-4 sm:px-6 max-w-[1200px] mx-auto w-full">
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-12">
+
+                <div class="lg:col-span-5">
+                    <div class="sticky-sidebar flex flex-col">
+                        <h2 class="text-xs font-bold text-textMuted uppercase tracking-widest mb-4 px-4">Popular Questions
+                        </h2>
+
+                        <div class="flex flex-col bg-card rounded-2xl border border-border overflow-hidden shadow-sm"
+                            id="faq-list">
+
+                            <button
+                                class="faq-q-item active w-full text-left p-5 flex justify-between items-center gap-4 group"
+                                data-target="ans-1">
+                                <h3 class="font-bold text-base md:text-lg group-hover:text-accent transition-colors pr-4">
+                                    How do I access the ad-free podcast vault?</h3>
+                                <i class="bi bi-chevron-down lg:hidden text-textMuted mobile-toggle-icon"></i>
+                                <i
+                                    class="bi bi-chevron-right hidden lg:block text-textMuted group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                            <div class="lg:hidden hidden bg-bg2 p-5 text-textMuted text-sm border-t border-border"
+                                id="mobile-ans-1"></div>
+
+                            <button
+                                class="faq-q-item w-full text-left p-5 flex justify-between items-center gap-4 border-t border-border group"
+                                data-target="ans-2">
+                                <h3
+                                    class="font-bold text-textMain text-base md:text-lg group-hover:text-accent transition-colors pr-4">
+                                    Can I submit my own music to be played?</h3>
+                                <i class="bi bi-chevron-down lg:hidden text-textMuted mobile-toggle-icon"></i>
+                                <i
+                                    class="bi bi-chevron-right hidden lg:block text-textMuted group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                            <div class="lg:hidden hidden bg-bg2 p-5 text-textMuted text-sm border-t border-border"
+                                id="mobile-ans-2"></div>
+
+                            <button
+                                class="faq-q-item w-full text-left p-5 flex justify-between items-center gap-4 border-t border-border group"
+                                data-target="ans-3">
+                                <h3
+                                    class="font-bold text-textMain text-base md:text-lg group-hover:text-accent transition-colors pr-4">
+                                    Why is my live stream buffering?</h3>
+                                <i class="bi bi-chevron-down lg:hidden text-textMuted mobile-toggle-icon"></i>
+                                <i
+                                    class="bi bi-chevron-right hidden lg:block text-textMuted group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                            <div class="lg:hidden hidden bg-bg2 p-5 text-textMuted text-sm border-t border-border"
+                                id="mobile-ans-3"></div>
+
+                            <button
+                                class="faq-q-item w-full text-left p-5 flex justify-between items-center gap-4 border-t border-border group"
+                                data-target="ans-4">
+                                <h3
+                                    class="font-bold text-textMain text-base md:text-lg group-hover:text-accent transition-colors pr-4">
+                                    How do I cancel my membership?</h3>
+                                <i class="bi bi-chevron-down lg:hidden text-textMuted mobile-toggle-icon"></i>
+                                <i
+                                    class="bi bi-chevron-right hidden lg:block text-textMuted group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                            <div class="lg:hidden hidden bg-bg2 p-5 text-textMuted text-sm border-t border-border"
+                                id="mobile-ans-4"></div>
+
+                        </div>
+
+                        <div class="mt-8 px-4">
+                            <h4 class="text-xs font-bold text-textMuted uppercase tracking-widest mb-4">Related Topics</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <a href="#"
+                                    class="px-3 py-1.5 bg-card border border-border rounded-lg text-xs font-semibold text-textMain hover:border-accent hover:text-accent transition-colors shadow-sm">#Billing</a>
+                                <a href="#"
+                                    class="px-3 py-1.5 bg-card border border-border rounded-lg text-xs font-semibold text-textMain hover:border-accent hover:text-accent transition-colors shadow-sm">#AudioQuality</a>
+                                <a href="#"
+                                    class="px-3 py-1.5 bg-card border border-border rounded-lg text-xs font-semibold text-textMain hover:border-accent hover:text-accent transition-colors shadow-sm">#AppSupport</a>
+                                <a href="#"
+                                    class="px-3 py-1.5 bg-card border border-border rounded-lg text-xs font-semibold text-textMain hover:border-accent hover:text-accent transition-colors shadow-sm">#MerchStore</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hidden lg:block lg:col-span-7 relative">
+                    <div
+                        class="sticky top-[180px] bg-card border border-border rounded-3xl p-8 lg:p-10 shadow-lg min-h-[400px] flex flex-col">
+
+                        <div id="ans-1" class="faq-a-panel animate-fade-in-up">
+                            <h2 class="text-2xl font-black text-textMain mb-6 hover-double-color w-fit cursor-default">
+                                How do I access the ad-free podcast vault?</h2>
+                            <div class="text-textMuted text-base leading-relaxed space-y-4">
+                                <p>Once you become a <strong>WaveKind Member</strong>, you gain instant access to our
+                                    entire back-catalog of podcasts, completely ad-free.</p>
+                                <p>To access the vault:</p>
+                                <ol class="list-decimal pl-5 space-y-2 text-textMain font-medium">
+                                    <li>Log into your account via the <strong>Dashboard</strong> link in the top menu.
+                                    </li>
+                                    <li>Navigate to the <strong>Vault</strong> tab on your user profile.</li>
+                                    <li>Alternatively, if you use a third-party podcast app (like Apple Podcasts or
+                                        Spotify), you can generate a private RSS feed link from your settings page to
+                                        add to your app.</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div id="ans-2" class="faq-a-panel hidden">
+                            <h2 class="text-2xl font-black text-textMain mb-6 hover-double-color w-fit cursor-default">
+                                Can I submit my own music to be played?</h2>
+                            <div class="text-textMuted text-base leading-relaxed space-y-4">
+                                <p>Absolutely. We are a community-driven station and love discovering local and
+                                    independent talent.</p>
+                                <p>Please send an email to <a href="mailto:music@wavekind.fm"
+                                        class="text-accent font-bold hover:underline">music@wavekind.fm</a> with the
+                                    following:</p>
+                                <ul class="list-disc pl-5 space-y-2">
+                                    <li>A brief bio of you or your band.</li>
+                                    <li>Links to streaming platforms (Spotify, SoundCloud, etc.).</li>
+                                    <li>High-quality audio files (.WAV or 320kbps .MP3) via Dropbox or Google Drive.
+                                    </li>
+                                </ul>
+                                <div
+                                    class="bg-primary/10 border border-primary/20 rounded-xl p-4 mt-4 text-sm text-textMain">
+                                    <i class="bi bi-info-circle-fill text-accent mr-2"></i> Due to high volume, it may
+                                    take our curators up to 2 weeks to review submissions.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="ans-3" class="faq-a-panel hidden">
+                            <h2 class="text-2xl font-black text-textMain mb-6 hover-double-color w-fit cursor-default">
+                                Why is my live stream buffering?</h2>
+                            <div class="text-textMuted text-base leading-relaxed space-y-4">
+                                <p>Buffering usually occurs due to network connectivity issues. Our stream broadcasts at
+                                    a high-fidelity 320kbps rate.</p>
+                                <p>Try these troubleshooting steps:</p>
+                                <ul class="list-disc pl-5 space-y-2">
+                                    <li>Switch your player quality from <strong>HD</strong> to <strong>Standard
+                                            (128kbps)</strong> using the gear icon on the audio player.</li>
+                                    <li>Disconnect from a VPN if you are using one.</li>
+                                    <li>Clear your browser cache or try opening the station in an Incognito/Private
+                                        window.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div id="ans-4" class="faq-a-panel hidden">
+                            <h2 class="text-2xl font-black text-textMain mb-6 hover-double-color w-fit cursor-default">
+                                How do I cancel my membership?</h2>
+                            <div class="text-textMuted text-base leading-relaxed space-y-4">
+                                <p>We're sorry to see you go! You can cancel your membership at any time, and you will
+                                    retain access until the end of your current billing cycle.</p>
+                                <p>To cancel:</p>
+                                <ul class="list-disc pl-5 space-y-2">
+                                    <li>Go to <strong>Dashboard > User Panel</strong>.</li>
+                                    <li>Click on <strong>Billing & Subscriptions</strong>.</li>
+                                    <li>Click <strong>Cancel Subscription</strong> at the bottom of the page.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div
+                            class="mt-auto pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <span class="text-sm font-semibold text-textMuted">Was this answer helpful?</span>
+                            <div class="flex gap-2">
+                                <button
+                                    class="px-4 py-2 bg-bg2 border border-border rounded-lg text-sm font-bold hover:bg-green-500/10 hover:text-green-500 hover:border-green-500/30 transition-colors flex items-center gap-2 shadow-sm"><i
+                                        class="bi bi-hand-thumbs-up"></i> Yes</button>
+                                <button
+                                    class="px-4 py-2 bg-bg2 border border-border rounded-lg text-sm font-bold hover:bg-red-500/10 hover:text-red-500 hover:border-red-500/30 transition-colors flex items-center gap-2 shadow-sm"><i
+                                        class="bi bi-hand-thumbs-down"></i> No</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="py-12 bg-bg border-t border-border">
+            <div class="max-w-[1200px] mx-auto px-4 sm:px-6 text-center">
+                <h2 class="text-xl font-bold text-textMain mb-8">Still need help? Reach out directly.</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                    <a href="#"
+                        class="group bg-card border border-border rounded-2xl p-6 flex flex-col items-center hover:border-accent hover:shadow-[0_10px_25px_rgba(255,77,109,0.15)] transition-all hover:-translate-y-1">
+                        <div
+                            class="w-14 h-14 bg-bg2 rounded-full flex items-center justify-center text-accent text-2xl mb-4 group-hover:bg-accent group-hover:text-white transition-colors">
+                            <i class="bi bi-telephone-fill"></i>
+                        </div>
+                        <h3 class="font-bold text-textMain mb-1">Call the Studio</h3>
+                        <p class="text-sm text-textMuted">+1 (555) 019-8832</p>
+                    </a>
+
+                    <a href="#"
+                        class="group bg-card border border-border rounded-2xl p-6 flex flex-col items-center hover:border-accent hover:shadow-[0_10px_25px_rgba(255,77,109,0.15)] transition-all hover:-translate-y-1">
+                        <div
+                            class="w-14 h-14 bg-bg2 rounded-full flex items-center justify-center text-accent text-2xl mb-4 group-hover:bg-accent group-hover:text-white transition-colors">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+                        <h3 class="font-bold text-textMain mb-1">Email Support</h3>
+                        <p class="text-sm text-textMuted">help@wavekind.fm</p>
+                    </a>
+
+                    <a href="#"
+                        class="group bg-card border border-border rounded-2xl p-6 flex flex-col items-center hover:border-accent hover:shadow-[0_10px_25_rgba(255,77,109,0.15)] transition-all hover:-translate-y-1">
+                        <div
+                            class="w-14 h-14 bg-bg2 rounded-full flex items-center justify-center text-accent text-2xl mb-4 group-hover:bg-accent group-hover:text-white transition-colors">
+                            <i class="bi bi-chat-dots-fill"></i>
+                        </div>
+                        <h3 class="font-bold text-textMain mb-1">Live Chat</h3>
+                        <p class="text-sm text-textMuted">Available Mon-Fri, 9am-5pm</p>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+
+    <script>
+            (function () {
+                // Theme setup
+                const html = document.documentElement;
+                const themeToggle = document.getElementById('theme-toggle');
+                const themeIcon = document.getElementById('theme-icon');
+                const mobileTheme = document.getElementById('mobileThemeBtn');
+
+                const saved = localStorage.getItem('theme');
+                if (saved === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    if (themeIcon) themeIcon.classList.replace('bi-moon-stars-fill', 'bi-brightness-high-fill');
+                    if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-brightness-high-fill"></i> Theme';
+                }
+
+                function setTheme(theme) {
+                    if (theme === 'dark') {
+                        html.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        if (themeIcon) themeIcon.classList.replace('bi-moon-stars-fill', 'bi-brightness-high-fill');
+                        if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-brightness-high-fill"></i> Theme';
+                    } else {
+                        html.setAttribute('data-theme', 'light');
+                        localStorage.setItem('theme', 'light');
+                        if (themeIcon) themeIcon.classList.replace('bi-brightness-high-fill', 'bi-moon-stars-fill');
+                        if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-moon-stars-fill"></i> Theme';
+                    }
+                }
+
+                themeToggle?.addEventListener('click', () => {
+                    const isDark = html.getAttribute('data-theme') === 'dark';
+                    setTheme(isDark ? 'light' : 'dark');
+                });
+                mobileTheme?.addEventListener('click', () => {
+                    const isDark = html.getAttribute('data-theme') === 'dark';
+                    setTheme(isDark ? 'light' : 'dark');
+                });
+
+                // Direction (RTL) setup
+                let rtl = false;
+                const rtlBtn = document.getElementById('rtl-toggle');
+                const mobileRtl = document.getElementById('mobileRtlBtn');
+                function toggleRTL() { rtl = !rtl; html.setAttribute('dir', rtl ? 'rtl' : 'ltr'); }
+                rtlBtn?.addEventListener('click', toggleRTL);
+                mobileRtl?.addEventListener('click', toggleRTL);
+
+                // Drawer setup
+                const hamburger = document.getElementById('hamburgerBtn');
+                const drawer = document.getElementById('mobileDrawer');
+                const overlay = document.getElementById('drawerOverlay');
+                const closeDrawer = document.getElementById('closeDrawerBtn');
+
+                function openDrawer() { drawer.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+                function closeDrawerFunc() { drawer.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+
+                hamburger?.addEventListener('click', openDrawer);
+                closeDrawer?.addEventListener('click', closeDrawerFunc);
+                overlay?.addEventListener('click', closeDrawerFunc);
+
+                window.toggleMobileDropdown = function (id) {
+                    const el = document.getElementById(id);
+                    if (el) el.style.display = el.style.display === 'block' ? 'none' : 'block';
+                };
+
+                // SMOOTH SCROLL REVEAL ANIMATION
+                const reveals = document.querySelectorAll('.reveal');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+                reveals.forEach(reveal => {
+                    observer.observe(reveal);
+                });
+
+                // FAQ MASTER-DETAIL & ACCORDION LOGIC
+                const qItems = document.querySelectorAll('.faq-q-item');
+                const aPanels = document.querySelectorAll('.faq-a-panel');
+
+                // Initialize mobile contents
+                qItems.forEach(item => {
+                    const targetId = item.getAttribute('data-target');
+                    const desktopContent = document.getElementById(targetId);
+                    const mobileContainer = document.getElementById('mobile-' + targetId);
+
+                    if (desktopContent && mobileContainer) {
+                        // Copy desktop content to mobile container (excluding the h2 title since mobile shows it on the button)
+                        const contentToCopy = desktopContent.querySelector('.text-textMuted').cloneNode(true);
+
+                        // Add feedback bar copy to mobile
+                        const feedbackHTML = `
+                        <div class="mt-6 pt-4 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <span class="text-sm font-semibold text-textMuted">Was this helpful?</span>
+                            <div class="flex gap-2">
+                                <button class="px-3 py-1.5 bg-bg border border-border rounded-lg text-xs font-bold hover:bg-green-500/10 hover:text-green-500 transition-colors"><i class="bi bi-hand-thumbs-up"></i> Yes</button>
+                                <button class="px-3 py-1.5 bg-bg border border-border rounded-lg text-xs font-bold hover:bg-red-500/10 hover:text-red-500 transition-colors"><i class="bi bi-hand-thumbs-down"></i> No</button>
+                            </div>
+                        </div>
+                    `;
+
+                        mobileContainer.appendChild(contentToCopy);
+                        mobileContainer.insertAdjacentHTML('beforeend', feedbackHTML);
+                    }
+                });
+
+                qItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        const targetId = item.getAttribute('data-target');
+                        const isMobile = window.innerWidth < 1024; // lg breakpoint in tailwind
+
+                        if (isMobile) {
+                            // ACCORDION BEHAVIOR (Mobile/Tablet)
+                            const isActive = item.classList.contains('active');
+                            const mobileContainer = document.getElementById('mobile-' + targetId);
+
+                            // Close all
+                            qItems.forEach(q => {
+                                q.classList.remove('active', 'border-accent', 'bg-bg2');
+                                q.querySelector('h3').classList.remove('text-accent');
+                                document.getElementById('mobile-' + q.getAttribute('data-target')).classList.add('hidden');
+                            });
+
+                            // Toggle clicked
+                            if (!isActive) {
+                                item.classList.add('active', 'border-accent', 'bg-bg2');
+                                item.querySelector('h3').classList.add('text-accent');
+                                mobileContainer.classList.remove('hidden');
+                            }
+
+                        } else {
+                            // MASTER-DETAIL BEHAVIOR (Desktop)
+
+                            // Reset all buttons
+                            qItems.forEach(q => {
+                                q.classList.remove('active', 'border-accent', 'bg-bg2');
+                                q.querySelector('h3').classList.remove('text-accent');
+                            });
+
+                            // Activate clicked button
+                            item.classList.add('active', 'border-accent', 'bg-bg2');
+                            item.querySelector('h3').classList.add('text-accent');
+
+                            // Hide all panels
+                            aPanels.forEach(panel => {
+                                panel.classList.add('hidden');
+                                panel.classList.remove('animate-fade-in-up');
+                            });
+
+                            // Show target panel
+                            const activePanel = document.getElementById(targetId);
+                            activePanel.classList.remove('hidden');
+
+                            // Trigger reflow to restart animation
+                            void activePanel.offsetWidth;
+                            activePanel.classList.add('animate-fade-in-up');
+                        }
+                    });
+                });
+
+                // Handle window resize to reset states if crossing breakpoints
+                window.addEventListener('resize', () => {
+                    const isMobile = window.innerWidth < 1024;
+                    if (isMobile) {
+                        aPanels.forEach(p => p.classList.add('hidden'));
+                    } else {
+                        // Ensure at least one is visible on desktop, or show the active one
+                        const activeBtn = document.querySelector('.faq-q-item.active');
+                        if (activeBtn) {
+                            const targetId = activeBtn.getAttribute('data-target');
+                            document.getElementById(targetId).classList.remove('hidden');
+                        } else {
+                            // default to first
+                            qItems[0].classList.add('active', 'border-accent', 'bg-bg2');
+                            qItems[0].querySelector('h3').classList.add('text-accent');
+                            document.getElementById('ans-1').classList.remove('hidden');
+                        }
+                        // Hide all mobile containers
+                        document.querySelectorAll('[id^="mobile-ans-"]').forEach(m => m.classList.add('hidden'));
+                    }
+                });
+
+            })();
+    </script>
+
+
+</html>
+<footer class="site-footer">
+    
+    <div class="footer-main-grid">
+        <div class="footer-col"> <a href="index.html" class="nav-logo" style="margin-bottom: 0.5rem;">
+                <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div> <span class="logo-text">WaveKind
+                    FM</span>
+            </a>
+            <div class="footer-brand">
+                <p>Independent, community-powered radio platform. Discover local voices, live shows, and meaningful
+                    stories — anytime, anywhere.</p>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="AboutPage.html">About</a></li>
+                <li><a href="ShowPage.html">Shows</a></li>
+                <li><a href="PodcastPage.html">Podcasts</a></li>
+                <li><a href="ContactPage.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Explore</h4>
+            <ul class="footer-links">
+                <li><a href="LivePage.html">Live Radio</a></li>
+                <li><a href="ShowPage.html">Featured Shows</a></li>
+                <li><a href="PodcastPage.html">Podcast Directory</a></li>
+                <li><a href="MemperShip.html">Membership</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Connect</h4>
+            <div class="contact-item"><i class="bi bi-envelope-fill"></i><span>hello@wavekind.fm</span></div>
+            <div class="contact-item"><i class="bi bi-geo-alt-fill"></i><span>42 Frequency Ave, New York</span></div>
+            <div class="contact-item"><i class="bi bi-telephone-fill"></i><span>+1 (555) 019-8832</span></div>
+            <div class="social-icons"> <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a> <a
+                    href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a> <a href="#"
+                    aria-label="Spotify"><i class="bi bi-spotify"></i></a> </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="bottom-wrapper">
+            <div class="copyright">© 2026 WaveKind FM. All rights reserved.</div>
+            <div class="trust-legal"> <a href="#">Privacy Policy</a><span>|</span> <a href="#">Terms of
+                    Service</a><span>|</span> <a href="#">Cookie Settings</a> </div>
+        </div>
+    </div>
+</footer>
+</body>
+
+</html>

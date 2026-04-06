@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>WaveKind FM - All Shows</title>
+
+    <script>
+        (function () {
+            var savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="Boostrap/bootstrap-icons/bootstrap-icons.css">
+    <!-- Local Assets -->
+    <link rel="stylesheet" href="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+    <script src="Tailwind/tailwind.min.js"></script>
+    <script src="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: 'var(--accent)',
+                        accentDark: 'var(--accent-dark)',
+                        primary: 'var(--accent)',
+                        primaryDark: 'var(--accent-dark)',
+                        bg: 'var(--bg)',
+                        bg2: 'var(--bg2)',
+                        bg3: 'var(--bg3)',
+                        card: 'var(--card)',
+                        textMain: 'var(--text-main)',
+                        textMuted: 'var(--text-muted)',
+                        border: 'var(--border)'
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --accent: #ff4d6d;
+            --accent-dark: #e63956;
+            --secondary: #6366f1;
+            --bg: #ffffff;
+            --bg-glass: rgba(254, 252, 248, 0.85);
+            --bg2: #f8f9fa;
+            --bg3: #e9ecef;
+            --card: #ffffff;
+            --text-main: #2b2b2b;
+            --text-muted: #6c757d;
+            --border: rgba(0, 0, 0, 0.08);
+            --border-footer: rgba(0, 0, 0, 0.08);
+            --footer-bg: #f8f9fa;
+        }
+
+        [data-theme="dark"] {
+            --accent: #ff4d6d;
+            --accent-dark: #e63956;
+            --secondary: #6366f1;
+            --bg: #111827;
+            --bg-glass: rgba(20, 17, 14, 0.85);
+            --bg2: #1f2937;
+            --bg3: #374151;
+            --card: #1f2937;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-footer: rgba(255, 255, 255, 0.08);
+            --footer-bg: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: '"Plus Jakarta Sans"', system-ui, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg2);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0.7rem 1.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary-custom {
+            background-color: var(--accent);
+            color: #ffffff;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg3);
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--border);
+            height: 75px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+
+        .logo-mark {
+            background: var(--accent);
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .logo-text {
+            color: var(--text-main);
+            transition: color 0.3s ease;
+        }
+
+        .nav-logo:hover .logo-text {
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+            align-items: center;
+            margin: 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: block !important;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.5rem 0;
+            min-width: 170px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        /* Invisible bridge covering the gap so hover isn't lost */
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 0;
+            right: 0;
+            height: 12px;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            top: calc(100% + 8px);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.5rem 1.2rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: var(--bg2);
+            color: var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+        }
+
+        .icon-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .hamburger:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none !important;
+            }
+
+            .desktop-only {
+                display: none !important;
+            }
+
+            .nav-actions .icon-btn:not(.hamburger) {
+                display: none !important;
+            }
+
+            .hamburger {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
+        /* MOBILE DRAWER */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1100;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: var(--card);
+            z-index: 1101;
+            display: flex;
+            flex-direction: column;
+            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 1px solid var(--border);
+        }
+
+        .mobile-drawer.active {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-nav-list {
+            list-style: none;
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .mobile-nav-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .mobile-nav-link:hover {
+            background: var(--bg2);
+            color: var(--accent);
+        }
+
+        .mobile-dropdown-content {
+            padding-left: 1.5rem;
+            display: none;
+            margin-top: 0.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-dropdown-item {
+            display: block;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .drawer-footer {
+            padding: 1.2rem 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* SHOW CARDS */
+        .show-card-horizontal {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            /* Mobile first */
+        }
+
+        @media (min-width: 640px) {
+            .show-card-horizontal {
+                flex-direction: row;
+            }
+        }
+
+        .show-card-horizontal:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px -5px rgba(255, 77, 109, 0.15);
+        }
+
+        .show-card-grid {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .show-card-grid:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -5px rgba(255, 77, 109, 0.15);
+        }
+
+        .show-img {
+            transition: transform 0.5s ease;
+            height: 100%;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .show-card-horizontal:hover .show-img,
+        .show-card-grid:hover .show-img {
+            transform: scale(1.05);
+        }
+
+        /* FILTER SIDEBAR */
+        .filter-sidebar {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            position: sticky;
+            top: 90px;
+        }
+
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-group h4 {
+            font-size: 0.85rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-check {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.6rem;
+            cursor: pointer;
+        }
+
+        .filter-check input {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        .filter-check label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+        .site-footer {
+            background: var(--footer-bg);
+            margin-top: auto;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-newsletter {
+            background: var(--bg2);
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border-footer);
+        }
+
+        .footer-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .newsletter-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.2rem;
+            text-align: center;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 450px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .footer-main-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding: 3rem 2rem;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0.8rem 0;
+            font-size: 0.85rem;
+            max-width: 260px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-main);
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 0.8rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: left;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px;
+            margin-top: 0.5rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-footer);
+            padding: 1.2rem 0;
+            background: var(--bg);
+        }
+
+        .bottom-wrapper {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .trust-legal {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .trust-legal a {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+
+        .trust-legal a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none !important;
+            }
+
+            .desktop-only {
+                display: none !important;
+            }
+
+            .nav-actions .icon-btn:not(.hamburger) {
+                display: none !important;
+            }
+
+            .hamburger {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
+
+        @media (max-width: 768px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
+
+            .footer-main-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 1.4s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.4;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ================= INJECTED FOOTER RESPONSIVENESS ================= */
+        .site-footer {
+            font-family: '"Plus Jakarta Sans"', system-ui, -apple-system, sans-serif;
+        }
+
+        @media (max-width: 1024px) {
+            .footer-main-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
+
+            .footer-main-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2.5rem;
+            }
+
+            .bottom-wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+        }
+
+        /* UX Overrides */
+        .pro-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border);
+        }
+
+        .pro-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: var(--accent);
+            z-index: 10;
+        }
+
+        .btn {
+            transition: all 0.3s ease;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        /* ================= UNIFIED FOOTER CSS FOR ALIGNMENT AND FONT ================= */
+        .site-footer {
+            font-family: inherit;
+            background: var(--footer-bg);
+            margin-top: auto;
+            border-top: 1px solid var(--border);
+            width: 100%;
+        }
+
+        .site-footer * {
+            font-family: inherit;
+        }
+
+        .footer-newsletter {
+            background: var(--bg2);
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-footer);
+        }
+
+        .footer-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .newsletter-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .newsletter-text h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter-text p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 450px;
+            justify-content: center;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.85rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--accent);
+        }
+
+        .newsletter-form button {
+            flex-shrink: 0;
+        }
+
+        .footer-main-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            margin-top: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 0.9rem;
+            max-width: 260px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(3px);
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-top: 2px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-main);
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-footer);
+            padding: 1.5rem 0;
+            background: var(--bg);
+        }
+
+        .bottom-wrapper {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .trust-legal {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .trust-legal a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .trust-legal a:hover {
+            color: var(--accent);
+        }
+
+        .trust-legal span {
+            color: var(--border-footer);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-main-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 3rem;
+                padding: 3rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .newsletter-form {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
+
+            .footer-main-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2.5rem;
+            }
+
+            .bottom-wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="404.html" class="nav-logo">
+                <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div>
+                <span class="logo-text">WaveKind FM</span>
+            </a>
+
+            <ul class="nav-menu">
+                <li class="dropdown">
+                    <a href="index.html" class="nav-link">Home <i class="bi bi-chevron-down"
+                            style="font-size: 0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html" class="dropdown-item">Home 1</a></li>
+                        <li><a href="Home2Page.html" class="dropdown-item">Home 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="AboutPage.html" class="nav-link">About</a></li>
+                <li><a href="ShowPage.html" class="nav-link text-primary">Shows</a></li>
+                <li><a href="PodcastPage.html" class="nav-link">Podcasts</a></li>
+                <li><a href="Fqa.html" class="nav-link">FAQ</a></li>
+                <li><a href="ContactPage.html" class="nav-link">Contact</a></li>
+                <li><a href="LivePage.html" class="nav-link" style="color:var(--accent);"><i
+                            class="bi bi-record-circle-fill"></i>
+                        Live</a></li>
+                <li class="dropdown">
+                    <a href="Dashborad/User/User.html" class="nav-link">Dashboard <i class="bi bi-chevron-down"
+                            style="font-size: 0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Dashborad/User/User.html" class="dropdown-item"><i
+                                    class="bi bi-person-circle text-lg text-primary"></i>
+                                User Panel</a></li>
+                        <li><a href="Dashborad/Admin/AdminPage.html" class="dropdown-item"><i
+                                    class="bi bi-shield-lock text-lg text-primary"></i>
+                                Admin Panel</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" class="icon-btn desktop-only"><i class="bi bi-moon-stars-fill"
+                        id="theme-icon"></i></button>
+                <button id="rtl-toggle" class="icon-btn desktop-only"><i class="bi bi-text-paragraph"></i></button>
+
+                <div class="dropdown desktop-only">
+                    <button class="icon-btn"><i class="bi bi-person-circle text-lg"></i></button>
+                    <ul class="dropdown-menu" style="right: 0; left: auto; min-width: 160px;">
+                        <li><a href="LoginPage.html" class="dropdown-item"><i
+                                    class="bi bi-box-arrow-in-right text-primary text-lg"></i> Log In</a></li>
+                        <li><a href="RegistrationPage.html" class="dropdown-item"><i
+                                    class="bi bi-person-plus text-primary text-lg"></i>
+                                Sign Up</a></li>
+                    </ul>
+                </div>
+
+                <button class="hamburger" id="hamburgerBtn"><i class="bi bi-list"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <a href="404.html" class="nav-logo" style="font-size:1.3rem;">
+                <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div>
+                <span class="logo-text">WaveKind FM</span>
+            </a>
+            <button class="icon-btn border-none" id="closeDrawerBtn" style="background:transparent; border:none;"><i
+                    class="bi bi-x-lg"></i></button>
+        </div>
+        <ul class="mobile-nav-list">
+            <li>
+                <div onclick="toggleMobileDropdown('homeDropdown')" class="mobile-nav-link">Home <i
+                        class="bi bi-chevron-down"></i></div>
+                <div id="homeDropdown" class="mobile-dropdown-content">
+                    <a href="index.html" class="mobile-dropdown-item">Home 1</a>
+                    <a href="Home2Page.html" class="mobile-dropdown-item">Home 2</a>
+                </div>
+            </li>
+            <li><a href="AboutPage.html" class="mobile-nav-link">About</a></li>
+            <li><a href="ShowPage.html" class="mobile-nav-link text-primary">Shows</a></li>
+            <li><a href="PodcastPage.html" class="mobile-nav-link">Podcasts</a></li>
+            <li><a href="Fqa.html" class="mobile-nav-link">FAQ</a></li>
+            <li><a href="ContactPage.html" class="mobile-nav-link">Contact</a></li>
+            <li><a href="LivePage.html" class="mobile-nav-link" style="color:var(--accent);">Live Stream <i
+                        class="bi bi-record-circle-fill"></i></a></li>
+            <li>
+                <div onclick="toggleMobileDropdown('dashDropdown')" class="mobile-nav-link">Dashboard <i
+                        class="bi bi-chevron-down"></i></div>
+                <div id="dashDropdown" class="mobile-dropdown-content">
+                    <a href="Dashborad/User/User.html" class="mobile-dropdown-item"><i
+                            class="bi bi-person-circle text-primary"></i> User
+                        Panel</a>
+                    <a href="Dashborad/Admin/AdminPage.html" class="mobile-dropdown-item"><i
+                            class="bi bi-shield-lock text-primary"></i> Admin
+                        Panel</a>
+                </div>
+            </li>
+        </ul>
+        <div class="drawer-footer">
+            <div class="flex gap-2">
+                <button id="mobileThemeBtn" class="icon-btn flex-1 rounded-lg"><i class="bi bi-moon-stars-fill"></i>
+                    Theme</button>
+                <button id="mobileRtlBtn" class="icon-btn flex-1 rounded-lg"><i class="bi bi-text-paragraph"></i>
+                    RTL</button>
+            </div>
+            <div class="flex flex-col gap-2 mt-2">
+                <button class="btn btn-outline w-full justify-center"><i class="bi bi-person-fill me-2"></i><a
+                        href="LoginPage.html" class="text-inherit no-underline">Log In</a></button>
+                <button class="btn btn-primary-custom w-full justify-center"><i
+                        class="bi bi-person-plus-fill me-2"></i><a href="RegistrationPage.html"
+                        class="text-white no-underline">Sign Up</a></button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section
+            class="relative w-full min-h-[50vh] md:min-h-[60vh] bg-bg overflow-hidden flex items-center pt-20 pb-12 reveal">
+            <!-- Massive Background Typography -->
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full whitespace-nowrap opacity-[0.03] data-[theme=dark]:opacity-[0.02] pointer-events-none flex flex-col items-center justify-center">
+                <h1 class="text-[12rem] md:text-[20rem] font-black tracking-tighter leading-none select-none">ON AIR
+                </h1>
+                <h1
+                    class="text-[12rem] md:text-[20rem] font-black tracking-tighter leading-none select-none -mt-20 ml-32">
+                    LIVE</h1>
+            </div>
+
+            <!-- Floating Abstract Gradients -->
+            <div class="absolute top-20 right-10 w-64 h-64 bg-accent/20 rounded-full blur-[100px] animate-pulse-slow">
+            </div>
+            <div
+                class="absolute bottom-10 left-10 w-96 h-96 bg-secondary/15 rounded-full blur-[120px] animate-pulse-slow mix-blend-screen">
+            </div>
+
+            <div class="relative z-10 w-full max-w-[1200px] mx-auto px-4 sm:px-6">
+                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                    <!-- Text Content -->
+                    <div class="w-full lg:w-1/2 text-center lg:text-left">
+                        <div
+                            class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border backdrop-blur-md bg-card/50 text-textMain text-xs font-bold shadow-sm mb-6">
+                            <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span> <span
+                                class="tracking-wider uppercase text-textMain">Live Broadcasting Hub</span>
+                        </div>
+                        <h1
+                            class="text-5xl sm:text-6xl lg:text-8xl font-black text-textMain mb-6 leading-[1.05] tracking-tight">
+                            Discover<br>
+                            <span class="text-transparent bg-clip-text bg-accent  ">Your Sound.</span>
+                        </h1>
+                        <p
+                            class="text-lg md:text-xl text-textMuted font-medium max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed">
+                            Explore our comprehensive directory of 50+ original shows, exclusive artist interviews, and
+                            late-night curated mixes.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                            <button
+                                class="btn btn-primary-custom w-full sm:w-auto text-lg px-8 py-4 shadow-lg hover:shadow-xl">Explore
+                                Directory <i class="bi bi-arrow-down ms-1"></i></button>
+                            <button
+                                class="btn bg-card hover:bg-bg2 border border-border text-textMain w-full sm:w-auto text-lg px-8 py-4 shadow-sm hover:shadow-md transition-all"><i
+                                    class="bi bi-calendar-event text-accent me-2"></i><a href="SchedulePage.html"> View
+                                    Schedule</a></button>
+                        </div>
+                    </div>
+
+                    <!-- Creative Layout / Stats / Cards -->
+                    <div class="w-full lg:w-1/2 grid grid-cols-2 gap-4 relative">
+                        <!-- Connecting Line visual -->
+                        <div
+                            class="hidden sm:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[1px] bg-accent    z-0">
+                        </div>
+                        <div
+                            class="hidden sm:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full w-[1px] bg-accent    z-0">
+                        </div>
+
+                        <div class="relative z-10 flex flex-col gap-4 mt-8">
+                            <div
+                                class="bg-card border border-border rounded-3xl p-6 shadow-xl hover:-translate-y-2 transition-transform duration-300">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xl mb-4">
+                                    <i class="bi bi-mic-fill"></i>
+                                </div>
+                                <h3 class="text-3xl font-black text-textMain">120+</h3>
+                                <p class="text-sm font-bold text-textMuted uppercase tracking-wider mt-1">Live Hosts</p>
+                            </div>
+                            <div
+                                class="h-40 rounded-3xl overflow-hidden relative shadow-xl group cursor-pointer border border-border">
+                                <img src="Asserts/Images/ShowsBG1.avif"
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    alt="Studio">
+                                <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                    <i
+                                        class="bi bi-play-circle-fill text-white/80 text-4xl group-hover:scale-125 transition-transform duration-300"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10 flex flex-col gap-4">
+                            <div
+                                class="h-48 rounded-3xl overflow-hidden relative shadow-xl group cursor-pointer border border-border">
+                                <img src="Asserts/Images/ShowsBG2.avif"
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    alt="Mixer">
+                                <div class="absolute bottom-0 left-0 w-full p-4 bg-accent /80 ">
+                                    <span class="text-accent text-xs font-bold uppercase tracking-wider">Now
+                                        Playing</span>
+                                    <p class="text-white font-bold text-sm">Morning Brew</p>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-card border border-border rounded-3xl p-6 shadow-xl hover:-translate-y-2 transition-transform duration-300">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary text-xl mb-4">
+                                    <i class="bi bi-headphones"></i>
+                                </div>
+                                <h3 class="text-3xl font-black text-textMain">24/7</h3>
+                                <p class="text-sm font-bold text-textMuted uppercase tracking-wider mt-1">Streaming</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 px-6 max-w-[1200px] mx-auto">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <aside class="lg:w-80 flex-shrink-0">
+                    <div class="filter-sidebar">
+                        <div class="flex justify-between items-center mb-4 pb-3 border-b border-border">
+                            <h3 class="font-extrabold text-lg">Filters</h3>
+                            <button id="clearFilters"
+                                class="text-xs text-accent hover:underline bg-transparent border-0 cursor-pointer">Clear
+                                all</button>
+                        </div>
+                        <div class="filter-group">
+                            <h4><i class="bi bi-tag me-1"></i> Category</h4>
+                            <label class="filter-check"><input type="checkbox" value="music" class="filter-cat">
+                                <span>Music</span></label>
+                            <label class="filter-check"><input type="checkbox" value="talk" class="filter-cat">
+                                <span>Talk / Interview</span></label>
+                            <label class="filter-check"><input type="checkbox" value="culture" class="filter-cat">
+                                <span>Culture & Society</span></label>
+                            <label class="filter-check"><input type="checkbox" value="news" class="filter-cat">
+                                <span>News & Politics</span></label>
+                            <label class="filter-check"><input type="checkbox" value="tech" class="filter-cat">
+                                <span>Technology</span></label>
+                        </div>
+                        <div class="filter-group">
+                            <h4><i class="bi bi-calendar-week me-1"></i> Day</h4>
+                            <label class="filter-check"><input type="checkbox" value="mon" class="filter-day">
+                                <span>Monday</span></label>
+                            <label class="filter-check"><input type="checkbox" value="tue" class="filter-day">
+                                <span>Tuesday</span></label>
+                            <label class="filter-check"><input type="checkbox" value="wed" class="filter-day">
+                                <span>Wednesday</span></label>
+                            <label class="filter-check"><input type="checkbox" value="thu" class="filter-day">
+                                <span>Thursday</span></label>
+                            <label class="filter-check"><input type="checkbox" value="fri" class="filter-day">
+                                <span>Friday</span></label>
+                            <label class="filter-check"><input type="checkbox" value="sat" class="filter-day">
+                                <span>Saturday</span></label>
+                            <label class="filter-check"><input type="checkbox" value="sun" class="filter-day">
+                                <span>Sunday</span></label>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="flex-1">
+                    <div class="flex justify-between items-center mb-6 pb-3 border-b border-border">
+                        <div class="flex gap-2">
+                            <button id="listViewBtn"
+                                class="px-4 py-2 rounded-lg bg-accent text-white text-sm font-semibold border-0 cursor-pointer"><i
+                                    class="bi bi-list-ul me-1"></i> List</button>
+                            <button id="gridViewBtn"
+                                class="px-4 py-2 rounded-lg bg-bg2 text-textMain text-sm font-semibold border-0 cursor-pointer"><i
+                                    class="bi bi-grid-3x3-gap-fill me-1"></i> Grid</button>
+                        </div>
+                        <span id="resultCount" class="text-sm text-textMuted">8 shows</span>
+                    </div>
+
+                    <div id="showsContainer" class="space-y-4">
+                        <div class="show-card-horizontal group" data-category="music" data-day="fri">
+                            <div class="w-full sm:w-40 h-48 sm:h-40 overflow-hidden flex-shrink-0">
+                                <div class="show-img w-full h-full"
+                                    style="background-image:url('Asserts/Images/Showsgrid1.webp');">
+                                </div>
+                            </div>
+                            <div class="flex-1 p-4"><span class="text-accent text-xs font-bold uppercase">Music</span>
+                                <h3 class="text-xl font-bold mt-1">Midnight Waves</h3>
+                                <p class="text-textMuted text-sm mt-1">Deep electronic vibes and underground mixes.</p>
+                                <div class="flex items-center gap-3 mt-3 text-xs text-textMuted"><i
+                                        class="bi bi-calendar-event text-accent"></i> Fridays 10 PM</div>
+                            </div>
+                        </div>
+                        <div class="show-card-horizontal group" data-category="talk" data-day="mon">
+                            <div class="w-full sm:w-40 h-48 sm:h-40 overflow-hidden flex-shrink-0">
+                                <div class="show-img w-full h-full"
+                                    style="background-image:url('Asserts/Images/Showsgrid2.avif');">
+                                </div>
+                            </div>
+                            <div class="flex-1 p-4"><span class="text-accent text-xs font-bold uppercase">Talk</span>
+                                <h3 class="text-xl font-bold mt-1">Morning Brew</h3>
+                                <p class="text-textMuted text-sm mt-1">Local news, coffee reviews, and community
+                                    stories.</p>
+                                <div class="flex items-center gap-3 mt-3 text-xs text-textMuted"><i
+                                        class="bi bi-calendar-event text-accent"></i> Weekdays 8 AM</div>
+                            </div>
+                        </div>
+                        <div class="show-card-horizontal group" data-category="culture" data-day="sun">
+                            <div class="w-full sm:w-40 h-48 sm:h-40 overflow-hidden flex-shrink-0">
+                                <div class="show-img w-full h-full"
+                                    style="background-image:url('Asserts/Images/Showsgrid3.webp');">
+                                </div>
+                            </div>
+                            <div class="flex-1 p-4"><span class="text-accent text-xs font-bold uppercase">Culture</span>
+                                <h3 class="text-xl font-bold mt-1">City Soundscapes</h3>
+                                <p class="text-textMuted text-sm mt-1">Exploring the diverse cultural heartbeat of our
+                                    city.</p>
+                                <div class="flex items-center gap-3 mt-3 text-xs text-textMuted"><i
+                                        class="bi bi-calendar-event text-accent"></i> Sundays 2 PM</div>
+                            </div>
+                        </div>
+                        <div class="show-card-horizontal group" data-category="tech" data-day="wed">
+                            <div class="w-full sm:w-40 h-48 sm:h-40 overflow-hidden flex-shrink-0">
+                                <div class="show-img w-full h-full"
+                                    style="background-image:url('Asserts/Images/Showsgrid4.avif');">
+                                </div>
+                            </div>
+                            <div class="flex-1 p-4"><span
+                                    class="text-accent text-xs font-bold uppercase">Technology</span>
+                                <h3 class="text-xl font-bold mt-1">Tech Unfiltered</h3>
+                                <p class="text-textMuted text-sm mt-1">Honest conversations about AI, startups, and the
+                                    future.</p>
+                                <div class="flex items-center gap-3 mt-3 text-xs text-textMuted"><i
+                                        class="bi bi-calendar-event text-accent"></i> Wednesdays 12 PM</div>
+                            </div>
+                        </div>
+                        <div class="show-card-horizontal group" data-category="music" data-day="tue">
+                            <div class="w-full sm:w-40 h-48 sm:h-40 overflow-hidden flex-shrink-0">
+                                <div class="show-img w-full h-full"
+                                    style="background-image:url('Asserts/Images/Showsgrid5.avif');">
+                                </div>
+                            </div>
+                            <div class="flex-1 p-4"><span class="text-accent text-xs font-bold uppercase">Music</span>
+                                <h3 class="text-xl font-bold mt-1">Vinyl Frontier</h3>
+                                <p class="text-textMuted text-sm mt-1">Classic records, rare finds, and analog warmth.
+                                </p>
+                                <div class="flex items-center gap-3 mt-3 text-xs text-textMuted"><i
+                                        class="bi bi-calendar-event text-accent"></i> Tuesdays 10 AM</div>
+                            </div>
+                        </div>
+                        <div class="show-card-horizontal group" data-category="news" data-day="thu">
+                            <div class="w-full sm:w-40 h-48 sm:h-40 overflow-hidden flex-shrink-0">
+                                <div class="show-img w-full h-full"
+                                    style="background-image:url('Asserts/Images/Showsgrid6.avif');">
+                                </div>
+                            </div>
+                            <div class="flex-1 p-4"><span class="text-accent text-xs font-bold uppercase">News</span>
+                                <h3 class="text-xl font-bold mt-1">Daily Pulse</h3>
+                                <p class="text-textMuted text-sm mt-1">Top stories shaping our community and beyond.</p>
+                                <div class="flex items-center gap-3 mt-3 text-xs text-textMuted"><i
+                                        class="bi bi-calendar-event text-accent"></i> Weekdays 5 PM</div>
+                            </div>
+                        </div>
+                        <div class="show-card-horizontal group" data-category="culture" data-day="sat">
+                            <div class="w-full sm:w-40 h-48 sm:h-40 overflow-hidden flex-shrink-0">
+                                <div class="show-img w-full h-full"
+                                    style="background-image:url('Asserts/Images/Showsgrid7.avif');">
+                                </div>
+                            </div>
+                            <div class="flex-1 p-4"><span class="text-accent text-xs font-bold uppercase">Culture</span>
+                                <h3 class="text-xl font-bold mt-1">Heritage Sessions</h3>
+                                <p class="text-textMuted text-sm mt-1">Celebrating local artists and traditions.</p>
+                                <div class="flex items-center gap-3 mt-3 text-xs text-textMuted"><i
+                                        class="bi bi-calendar-event text-accent"></i> Saturdays 4 PM</div>
+                            </div>
+                        </div>
+                        <div class="show-card-horizontal group" data-category="talk" data-day="fri">
+                            <div class="w-full sm:w-40 h-48 sm:h-40 overflow-hidden flex-shrink-0">
+                                <div class="show-img w-full h-full"
+                                    style="background-image:url('Asserts/Images/Showsgrid8.avif');">
+                                </div>
+                            </div>
+                            <div class="flex-1 p-4"><span class="text-accent text-xs font-bold uppercase">Talk</span>
+                                <h3 class="text-xl font-bold mt-1">Late Night Debates</h3>
+                                <p class="text-textMuted text-sm mt-1">Unfiltered opinions on what matters.</p>
+                                <div class="flex items-center gap-3 mt-3 text-xs text-textMuted"><i
+                                        class="bi bi-calendar-event text-accent"></i> Fridays 11 PM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 px-6 bg-bg border-t border-border reveal">
+            <div class="max-w-[1200px] mx-auto text-center mb-12">
+                <h2 class="text-3xl md:text-5xl font-black text-textMain mb-4">Station <span
+                        class="text-primary">Highlights</span></h2>
+                <p class="text-textMuted font-medium text-lg">A deeper look at our most popular long-form series and
+                    special broadcasts.</p>
+            </div>
+        </section>
+
+        <section class="py-20 px-6 bg-bg2 border-y border-border reveal">
+            <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="Asserts/Images/ShowsFea1.avif" alt="Underground Music"
+                        class="rounded-2xl w-full aspect-video object-cover shadow-xl border border-border">
+                </div>
+                <div class="md:w-1/2 text-center md:text-left">
+                    <span class="text-accent text-sm font-bold uppercase">Featured Series</span>
+                    <h2 class="text-3xl font-extrabold mt-2 mb-4">The Sound of the Underground</h2>
+                    <p class="text-textMuted">Unearthing the rawest talent from basements to main stages. Weekly deep
+                        dives into emerging scenes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 px-6 bg-bg border-b border-border reveal">
+            <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="Asserts/Images/ShowsFea2.jpg" alt="Live Studio Session"
+                        class="rounded-2xl w-full aspect-video object-cover shadow-xl border border-border">
+                </div>
+                <div class="md:w-1/2 text-center md:text-left">
+                    <span class="text-accent text-sm font-bold uppercase">Live Sessions</span>
+                    <h2 class="text-3xl font-extrabold mt-2 mb-4">Morning Brew Unplugged</h2>
+                    <p class="text-textMuted">Intimate performances and conversations with your favorite local artists.
+                        Recorded live in our studio.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 px-6 bg-bg2 border-b border-border reveal">
+            <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="Asserts/Images/ShowsFea3.avif" alt="City Culture"
+                        class="rounded-2xl w-full aspect-video object-cover shadow-xl border border-border">
+                </div>
+                <div class="md:w-1/2 text-center md:text-left">
+                    <span class="text-accent text-sm font-bold uppercase">Cultural Spotlight</span>
+                    <h2 class="text-3xl font-extrabold mt-2 mb-4">City Soundscapes</h2>
+                    <p class="text-textMuted">Every neighborhood has a story. We travel across the boroughs to capture
+                        the heartbeat of the city.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 px-6 bg-bg border-b border-border reveal">
+            <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="Asserts/Images/ShowsFea4.webp" alt="Tech Setup"
+                        class="rounded-2xl w-full aspect-video object-cover shadow-xl border border-border">
+                </div>
+                <div class="md:w-1/2 text-center md:text-left">
+                    <span class="text-accent text-sm font-bold uppercase">Tech & Innovation</span>
+                    <h2 class="text-3xl font-extrabold mt-2 mb-4">Tech Unfiltered</h2>
+                    <p class="text-textMuted">No corporate PR. Just real conversations about how technology is reshaping
+                        our world.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 px-6 bg-bg2 border-b border-border reveal">
+            <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="Asserts/Images/ShowsFea5.avif" alt="Vinyl Record"
+                        class="rounded-2xl w-full aspect-video object-cover shadow-xl border border-border">
+                </div>
+                <div class="md:w-1/2 text-center md:text-left">
+                    <span class="text-accent text-sm font-bold uppercase">Music Discovery</span>
+                    <h2 class="text-3xl font-extrabold mt-2 mb-4">Vinyl Frontier</h2>
+                    <p class="text-textMuted">Dust off your turntable. We explore forgotten classics and modern vinyl
+                        releases every week.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 px-6 bg-bg border-b border-border reveal">
+            <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="Asserts/Images/ShowsFea6.avif" alt="Microphone"
+                        class="rounded-2xl w-full aspect-video object-cover shadow-xl border border-border">
+                </div>
+                <div class="md:w-1/2 text-center md:text-left">
+                    <span class="text-accent text-sm font-bold uppercase">News & Politics</span>
+                    <h2 class="text-3xl font-extrabold mt-2 mb-4">Daily Pulse</h2>
+                    <p class="text-textMuted">Stay informed with unbiased reporting and community-driven journalism.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 px-6 bg-bg2 border-b border-border reveal">
+            <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="Asserts/Images/Showsgrid7.avif" alt="DJ Mixing"
+                        class="rounded-2xl w-full aspect-video object-cover shadow-xl border border-border">
+                </div>
+                <div class="md:w-1/2 text-center md:text-left">
+                    <span class="text-accent text-sm font-bold uppercase">Heritage & Tradition</span>
+                    <h2 class="text-3xl font-extrabold mt-2 mb-4">Heritage Sessions</h2>
+                    <p class="text-textMuted">Preserving the stories, music, and traditions that define our diverse
+                        community.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <script>
+            (function () {
+                // Theme setup
+                const html = document.documentElement;
+                const themeToggle = document.getElementById('theme-toggle');
+                const themeIcon = document.getElementById('theme-icon');
+                const mobileTheme = document.getElementById('mobileThemeBtn');
+
+                const saved = localStorage.getItem('theme');
+                if (saved === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    if (themeIcon) themeIcon.classList.replace('bi-moon-stars-fill', 'bi-brightness-high-fill');
+                    if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-brightness-high-fill"></i> Theme';
+                }
+
+                function setTheme(theme) {
+                    if (theme === 'dark') {
+                        html.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        if (themeIcon) themeIcon.classList.replace('bi-moon-stars-fill', 'bi-brightness-high-fill');
+                        if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-brightness-high-fill"></i> Theme';
+                    } else {
+                        html.setAttribute('data-theme', 'light');
+                        localStorage.setItem('theme', 'light');
+                        if (themeIcon) themeIcon.classList.replace('bi-brightness-high-fill', 'bi-moon-stars-fill');
+                        if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-moon-stars-fill"></i> Theme';
+                    }
+                }
+
+                themeToggle?.addEventListener('click', () => {
+                    const isDark = html.getAttribute('data-theme') === 'dark';
+                    setTheme(isDark ? 'light' : 'dark');
+                });
+
+                mobileTheme?.addEventListener('click', () => {
+                    const isDark = html.getAttribute('data-theme') === 'dark';
+                    setTheme(isDark ? 'light' : 'dark');
+                });
+
+                // Direction (RTL) setup
+                let rtl = false;
+                const rtlBtn = document.getElementById('rtl-toggle');
+                const mobileRtl = document.getElementById('mobileRtlBtn');
+                function toggleRTL() { rtl = !rtl; html.setAttribute('dir', rtl ? 'rtl' : 'ltr'); }
+                rtlBtn?.addEventListener('click', toggleRTL);
+                mobileRtl?.addEventListener('click', toggleRTL);
+
+                // Drawer setup
+                const hamburger = document.getElementById('hamburgerBtn');
+                const drawer = document.getElementById('mobileDrawer');
+                const overlay = document.getElementById('drawerOverlay');
+                const closeDrawer = document.getElementById('closeDrawerBtn');
+
+                function openDrawer() {
+                    drawer.classList.add('active');
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+                function closeDrawerFunc() {
+                    drawer.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+
+                hamburger?.addEventListener('click', openDrawer);
+                closeDrawer?.addEventListener('click', closeDrawerFunc);
+                overlay?.addEventListener('click', closeDrawerFunc);
+
+                // Mobile dropdowns
+                window.toggleMobileDropdown = function (id) {
+                    const el = document.getElementById(id);
+                    if (el) el.style.display = el.style.display === 'block' ? 'none' : 'block';
+                };
+
+                // Scroll reveal
+                const reveals = document.querySelectorAll('.reveal');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+                }, { threshold: 0.1 });
+                reveals.forEach(r => observer.observe(r));
+
+                // List/Grid Toggle (FIXED FOR RESPONSIVENESS)
+                const listBtn = document.getElementById('listViewBtn');
+                const gridBtn = document.getElementById('gridViewBtn');
+                const container = document.getElementById('showsContainer');
+
+                function setListView() {
+                    container.className = 'space-y-4';
+                    document.querySelectorAll('#showsContainer > div').forEach(card => {
+                        card.classList.remove('show-card-grid');
+                        card.classList.add('show-card-horizontal');
+                        // Remove inline styles to let CSS handle mobile column stacking
+                        card.style.flexDirection = '';
+                        card.innerHTML = card.innerHTML.includes('show-card-horizontal') ? card.innerHTML :
+                            `<div class="w-full sm:w-40 h-48 sm:h-40 overflow-hidden flex-shrink-0"><div class="show-img w-full h-full" style="${card.querySelector('.show-img')?.style.backgroundImage ? card.querySelector('.show-img').style.backgroundImage : ''}"></div></div>
+                        <div class="flex-1 p-4">${card.querySelector('.flex-1')?.innerHTML || card.innerHTML.split('</div>')[1]}</div>`;
+                    });
+                    listBtn.classList.add('bg-accent', 'text-white');
+                    gridBtn.classList.remove('bg-accent', 'text-white');
+                    gridBtn.classList.add('bg-bg2', 'text-textMain');
+                    listBtn.classList.remove('bg-bg2', 'text-textMain');
+                }
+
+                function setGridView() {
+                    container.className = 'grid grid-cols-1 md:grid-cols-2 gap-6';
+                    document.querySelectorAll('#showsContainer > div').forEach(card => {
+                        card.classList.remove('show-card-horizontal');
+                        card.classList.add('show-card-grid');
+                        card.style.flexDirection = '';
+                        const imgDiv = card.querySelector('.w-full.sm\\:w-40');
+                        if (imgDiv) {
+                            imgDiv.classList.remove('sm:w-40', 'h-48', 'sm:h-40');
+                            imgDiv.classList.add('w-full', 'h-48');
+                        }
+                    });
+                    gridBtn.classList.add('bg-accent', 'text-white');
+                    listBtn.classList.remove('bg-accent', 'text-white');
+                    listBtn.classList.add('bg-bg2', 'text-textMain');
+                    gridBtn.classList.remove('bg-bg2', 'text-textMain');
+                }
+
+                listBtn?.addEventListener('click', setListView);
+                gridBtn?.addEventListener('click', setGridView);
+
+                // Filter functionality
+                const filterCats = document.querySelectorAll('.filter-cat');
+                const filterDays = document.querySelectorAll('.filter-day');
+                const clearBtn = document.getElementById('clearFilters');
+                const resultSpan = document.getElementById('resultCount');
+
+                function filterShows() {
+                    const selectedCats = Array.from(filterCats).filter(cb => cb.checked).map(cb => cb.value);
+                    const selectedDays = Array.from(filterDays).filter(cb => cb.checked).map(cb => cb.value);
+                    const cards = document.querySelectorAll('#showsContainer > div');
+                    let visibleCount = 0;
+
+                    cards.forEach(card => {
+                        const cat = card.getAttribute('data-category');
+                        const day = card.getAttribute('data-day');
+                        let show = true;
+
+                        if (selectedCats.length > 0 && !selectedCats.includes(cat)) show = false;
+                        if (selectedDays.length > 0 && !selectedDays.includes(day)) show = false;
+
+                        card.style.display = show ? '' : 'none';
+                        if (show) visibleCount++;
+                    });
+
+                    resultSpan.innerText = visibleCount + ' shows';
+                }
+
+                filterCats.forEach(cb => cb.addEventListener('change', filterShows));
+                filterDays.forEach(cb => cb.addEventListener('change', filterShows));
+
+                clearBtn?.addEventListener('click', () => {
+                    filterCats.forEach(cb => cb.checked = false);
+                    filterDays.forEach(cb => cb.checked = false);
+                    filterShows();
+                });
+
+            })();
+    </script>
+
+    <footer class="site-footer">
+        <div class="footer-main-grid">
+            <div class="footer-col"> <a href="index.html" class="nav-logo" style="margin-bottom: 0.5rem;">
+                    <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div> <span class="logo-text">WaveKind
+                        FM</span>
+                </a>
+                <div class="footer-brand">
+                    <p>Independent, community-powered radio platform. Discover local voices, live shows, and meaningful
+                        stories — anytime, anywhere.</p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="AboutPage.html">About</a></li>
+                    <li><a href="ShowPage.html">Shows</a></li>
+                    <li><a href="PodcastPage.html">Podcasts</a></li>
+                    <li><a href="ContactPage.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul class="footer-links">
+                    <li><a href="LivePage.html">Live Radio</a></li>
+                    <li><a href="ShowPage.html">Featured Shows</a></li>
+                    <li><a href="PodcastPage.html">Podcast Directory</a></li>
+                    <li><a href="MemperShip.html">Membership</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <div class="contact-item"><i class="bi bi-envelope-fill"></i><span>hello@wavekind.fm</span></div>
+                <div class="contact-item"><i class="bi bi-geo-alt-fill"></i><span>42 Frequency Ave, New York</span>
+                </div>
+                <div class="contact-item"><i class="bi bi-telephone-fill"></i><span>+1 (555) 019-8832</span></div>
+                <div class="social-icons"> <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a> <a
+                        href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a> <a href="#"
+                        aria-label="Spotify"><i class="bi bi-spotify"></i></a> </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="bottom-wrapper">
+                <div class="copyright">© 2026 WaveKind FM. All rights reserved.</div>
+                <div class="trust-legal"> <a href="#">Privacy Policy</a><span>|</span> <a href="#">Terms of
+                        Service</a><span>|</span> <a href="#">Cookie Settings</a> </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

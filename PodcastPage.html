@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>WaveKind FM - Podcast Episode</title>
+
+    <script>
+        (function () {
+            var savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="Boostrap/bootstrap-icons/bootstrap-icons.css">
+    <!-- Local Assets -->
+    <link rel="stylesheet" href="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+    <script src="Tailwind/tailwind.min.js"></script>
+    <script src="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: 'var(--accent)',
+                        accentDark: 'var(--accent-dark)',
+                        primary: 'var(--accent)',
+                        primaryDark: 'var(--accent-dark)',
+                        bg: 'var(--bg)',
+                        bg2: 'var(--bg2)',
+                        bg3: 'var(--bg3)',
+                        card: 'var(--card)',
+                        textMain: 'var(--text-main)',
+                        textMuted: 'var(--text-muted)',
+                        border: 'var(--border)'
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --accent: #ff4d6d;
+            --accent-dark: #e63956;
+            --secondary: #6366f1;
+            --bg: #ffffff;
+            --bg-glass: rgba(254, 252, 248, 0.85);
+            --bg2: #f8f9fa;
+            --bg3: #e9ecef;
+            --card: #ffffff;
+            --text-main: #2b2b2b;
+            --text-muted: #6c757d;
+            --border: rgba(0, 0, 0, 0.08);
+            --border-footer: rgba(0, 0, 0, 0.08);
+            --footer-bg: #f8f9fa;
+        }
+
+        [data-theme="dark"] {
+            --accent: #ff4d6d;
+            --accent-dark: #e63956;
+            --secondary: #6366f1;
+            --bg: #111827;
+            --bg-glass: rgba(20, 17, 14, 0.85);
+            --bg2: #1f2937;
+            --bg3: #374151;
+            --card: #1f2937;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-footer: rgba(255, 255, 255, 0.08);
+            --footer-bg: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: '"Plus Jakarta Sans"', system-ui, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg2);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0.7rem 1.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary-custom {
+            background-color: var(--accent);
+            color: #ffffff;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg3);
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--border);
+            height: 75px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @media (min-width: 640px) {
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+
+        .logo-mark {
+            background: var(--accent);
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .logo-text {
+            color: var(--text-main);
+            transition: color 0.3s ease;
+        }
+
+        .nav-logo:hover .logo-text {
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+            align-items: center;
+            margin: 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: block !important;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.5rem 0;
+            min-width: 170px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        /* Invisible bridge covering the gap so hover isn't lost */
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 0;
+            right: 0;
+            height: 12px;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            top: calc(100% + 8px);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.5rem 1.2rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: var(--bg2);
+            color: var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+        }
+
+        .icon-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .hamburger:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none !important;
+            }
+
+            .desktop-only {
+                display: none !important;
+            }
+
+            .nav-actions .icon-btn:not(.hamburger) {
+                display: none !important;
+            }
+
+            .hamburger {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
+        /* MOBILE DRAWER */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1100;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 340px;
+            height: 100vh;
+            background: var(--card);
+            z-index: 1101;
+            display: flex;
+            flex-direction: column;
+            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 1px solid var(--border);
+        }
+
+        .mobile-drawer.active {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-nav-list {
+            list-style: none;
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .mobile-nav-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .mobile-nav-link:hover {
+            background: var(--bg2);
+            color: var(--accent);
+        }
+
+        .mobile-dropdown-content {
+            padding-left: 1.5rem;
+            display: none;
+            margin-top: 0.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-dropdown-item {
+            display: block;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .drawer-footer {
+            padding: 1.2rem 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* FOOTER */
+        .site-footer {
+            background: var(--footer-bg);
+            border-top: 1px solid var(--border);
+            margin-top: auto;
+            font-family: inherit;
+            width: 100%;
+        }
+
+        .site-footer * {
+            font-family: inherit;
+        }
+
+        .footer-newsletter {
+            background: var(--bg2);
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-footer);
+        }
+
+        .footer-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .newsletter-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .newsletter-text h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter-text p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 450px;
+            justify-content: center;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.85rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--accent);
+        }
+
+        .newsletter-form button {
+            flex-shrink: 0;
+            background: var(--accent);
+            color: white;
+            font-weight: 700;
+            padding: 0.85rem 1.5rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+
+        .footer-main-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            margin-top: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 0.9rem;
+            max-width: 260px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(3px);
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-top: 2px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-main);
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-footer);
+            padding: 1.5rem 0;
+            background: var(--bg);
+        }
+
+        .bottom-wrapper {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .trust-legal {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .trust-legal a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .trust-legal a:hover {
+            color: var(--accent);
+        }
+
+        .trust-legal span {
+            color: var(--border-footer);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-main-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 3rem;
+                padding: 3rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .newsletter-form {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
+
+            .footer-main-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2.5rem;
+            }
+
+            .bottom-wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+
+        /* Utility */
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 1.4s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.4;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes slow-zoom {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.15);
+            }
+        }
+
+        .animate-slow-zoom {
+            animation: slow-zoom 20s linear infinite alternate;
+        }
+
+        @keyframes pulse-play {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 77, 109, 0.5);
+            }
+
+            70% {
+                box-shadow: 0 0 0 20px rgba(255, 77, 109, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 77, 109, 0);
+            }
+        }
+
+        .animate-pulse-play {
+            animation: pulse-play 2.5s infinite;
+        }
+
+        @keyframes progress-fill {
+            from {
+                width: 0%;
+            }
+
+            to {
+                width: 45%;
+            }
+        }
+
+        .animate-progress {
+            animation: progress-fill 1.5s ease-out forwards;
+        }
+
+        .podcast-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            width: 85vw;
+            max-width: 280px;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 640px) {
+            .podcast-card {
+                width: 300px;
+                max-width: none;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .podcast-card {
+                width: 320px;
+            }
+        }
+
+        .podcast-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px -5px rgba(255, 77, 109, 0.2);
+        }
+
+        .podcast-card .show-img {
+            transition: transform 0.5s ease;
+            height: 100%;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .podcast-card:hover .show-img {
+            transform: scale(1.05);
+        }
+
+        .carousel-container {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            cursor: grab;
+            padding-bottom: 2rem;
+        }
+
+        .carousel-container:active {
+            cursor: grabbing;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 1.5rem;
+            width: max-content;
+            padding: 0.25rem 0;
+        }
+
+        .text-primary {
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="404.html" class="nav-logo">
+                <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div>
+                <span class="logo-text">WaveKind FM</span>
+            </a>
+
+            <ul class="nav-menu">
+                <li class="dropdown">
+                    <a href="index.html" class="nav-link">Home <i class="bi bi-chevron-down"
+                            style="font-size: 0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html" class="dropdown-item">Home 1</a></li>
+                        <li><a href="Home2Page.html" class="dropdown-item">Home 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="AboutPage.html" class="nav-link">About</a></li>
+                <li><a href="ShowPage.html" class="nav-link">Shows</a></li>
+                <li><a href="PodcastPage.html" class="nav-link text-primary">Podcasts</a></li>
+                <li><a href="Fqa.html" class="nav-link">FAQ</a></li>
+                <li><a href="ContactPage.html" class="nav-link">Contact</a></li>
+                <li><a href="LivePage.html" class="nav-link" style="color:var(--accent);"><i
+                            class="bi bi-record-circle-fill"></i>
+                        Live</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">Dashboard <i class="bi bi-chevron-down"
+                            style="font-size: 0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Dashborad/User/User.html" class="dropdown-item"><i
+                                    class="bi bi-person-circle text-lg text-primary"></i>
+                                User Panel</a></li>
+                        <li><a href="Dashborad/Admin/AdminPage.html" class="dropdown-item"><i
+                                    class="bi bi-shield-lock text-lg text-primary"></i>
+                                Admin Panel</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" class="icon-btn desktop-only"><i class="bi bi-moon-stars-fill"
+                        id="theme-icon"></i></button>
+                <button id="rtl-toggle" class="icon-btn desktop-only"><i class="bi bi-text-paragraph"></i></button>
+
+                <div class="dropdown desktop-only">
+                    <button class="icon-btn"><i class="bi bi-person-circle text-lg"></i></button>
+                    <ul class="dropdown-menu" style="right: 0; left: auto; min-width: 160px;">
+                        <li><a href="LoginPage.html" class="dropdown-item" id="desktopLoginBtn"><i
+                                    class="bi bi-box-arrow-in-right text-primary text-lg"></i> Log In</a></li>
+                        <li><a href="RegistrationPage.html" class="dropdown-item"><i
+                                    class="bi bi-person-plus text-primary text-lg"></i>
+                                Sign Up</a></li>
+                    </ul>
+                </div>
+
+                <button class="hamburger" id="hamburgerBtn"><i class="bi bi-list"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <a href="404.html" class="nav-logo" style="font-size:1.3rem;">
+                <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div>
+                <span class="logo-text">WaveKind FM</span>
+            </a>
+            <button class="icon-btn" id="closeDrawerBtn" style="background:transparent; border:none;"><i
+                    class="bi bi-x-lg"></i></button>
+        </div>
+        <ul class="mobile-nav-list">
+            <li>
+                <div onclick="toggleMobileDropdown('homeDropdown')" class="mobile-nav-link">Home <i
+                        class="bi bi-chevron-down"></i></div>
+                <div id="homeDropdown" class="mobile-dropdown-content">
+                    <a href="index.html" class="mobile-dropdown-item">Home 1</a>
+                    <a href="Home2Page.html" class="mobile-dropdown-item">Home 2</a>
+                </div>
+            </li>
+            <li><a href="AboutPage.html" class="mobile-nav-link">About</a></li>
+            <li><a href="ShowPage.html" class="mobile-nav-link">Shows</a></li>
+            <li><a href="PodcastPage.html" class="mobile-nav-link" style="color:var(--accent);">Podcasts</a></li>
+            <li><a href="Fqa.html" class="mobile-nav-link">FAQ</a></li>
+            <li><a href="ContactPage.html" class="mobile-nav-link">Contact</a></li>
+            <li><a href="LivePage.html" class="mobile-nav-link" style="color:var(--accent);">Live Stream <i
+                        class="bi bi-record-circle-fill"></i></a></li>
+            <li>
+                <div onclick="toggleMobileDropdown('dashDropdown')" class="mobile-nav-link">Dashboard <i
+                        class="bi bi-chevron-down"></i></div>
+                <div id="dashDropdown" class="mobile-dropdown-content">
+                    <a href="Dashborad/User/User.html" class="mobile-dropdown-item"><i
+                            class="bi bi-person-circle text-primary"></i> User
+                        Panel</a>
+                    <a href="Dashborad/Admin/AdminPage.html" class="mobile-dropdown-item"><i
+                            class="bi bi-shield-lock text-primary"></i> Admin
+                        Panel</a>
+                </div>
+            </li>
+        </ul>
+        <div class="drawer-footer">
+            <div class="flex gap-2">
+                <button id="mobileThemeBtn" class="icon-btn flex-1 rounded-lg"><i class="bi bi-moon-stars-fill"></i>
+                    Theme</button>
+                <button id="mobileRtlBtn" class="icon-btn flex-1 rounded-lg"><i class="bi bi-text-paragraph"></i>
+                    RTL</button>
+            </div>
+            <div class="flex flex-col gap-2 mt-2">
+                <button class="btn btn-outline w-full justify-center" id="mobileLoginBtn"><i
+                        class="bi bi-person-fill"></i><a href="LoginPage.html"> Log In</a></button>
+                <button class="btn btn-primary-custom w-full justify-center"><i class="bi bi-person-plus-fill"></i><a
+                        href="RegistrationPage.html"> Sign Up</a></button>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex-1 flex flex-col w-full">
+
+        <!-- Hero Section -->
+        <section
+            class="relative w-full h-[50vh] sm:h-[55vh] md:h-[60vh] min-h-[400px] overflow-hidden flex items-end bg-[#0a0a0a]">
+            <div class="absolute inset-0">
+                <div class="w-full h-full bg-cover bg-center animate-slow-zoom opacity-40 md:opacity-50"
+                    style="background-image: url('Asserts/Images/podcastBg1.jpeg');"></div>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-[var(--bg)]/80 to-transparent"></div>
+            <div class="relative z-10 w-full max-w-[1200px] mx-auto px-4 sm:px-6 pb-8 md:pb-12">
+                <div
+                    class="flex flex-col md:flex-row items-center md:items-end gap-6 md:gap-8 text-center md:text-left">
+                    <div
+                        class="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 rounded-xl shadow-2xl overflow-hidden shrink-0 border border-white/10 group cursor-pointer relative mx-auto md:mx-0">
+                        <img src="Asserts/Images/podcastBg2.jpeg"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            alt="Podcast Cover">
+                    </div>
+                    <div class="flex-1 flex flex-col items-center md:items-start">
+                        <div class="flex flex-wrap justify-center md:justify-start items-center gap-2 mb-2 sm:mb-3">
+                            <span
+                                class="bg-accent/20 text-accent border border-accent/30 px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider">Technology</span>
+                        </div>
+                        <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-textMain mb-2 sm:mb-4">
+                            Tech Unfiltered</h1>
+                        <p
+                            class="text-sm sm:text-lg md:text-xl text-textMuted font-medium flex items-center justify-center md:justify-start gap-2">
+                            <span class="overflow-hidden rounded-full border border-border"><img
+                                    src="https://randomuser.me/api/portraits/women/68.jpg"
+                                    class="w-6 h-6 sm:w-8 sm:h-8 rounded-full object-cover" alt="Host"></span>
+                            Hosted by <span class="text-textMain font-bold">Sarah Jenkins</span>
+                        </p>
+                    </div>
+                    <button
+                        class="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-accent text-white rounded-full flex items-center justify-center text-3xl md:text-4xl shadow-[0_0_20px_rgba(224,124,60,0.4)] animate-pulse-play shrink-0 hover:scale-110 transition-transform cursor-pointer mt-2 md:mt-0">
+                        <i class="bi bi-play-fill ml-1 md:ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Player Controls Section -->
+        <section class="py-8 md:py-12 bg-bg2 border-b border-border relative">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col items-center">
+                <div class="text-center mb-5 sm:mb-6">
+                    <span class="text-accent text-[10px] sm:text-xs font-bold uppercase tracking-wider">Latest
+                        Episode</span>
+                    <h3 class="text-lg sm:text-2xl font-bold text-textMain">Ep 42: The Future of AI Ethics</h3>
+                </div>
+                <div class="w-full max-w-2xl flex items-center gap-2 sm:gap-4 mb-6 md:mb-8">
+                    <span class="text-[10px] sm:text-xs text-textMuted font-mono font-bold">32:15</span>
+                    <div class="flex-1 h-2 bg-bg3 rounded-full overflow-hidden">
+                        <div class="h-full bg-accent w-[45%] animate-progress"></div>
+                    </div>
+                    <span class="text-[10px] sm:text-xs text-textMuted font-mono font-bold">-39:45</span>
+                </div>
+                <div class="flex items-center justify-center gap-4 sm:gap-8 w-full max-w-sm">
+                    <button
+                        class="w-14 h-14 sm:w-16 sm:h-16 bg-accent text-white rounded-full flex items-center justify-center text-2xl sm:text-3xl hover:scale-110 transition-all shadow-lg shrink-0">
+                        <i class="bi bi-pause-fill"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="py-10 md:py-16 bg-bg flex-1">
+            <div class="max-w-[1200px] mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16">
+                <div class="md:col-span-2 space-y-12 md:space-y-16">
+                    <div>
+                        <h2
+                            class="text-xl sm:text-2xl font-black text-textMain mb-4 sm:mb-6 flex items-center gap-3 border-b border-border pb-3 sm:pb-4">
+                            <i class="bi bi-info-circle-fill text-accent"></i> About This Podcast
+                        </h2>
+                        <div class="text-textMuted text-sm sm:text-base md:text-lg leading-relaxed space-y-4">
+                            <p>Welcome to <strong class="text-textMain">Tech Unfiltered</strong>, the podcast where we
+                                leave corporate PR at the door and dive deep into the realities of modern technology.
+                            </p>
+                            <p>Each week, Sarah Jenkins sits down with engineers, founders, and critical thinkers to
+                                explore how tech is actually shaping our world — beyond the hype and headlines.</p>
+                        </div>
+                    </div>
+                </div>
+                <aside class="md:col-span-1 mt-6 md:mt-0">
+                    <div
+                        class="md:sticky md:top-24 bg-card border border-border rounded-3xl p-6 lg:p-8 text-center shadow-sm hover:shadow-xl hover:border-accent transition-all duration-300">
+                        <div
+                            class="w-24 h-24 lg:w-28 lg:h-28 mx-auto rounded-full p-1 border-2 border-border mb-4 overflow-hidden">
+                            <img src="Asserts/Images/podcastBg3.jpeg" class="w-full h-full rounded-full object-cover"
+                                alt="Sarah Jenkins">
+                        </div>
+                        <h3 class="text-lg lg:text-xl font-bold text-textMain mb-1">Sarah Jenkins</h3>
+                        <p class="text-xs lg:text-sm text-accent font-semibold mb-3 lg:mb-4">Tech Journalist & Engineer
+                        </p>
+                        <p class="text-textMuted text-xs">Former senior writer at Wired, now exploring the human side of
+                            innovation.</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Episode Archive Section -->
+        <section class="py-12 sm:py-16 bg-bg border-t border-border reveal">
+            <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+                <div class="flex items-center justify-between mb-8 border-b border-border pb-4">
+                    <h2 class="text-2xl sm:text-3xl font-black text-textMain"><i
+                            class="bi bi-collection-play-fill text-accent mr-2"></i> Recent Episodes</h2>
+                    <a href="#" class="text-sm font-bold text-accent hover:text-accent-dark transition-colors">View All
+                        <i class="bi bi-arrow-right"></i></a>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <!-- EP 41 -->
+                    <div
+                        class="group flex flex-col sm:flex-row items-center gap-6 p-4 sm:p-6 bg-card rounded-2xl border border-border hover:border-accent hover:shadow-[0_8px_30px_-5px_rgba(224,124,60,0.15)] transition-all cursor-pointer">
+                        <div class="w-full sm:w-24 h-24 rounded-xl overflow-hidden shrink-0 relative">
+                            <img src="Asserts/Images/podcastBg4.jpeg"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                alt="Ep 41 Cover">
+                            <div
+                                class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i class="bi bi-play-circle-fill text-white text-3xl drop-shadow-md"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1 w-full">
+                            <span class="text-xs font-bold tracking-widest text-textMuted uppercase mb-1 block">Ep 41 •
+                                Oct 12, 2026</span>
+                            <h3 class="text-lg font-bold text-textMain group-hover:text-accent transition-colors mb-2">
+                                Cryptocurrency in the Third Web</h3>
+                            <p class="text-sm text-textMuted">We sit down with a leading block-chain architect to
+                                discuss what comes next after the crypto-winter, and how decentralization is actually
+                                evolving behind the scenes.</p>
+                        </div>
+                        <div class="hidden md:flex flex-col items-end shrink-0">
+                            <span
+                                class="text-sm font-mono text-textMuted font-bold bg-bg px-3 py-1 rounded-lg border border-border mb-2">45:12</span>
+                            <div class="flex gap-2">
+                                <button
+                                    class="w-8 h-8 rounded-full bg-bg border border-border flex items-center justify-center text-textMuted hover:text-accent hover:border-accent transition-colors"><i
+                                        class="bi bi-download"></i></button>
+                                <button
+                                    class="w-8 h-8 rounded-full bg-bg border border-border flex items-center justify-center text-textMuted hover:text-accent hover:border-accent transition-colors"><i
+                                        class="bi bi-share-fill"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EP 40 -->
+                    <div
+                        class="group flex flex-col sm:flex-row items-center gap-6 p-4 sm:p-6 bg-card rounded-2xl border border-border hover:border-accent hover:shadow-[0_8px_30px_-5px_rgba(224,124,60,0.15)] transition-all cursor-pointer">
+                        <div class="w-full sm:w-24 h-24 rounded-xl overflow-hidden shrink-0 relative">
+                            <img src="Asserts/Images/podcastBg5.jpeg"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                alt="Ep 40 Cover">
+                            <div
+                                class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i class="bi bi-play-circle-fill text-white text-3xl drop-shadow-md"></i>
+                            </div>
+                        </div>
+                        <div class="flex-1 w-full">
+                            <span class="text-xs font-bold tracking-widest text-textMuted uppercase mb-1 block">Ep 40 •
+                                Oct 05, 2026</span>
+                            <h3 class="text-lg font-bold text-textMain group-hover:text-accent transition-colors mb-2">
+                                The Data Privacy Illusion</h3>
+                            <p class="text-sm text-textMuted">Are you really safe using end-to-end encryption? Security
+                                researcher Mark D. breaks down how metadata tracking is heavily outstripping content
+                                encryption protocols.</p>
+                        </div>
+                        <div class="hidden md:flex flex-col items-end shrink-0">
+                            <span
+                                class="text-sm font-mono text-textMuted font-bold bg-bg px-3 py-1 rounded-lg border border-border mb-2">52:05</span>
+                            <div class="flex gap-2">
+                                <button
+                                    class="w-8 h-8 rounded-full bg-bg border border-border flex items-center justify-center text-textMuted hover:text-accent hover:border-accent transition-colors"><i
+                                        class="bi bi-download"></i></button>
+                                <button
+                                    class="w-8 h-8 rounded-full bg-bg border border-border flex items-center justify-center text-textMuted hover:text-accent hover:border-accent transition-colors"><i
+                                        class="bi bi-share-fill"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sponsor / Patreon Section -->
+        <section class="py-12 sm:py-16 bg-bg border-t border-border reveal">
+            <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+                <div
+                    class="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#1a1612] to-[#0c0a08] border border-white/10 dark:border-white/5 p-8 sm:p-12 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10 shadow-2xl">
+                    <div class="absolute -top-24 -right-24 w-96 h-96 bg-accent opacity-20 rounded-full blur-[80px]">
+                    </div>
+                    <div
+                        class="absolute -bottom-24 -left-24 w-72 h-72 bg-secondary opacity-15 rounded-full blur-[60px]">
+                    </div>
+
+                    <div class="relative z-10 w-full md:w-3/5 text-center md:text-left">
+                        <span
+                            class="inline-block px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white text-xs font-bold uppercase tracking-widest mb-4">Support
+                            Independent Voices</span>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-4 leading-tight">Join the
+                            Inner Circle.</h2>
+                        <p class="text-gray-400 text-sm sm:text-base font-medium max-w-lg mb-8 mx-auto md:mx-0">
+                            Get ad-free episodes, exclusive AMA streams with Sarah, and direct access to our private
+                            Discord server. Back the podcast directly to help us remain 100% corporate-free.
+                        </p>
+                        <div class="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+                            <button
+                                class="btn border-none bg-accent hover:bg-accent-dark text-white shadow-[0_0_20px_rgba(224,124,60,0.3)] hover:-translate-y-1 w-full sm:w-auto">
+                                <i class="bi bi-heart-fill"></i> Support on Patreon
+                            </button>
+                            <button
+                                class="btn bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 hover:-translate-y-1 w-full sm:w-auto">
+                                Join Discord <i class="bi bi-discord"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="relative z-10 w-full md:w-2/5 flex items-center justify-center">
+                        <div class="grid grid-cols-2 gap-4 max-w-xs">
+                            <div
+                                class="bg-[rgba(255,255,255,0.05)] backdrop-blur-md rounded-2xl p-5 border border-white/10 text-center transform translate-y-4 shadow-lg">
+                                <h4 class="text-3xl font-black text-white">4.9<span
+                                        class="text-sm text-accent">/5</span></h4>
+                                <p class="text-xs font-bold text-gray-400 mt-1 uppercase">Apple Podcasts</p>
+                            </div>
+                            <div
+                                class="bg-[rgba(255,255,255,0.05)] backdrop-blur-md rounded-2xl p-5 border border-white/10 text-center transform -translate-y-4 shadow-lg">
+                                <h4 class="text-3xl font-black text-white">12K<span class="text-sm text-accent">+</span>
+                                </h4>
+                                <p class="text-xs font-bold text-gray-400 mt-1 uppercase">Weekly Listeners</p>
+                            </div>
+                            <div
+                                class="bg-[rgba(255,255,255,0.05)] backdrop-blur-md rounded-2xl p-5 border border-white/10 text-center transform translate-y-2 shadow-lg col-span-2">
+                                <div class="flex justify-center -space-x-3 mb-2">
+                                    <img class="w-8 h-8 rounded-full border-2 border-[#1a1612] object-cover"
+                                        src="Asserts/Images/podcastBg6.jpeg" alt="avatar">
+                                    <img class="w-8 h-8 rounded-full border-2 border-[#1a1612] object-cover"
+                                        src="Asserts/Images/podcastBg7.jpeg" alt="avatar">
+                                    <img class="w-8 h-8 rounded-full border-2 border-[#1a1612] object-cover"
+                                        src="Asserts/Images/podcast1.jpeg" alt="avatar">
+                                    <img class="w-8 h-8 rounded-full border-2 border-[#1a1612] object-cover"
+                                        src="Asserts/Images/podcast2.jpeg" alt="avatar">
+                                </div>
+                                <p class="text-xs font-bold text-gray-400 uppercase">300+ Active Patrons</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Listeners Also Enjoy Carousel -->
+        <section class="py-12 sm:py-16 bg-bg2 border-t border-border">
+            <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
+                <div class="flex flex-wrap justify-between items-end mb-6 sm:mb-8 gap-4">
+                    <h2 class="text-xl sm:text-2xl font-black text-textMain">Listeners Also Enjoy</h2>
+                    <div class="flex gap-2">
+                        <button id="scrollLeftBtn"
+                            class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-card border border-border flex items-center justify-center text-textMain hover:bg-accent hover:text-white hover:border-accent hover:scale-110 transition-all shadow-sm">
+                            <i class="bi bi-chevron-left text-sm sm:text-base"></i>
+                        </button>
+                        <button id="scrollRightBtn"
+                            class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-card border border-border flex items-center justify-center text-textMain hover:bg-accent hover:text-white hover:border-accent hover:scale-110 transition-all shadow-sm">
+                            <i class="bi bi-chevron-right text-sm sm:text-base"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="podcast-carousel" class="carousel-container hide-scrollbar">
+                    <div class="carousel-track">
+                        <div class="podcast-card group">
+                            <div class="h-36 sm:h-48 overflow-hidden relative">
+                                <div class="show-img" style="background-image:url('Asserts/Images/podcast3.jpeg');">
+                                </div>
+                            </div>
+                            <div class="p-4 sm:p-5 flex flex-col flex-1">
+                                <h4 class="text-base sm:text-lg font-bold text-textMain mb-1">Design Thinkers</h4>
+                                <p class="text-xs sm:text-sm text-textMuted mb-4">UI/UX trends and web accessibility.
+                                </p><span
+                                    class="mt-auto text-accent text-xs sm:text-sm font-semibold group-hover:translate-x-1 transition-transform inline-block w-fit">Listen
+                                    Now <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                        <div class="podcast-card group">
+                            <div class="h-36 sm:h-48 overflow-hidden relative">
+                                <div class="show-img" style="background-image:url('Asserts/Images/podcast4.jpeg');">
+                                </div>
+                            </div>
+                            <div class="p-4 sm:p-5 flex flex-col flex-1">
+                                <h4 class="text-base sm:text-lg font-bold text-textMain mb-1">The Indie Pulse</h4>
+                                <p class="text-xs sm:text-sm text-textMuted mb-4">Uncovering the best unsigned bands
+                                    globally.</p><span
+                                    class="mt-auto text-accent text-xs sm:text-sm font-semibold group-hover:translate-x-1 transition-transform inline-block w-fit">Listen
+                                    Now <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                        <div class="podcast-card group">
+                            <div class="h-36 sm:h-48 overflow-hidden relative">
+                                <div class="show-img" style="background-image:url('Asserts/Images/podcast5.avif');">
+                                </div>
+                            </div>
+                            <div class="p-4 sm:p-5 flex flex-col flex-1">
+                                <h4 class="text-base sm:text-lg font-bold text-textMain mb-1">Local Headlines</h4>
+                                <p class="text-xs sm:text-sm text-textMuted mb-4">Daily news directly from the
+                                    community.</p><span
+                                    class="mt-auto text-accent text-xs sm:text-sm font-semibold group-hover:translate-x-1 transition-transform inline-block w-fit">Listen
+                                    Now <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                        <div class="podcast-card group">
+                            <div class="h-36 sm:h-48 overflow-hidden relative">
+                                <div class="show-img" style="background-image:url('Asserts/Images/podcast6.avif');">
+                                </div>
+                            </div>
+                            <div class="p-4 sm:p-5 flex flex-col flex-1">
+                                <h4 class="text-base sm:text-lg font-bold text-textMain mb-1">Night Owl Mixes</h4>
+                                <p class="text-xs sm:text-sm text-textMuted mb-4">Late-night ambient beats and lo-fi.
+                                </p><span
+                                    class="mt-auto text-accent text-xs sm:text-sm font-semibold group-hover:translate-x-1 transition-transform inline-block w-fit">Listen
+                                    Now <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                        <div class="podcast-card group">
+                            <div class="h-36 sm:h-48 overflow-hidden relative">
+                                <div class="show-img" style="background-image:url('Asserts/Images/podcast7.avif');">
+                                </div>
+                            </div>
+                            <div class="p-4 sm:p-5 flex flex-col flex-1">
+                                <h4 class="text-base sm:text-lg font-bold text-textMain mb-1">Daily Pulse</h4>
+                                <p class="text-xs sm:text-sm text-textMuted mb-4">Your morning news briefing.</p><span
+                                    class="mt-auto text-accent text-xs sm:text-sm font-semibold group-hover:translate-x-1 transition-transform inline-block w-fit">Listen
+                                    Now <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                        <div class="podcast-card group">
+                            <div class="h-36 sm:h-48 overflow-hidden relative">
+                                <div class="show-img" style="background-image:url('Asserts/Images/podcast8.avif');">
+                                </div>
+                            </div>
+                            <div class="p-4 sm:p-5 flex flex-col flex-1">
+                                <h4 class="text-base sm:text-lg font-bold text-textMain mb-1">Heritage Sessions</h4>
+                                <p class="text-xs sm:text-sm text-textMuted mb-4">Celebrating local artists and
+                                    traditions.</p><span
+                                    class="mt-auto text-accent text-xs sm:text-sm font-semibold group-hover:translate-x-1 transition-transform inline-block w-fit">Listen
+                                    Now <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+
+        <div class="footer-main-grid">
+            <div class="footer-col">
+                <a href="index.html" class="nav-logo" style="margin-bottom: 0.5rem;">
+                    <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div>
+                    <span class="logo-text">WaveKind FM</span>
+                </a>
+                <div class="footer-brand">
+                    <p>Independent, community-powered radio platform. Discover local voices, live shows, and meaningful
+                        stories — anytime, anywhere.</p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="AboutPage.html">About</a></li>
+                    <li><a href="ShowPage.html">Shows</a></li>
+                    <li><a href="PodcastPage.html">Podcasts</a></li>
+                    <li><a href="ContactPage.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul class="footer-links">
+                    <li><a href="LivePage.html">Live Radio</a></li>
+                    <li><a href="ShowPage.html">Featured Shows</a></li>
+                    <li><a href="PodcastPage.html">Podcast Directory</a></li>
+                    <li><a href="MemperShip.html">Membership</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <div class="contact-item"><i class="bi bi-envelope-fill"></i><span>hello@wavekind.fm</span></div>
+                <div class="contact-item"><i class="bi bi-geo-alt-fill"></i><span>42 Frequency Ave, New York</span>
+                </div>
+                <div class="contact-item"><i class="bi bi-telephone-fill"></i><span>+1 (555) 019-8832</span></div>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" aria-label="Spotify"><i class="bi bi-spotify"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="bottom-wrapper">
+                <div class="copyright">© 2026 WaveKind FM. All rights reserved.</div>
+                <div class="trust-legal">
+                    <a href="#">Privacy Policy</a><span>|</span>
+                    <a href="#">Terms of Service</a><span>|</span>
+                    <a href="#">Cookie Settings</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Player Modal -->
+    <div id="playerModal" class="fixed inset-0 z-[2000] hidden flex items-end sm:items-center justify-center sm:p-4">
+        <div id="playerBackdrop"
+            class="absolute inset-0 bg-black/80 backdrop-blur-md opacity-0 transition-opacity duration-300"></div>
+        <div id="playerModalContent"
+            class="relative w-full sm:max-w-lg bg-card rounded-t-[2rem] sm:rounded-[2rem] border border-border shadow-[0_-10px_40px_rgba(0,0,0,0.3)] overflow-hidden opacity-0 translate-y-full sm:translate-y-10 sm:scale-95 transition-all duration-400 ease-out flex flex-col">
+            <div class="h-32 sm:h-48 relative overflow-hidden bg-bg2">
+                <div class="absolute inset-0 bg-cover bg-center blur-2xl scale-125 opacity-40 mix-blend-screen"
+                    style="background-image: url('Asserts/Images/podcastBg1.jpeg');" id="playerBgImage"></div>
+                <div class="absolute inset-0 bg-accent  "></div>
+                <button id="closePlayerModal"
+                    class="absolute top-4 right-4 w-10 h-10 bg-black/40 text-white rounded-full flex items-center justify-center hover:bg-accent transition-colors z-10"><i
+                        class="bi bi-chevron-down text-xl"></i></button>
+            </div>
+            <div class="px-6 sm:px-8 pb-8 pt-0 relative z-10 flex flex-col items-center">
+                <div
+                    class="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden shadow-2xl border-4 border-card -mt-14 sm:-mt-18 mb-4 relative bg-bg3">
+                    <img src="Asserts/Images/podcastBg2.jpeg" class="w-full h-full object-cover" id="playerCoverImage">
+                    <div class="absolute inset-0 border border-white/10 rounded-2xl pointer-events-none"></div>
+                </div>
+                <span
+                    class="text-[10px] font-bold text-accent uppercase tracking-widest mb-1 bg-accent/10 px-2 py-0.5 rounded border border-accent/20"
+                    id="playerStatus"><i class="bi bi-broadcast me-1"></i>Podcast Episode</span>
+                <h3 class="text-2xl sm:text-3xl font-black text-textMain mb-1 text-center truncate w-full"
+                    id="playerTitle">Tech Unfiltered</h3>
+                <p class="text-textMuted font-medium text-sm mb-6 text-center" id="playerShow">Sarah Jenkins</p>
+
+                <div class="w-full mb-6 relative">
+                    <div class="flex justify-between text-xs font-mono font-bold text-textMuted mb-2">
+                        <span id="playerCurrentTime" class="text-accent">32:15</span>
+                        <span id="playerDuration">72:00</span>
+                    </div>
+                    <div class="h-2.5 bg-bg2 border border-border rounded-full overflow-hidden cursor-pointer group">
+                        <div class="h-full bg-accent relative w-[45%] rounded-full opacity-80 group-hover:bg-accent transition-colors shadow-[0_0_10px_rgba(224,124,60,0.5)] animate-pulse"
+                            id="playerProgressBar">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-center gap-4 sm:gap-6 w-full">
+                    <button class="text-textMuted hover:text-textMain transition-colors text-xl"><i
+                            class="bi bi-shuffle"></i></button>
+                    <button class="text-textMain hover:text-accent transition-colors text-3xl"><i
+                            class="bi bi-skip-backward-fill"></i></button>
+                    <button
+                        class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-accent   text-white shadow-lg shadow-accent/40 flex items-center justify-center text-4xl sm:text-5xl hover:scale-105 transition-transform"
+                        id="playerPlayPauseBtn"><i class="bi bi-pause-fill"></i></button>
+                    <button class="text-textMain hover:text-accent transition-colors text-3xl"><i
+                            class="bi bi-skip-forward-fill"></i></button>
+                    <button class="text-textMuted hover:text-textMain transition-colors text-xl"><i
+                            class="bi bi-repeat"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Mini Player Bar -->
+    <div id="stickyPlayer"
+        class="fixed bottom-0 left-0 w-full z-[1500] bg-card/90 backdrop-blur-xl border-t border-border translate-y-full transition-transform duration-500 shadow-[0_-10px_30px_rgba(0,0,0,0.15)] flex items-center px-4 py-3 sm:px-8">
+        <div class="max-w-[1200px] mx-auto w-full flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3 overflow-hidden cursor-pointer" id="miniPlayerTrackInfo">
+                <img src="Asserts/Images/podcastBg2.jpeg" alt="Cover"
+                    class="w-12 h-12 rounded-lg object-cover shadow-md flex-shrink-0">
+                <div class="overflow-hidden">
+                    <p class="text-sm font-bold text-textMain truncate leading-tight">Tech Unfiltered</p>
+                    <p class="text-xs text-textMuted font-medium truncate">Ep 42: Future of AI Ethics</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 sm:gap-4">
+                <div class="hidden sm:flex items-center gap-1.5 h-6 px-4">
+                    <div class="wave-bar-mini h-2 w-1 bg-accent"></div>
+                    <div class="wave-bar-mini h-4 w-1 bg-accent"></div>
+                    <div class="wave-bar-mini h-3 w-1 bg-accent"></div>
+                    <div class="wave-bar-mini h-5 w-1 bg-accent"></div>
+                </div>
+                <button
+                    class="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center text-xl shadow-lg shadow-accent/20 border-0"
+                    id="stickyPlayBtn">
+                    <i class="bi bi-pause-fill"></i>
+                </button>
+                <button class="icon-btn sm:flex border-none bg-transparent" id="openFullPlayer"><i
+                        class="bi bi-arrows-angle-expand"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+            (function () {
+                const html = document.documentElement;
+
+                const themeToggle = document.getElementById('theme-toggle');
+                const themeIcon = document.getElementById('theme-icon');
+                const mobileTheme = document.getElementById('mobileThemeBtn');
+
+                const saved = localStorage.getItem('theme');
+                if (saved === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    if (themeIcon) themeIcon.classList.replace('bi-moon-stars-fill', 'bi-brightness-high-fill');
+                    if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-brightness-high-fill"></i> Theme';
+                }
+
+                function setTheme(theme) {
+                    if (theme === 'dark') {
+                        html.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        if (themeIcon) themeIcon.classList.replace('bi-moon-stars-fill', 'bi-brightness-high-fill');
+                        if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-brightness-high-fill"></i> Theme';
+                    } else {
+                        html.setAttribute('data-theme', 'light');
+                        localStorage.setItem('theme', 'light');
+                        if (themeIcon) themeIcon.classList.replace('bi-brightness-high-fill', 'bi-moon-stars-fill');
+                        if (mobileTheme) mobileTheme.innerHTML = '<i class="bi bi-moon-stars-fill"></i> Theme';
+                    }
+                }
+
+                themeToggle?.addEventListener('click', () => {
+                    const isDark = html.getAttribute('data-theme') === 'dark';
+                    setTheme(isDark ? 'light' : 'dark');
+                });
+                mobileTheme?.addEventListener('click', () => {
+                    const isDark = html.getAttribute('data-theme') === 'dark';
+                    setTheme(isDark ? 'light' : 'dark');
+                });
+
+                let rtl = false;
+                const rtlBtn = document.getElementById('rtl-toggle');
+                const mobileRtl = document.getElementById('mobileRtlBtn');
+                function toggleRTL() { rtl = !rtl; html.setAttribute('dir', rtl ? 'rtl' : 'ltr'); }
+                rtlBtn?.addEventListener('click', toggleRTL);
+                mobileRtl?.addEventListener('click', toggleRTL);
+
+                const hamburger = document.getElementById('hamburgerBtn');
+                const drawer = document.getElementById('mobileDrawer');
+                const overlay = document.getElementById('drawerOverlay');
+                const closeDrawer = document.getElementById('closeDrawerBtn');
+
+                function openDrawer() {
+                    drawer.classList.add('active');
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+                function closeDrawerFunc() {
+                    drawer.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+
+                hamburger?.addEventListener('click', openDrawer);
+                closeDrawer?.addEventListener('click', closeDrawerFunc);
+                overlay?.addEventListener('click', closeDrawerFunc);
+
+                window.toggleMobileDropdown = function (id) {
+                    const el = document.getElementById(id);
+                    if (el) el.style.display = el.style.display === 'block' ? 'none' : 'block';
+                };
+
+                // Carousel functionality
+                const carousel = document.getElementById('podcast-carousel');
+                const scrollLeftBtn = document.getElementById('scrollLeftBtn');
+                const scrollRightBtn = document.getElementById('scrollRightBtn');
+
+                if (carousel && scrollLeftBtn && scrollRightBtn) {
+                    const getCardWidth = () => {
+                        const card = document.querySelector('.podcast-card');
+                        if (card) return card.offsetWidth + 24;
+                        return 320;
+                    };
+                    const scrollAmount = () => getCardWidth();
+                    scrollLeftBtn.addEventListener('click', () => carousel.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+                    scrollRightBtn.addEventListener('click', () => carousel.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+                }
+
+                // Scroll Reveal
+                const reveals = document.querySelectorAll('.reveal');
+                const revealObs = new IntersectionObserver((entries) => {
+                    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+                }, { threshold: 0.1 });
+                reveals.forEach(r => revealObs.observe(r));
+
+                // Player Modal Logic
+                const playerModal = document.getElementById('playerModal');
+                const playerBackdrop = document.getElementById('playerBackdrop');
+                const playerModalContent = document.getElementById('playerModalContent');
+                const closePlayerModal = document.getElementById('closePlayerModal');
+                const playerPlayPauseBtn = document.getElementById('playerPlayPauseBtn');
+
+                function openPlayerModal(e) {
+                    if (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                    playerModal.classList.remove('hidden');
+                    setTimeout(() => {
+                        playerBackdrop.classList.remove('opacity-0');
+                        playerBackdrop.classList.add('opacity-100');
+                        playerModalContent.classList.remove('opacity-0', 'translate-y-full', 'sm:translate-y-10', 'sm:scale-95');
+                        playerModalContent.classList.add('opacity-100', 'translate-y-0', 'sm:translate-y-0', 'sm:scale-100');
+                    }, 10);
+                }
+
+                function closePlayerModalFunc() {
+                    playerBackdrop.classList.remove('opacity-100');
+                    playerBackdrop.classList.add('opacity-0');
+                    playerModalContent.classList.remove('opacity-100', 'translate-y-0', 'sm:translate-y-0', 'sm:scale-100');
+                    playerModalContent.classList.add('opacity-0', 'translate-y-full', 'sm:translate-y-10', 'sm:scale-95');
+                    setTimeout(() => playerModal.classList.add('hidden'), 400);
+                }
+
+                if (closePlayerModal) closePlayerModal.addEventListener('click', closePlayerModalFunc);
+                if (playerBackdrop) playerBackdrop.addEventListener('click', closePlayerModalFunc);
+
+                // Add event listeners to all 'Listen Live', 'Tune In' and Play buttons
+                const playTriggers = document.querySelectorAll('.btn-primary-custom, .bi-play-circle-fill, .bi-play-fill, #miniPlayerTrackInfo, #openFullPlayer, .podcast-card');
+
+                function toggleStickyPlayer(show) {
+                    const sticky = document.getElementById('stickyPlayer');
+                    if (sticky) {
+                        sticky.classList.toggle('translate-y-full', !show);
+                        sticky.classList.toggle('translate-y-0', show);
+                    }
+                }
+
+                playTriggers.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        openPlayerModal(e);
+                        toggleStickyPlayer(true);
+                    });
+                    btn.style.cursor = 'pointer';
+                });
+
+                let isPlaying = true;
+                const stickyPlayBtn = document.getElementById('stickyPlayBtn');
+
+                function togglePlayStates() {
+                    isPlaying = !isPlaying;
+                    const playIcons = document.querySelectorAll('#playerPlayPauseBtn i, #stickyPlayBtn i');
+                    playIcons.forEach(icon => {
+                        icon.className = isPlaying ? 'bi bi-pause-fill' : 'bi bi-play-fill ml-1';
+                    });
+
+                    const progressBars = document.querySelectorAll('#playerProgressBar, .wave-bar, .wave-bar-mini');
+                    progressBars.forEach(p => {
+                        if (isPlaying) p.classList.add('animate-pulse');
+                        else p.classList.remove('animate-pulse');
+                    });
+                }
+
+                if (playerPlayPauseBtn) playerPlayPauseBtn.addEventListener('click', togglePlayStates);
+                if (stickyPlayBtn) stickyPlayBtn.addEventListener('click', togglePlayStates);
+            })();
+    </script>
+
+</body>
+
+</html>

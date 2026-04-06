@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>WaveKind FM - Sign In</title>
+
+    <script>
+        (function () {
+            var savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="Boostrap/bootstrap-icons/bootstrap-icons.css">
+    <!-- Local Assets -->
+    <link rel="stylesheet" href="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+    <script src="Tailwind/tailwind.min.js"></script>
+    <script src="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ff4d6d',
+                        secondary: '#6366f1',
+                        accent: 'var(--accent)',
+                        bg: 'var(--bg)',
+                        bg2: 'var(--bg2)',
+                        card: 'var(--card)',
+                        textMain: 'var(--text-main)',
+                        textMuted: 'var(--text-muted)',
+                        border: 'var(--border)'
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --accent: #ff4d6d;
+            --accent-dark: #e63956;
+            --secondary: #6366f1;
+            --bg: #ffffff;
+            --bg-glass: rgba(254, 252, 248, 0.85);
+            --bg2: #f8f9fa;
+            --bg3: #e9ecef;
+            --card: #ffffff;
+            --text-main: #2b2b2b;
+            --text-muted: #6c757d;
+            --border: rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="dark"] {
+            --accent: #ff4d6d;
+            --accent-dark: #e63956;
+            --secondary: #6366f1;
+            --bg: #111827;
+            --bg-glass: rgba(20, 17, 14, 0.85);
+            --bg2: #1f2937;
+            --bg3: #374151;
+            --card: #1f2937;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: '"Plus Jakarta Sans"', sans-serif;
+            transition: all 0.3s ease;
+            min-height: 100vh;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* Minimal Header for Toggles */
+        .minimal-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+        }
+
+        .minimal-header>* {
+            pointer-events: auto;
+        }
+
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            width: 100%;
+        }
+
+        .auth-image-side {
+            width: 50%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+        }
+
+        .auth-image-side::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 77, 109, 0.4), rgba(0, 0, 0, 0.8));
+            z-index: 1;
+        }
+
+        .auth-bg-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 10s linear;
+        }
+
+        .auth-form-side {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem;
+            background: var(--bg);
+            position: relative;
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 440px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .custom-input {
+            width: 100%;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            color: var(--text-main);
+            transition: 0.3s;
+            outline: none;
+        }
+
+        .custom-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(255, 77, 109, 0.1);
+            background: var(--bg);
+        }
+
+        .btn-auth {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-auth-primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 10px 20px -5px rgba(255, 77, 109, 0.3);
+        }
+
+        .btn-auth-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(255, 77, 109, 0.4);
+            background: var(--accent-dark);
+        }
+
+        .social-btn {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .social-btn:hover {
+            background: var(--bg3);
+            transform: translateY(-2px);
+        }
+
+        .icon-btn {
+            background: var(--bg-glass);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        .icon-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .auth-image-side {
+                display: none;
+            }
+
+            .auth-form-side {
+                width: 100%;
+                padding: 1.5rem;
+            }
+
+            .auth-form-side::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: url('Asserts/Images/LiveBg1.avif') center/cover no-repeat;
+                opacity: 0.05;
+                z-index: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="minimal-header">
+        <div class="flex gap-2 ml-auto">
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme"><i class="bi bi-moon-stars-fill"
+                    id="theme-icon"></i></button>
+            <button id="rtl-toggle" class="icon-btn" aria-label="Toggle Direction"><i
+                    class="bi bi-translate"></i></button>
+        </div>
+    </header>
+
+    <main class="auth-container">
+        <!-- Image Side -->
+        <div class="auth-image-side">
+            <img src="Asserts/Images/LiveBg1.avif" alt="Radio Studio" class="auth-bg-img">
+            <div class="relative z-10 text-white max-w-lg">
+                <div
+                    class="inline-block px-4 py-1.5 bg-accent/20 backdrop-blur-md rounded-full border border-white/20 text-xs font-bold uppercase tracking-widest mb-6">
+                    Live Worldwide
+                </div>
+                <h1 class="text-5xl font-black mb-6 leading-tight">Authentic Noise. <br><span
+                        class="text-accent underline decoration-4 underline-offset-8">Every Day.</span></h1>
+                <p class="text-lg text-white/80 font-medium mb-10 leading-relaxed">Stream the underground, support
+                    independent creators, and connect with a global community of audio explorers.</p>
+
+                <div class="flex items-center gap-4 p-5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl">
+                    <div class="flex -space-x-3">
+                        <img src="Asserts/Images/AboutHost1.jpg.jpeg" alt="Host 1"
+                            class="w-10 h-10 rounded-full border-2 border-white/10 shadow-lg">
+                        <img src="Asserts/Images/AboutHost2.jpg.jpeg" alt="Host 2"
+                            class="w-10 h-10 rounded-full border-2 border-white/10 shadow-lg">
+                        <img src="Asserts/Images/AboutHost3.jpg.jpeg" alt="Host 3"
+                            class="w-10 h-10 rounded-full border-2 border-white/10 shadow-lg">
+                    </div>
+                    <div class="text-sm">
+                        <p class="font-bold">12,400+ Active Listeners</p>
+                        <p class="text-white/60">Currently tuning in live</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Side -->
+        <div class="auth-form-side">
+            <div class="auth-card">
+                <div class="mb-10 text-center lg:text-left">
+                    <h2 class="text-4xl font-black mb-3 tracking-tight">Welcome Back</h2>
+                    <p class="text-textMuted font-medium">Log in to continue your journey through the soundscape.</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <button class="btn-auth social-btn font-bold"><i class="bi bi-google text-red-500"></i>
+                        Google</button>
+                    <button class="btn-auth social-btn font-bold"><i class="bi bi-apple"></i> Apple</button>
+                </div>
+
+                <div class="relative flex items-center mb-8">
+                    <div class="flex-grow border-t border-border"></div>
+                    <span class="px-4 text-[10px] font-black text-textMuted uppercase tracking-widest">Or login with
+                        email</span>
+                    <div class="flex-grow border-t border-border"></div>
+                </div>
+
+                <form onsubmit="event.preventDefault(); window.location.href='index.html';" class="space-y-6">
+                    <div>
+                        <label class="block text-[10px] font-black uppercase tracking-widest text-textMuted mb-2">Email
+                            Address</label>
+                        <input type="email" class="custom-input" placeholder="name@company.com" required>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label
+                                class="text-[10px] font-black uppercase tracking-widest text-textMuted">Password</label>
+                            <a href="#" class="text-xs font-bold text-accent hover:underline">Forgot Password?</a>
+                        </div>
+                        <div class="relative">
+                            <input type="password" id="loginPassword" class="custom-input pr-12" placeholder="••••••••"
+                                required>
+                            <button type="button"
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-textMuted hover:text-accent transition-colors"
+                                onclick="window.togglePassword('loginPassword', 'eyeIcon')">
+                                <i class="bi bi-eye" id="eyeIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" id="remember"
+                            class="w-4 h-4 rounded border-border text-accent focus:ring-accent accent-accent">
+                        <label for="remember"
+                            class="text-sm font-semibold text-textMuted select-none cursor-pointer">Remember me for 30
+                            days</label>
+                    </div>
+
+                    <button type="submit" class="btn-auth btn-auth-primary text-lg py-4">Sign In to Dashboard</button>
+
+                    <!-- Mobile End Session -->
+                    <a href="index.html"
+                        class="md:hidden flex items-center justify-center gap-2 w-full py-4 bg-secondary/10 text-secondary hover:bg-red-600 hover:text-white rounded-xl font-bold text-sm transition-all no-underline border border-secondary/20">
+                        <i class="bi bi-box-arrow-right"></i>
+                        End Session
+                    </a>
+                </form>
+
+                <p class="mt-10 text-center text-sm font-medium text-textMuted">
+                    New to the community? <a href="RegistrationPage.html"
+                        class="text-accent font-black hover:underline">Join Now</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Theme Logic
+        const html = document.documentElement;
+        const themeBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+
+        function updateTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            const isDark = theme === 'dark';
+            if (themeIcon) themeIcon.className = isDark ? 'bi bi-brightness-high-fill' : 'bi bi-moon-stars-fill';
+        }
+
+        themeBtn?.addEventListener('click', () => updateTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+
+        // RTL Logic
+        const rtlBtn = document.getElementById('rtl-toggle');
+        rtlBtn?.addEventListener('click', () => {
+            const isRTL = html.getAttribute('dir') === 'rtl';
+            html.setAttribute('dir', isRTL ? 'ltr' : 'rtl');
+        });
+
+        // Password Reveal
+        window.togglePassword = function (id, iconId) {
+            const input = document.getElementById(id);
+            const icon = document.getElementById(iconId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'bi bi-eye-slash-fill';
+            } else {
+                input.type = 'password';
+                icon.className = 'bi bi-eye-fill';
+            }
+        };
+
+        // Initialize state
+        if (localStorage.getItem('theme') === 'light') {
+            updateTheme('light');
+        } else {
+            updateTheme('dark');
+        }
+    </script>
+</body>
+
+</html>

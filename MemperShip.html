@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>WaveKind FM - Premium Membership</title>
+
+    <script>
+        (function () {
+            var savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="Boostrap/bootstrap-icons/bootstrap-icons.css">
+    <!-- Local Assets -->
+    <link rel="stylesheet" href="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+    <script src="Tailwind/tailwind.min.js"></script>
+    <script src="Boostrap/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ff4d6d',
+                        secondary: '#6366f1',
+                        accent: 'var(--accent)',
+                        bg: 'var(--bg)',
+                        bg2: 'var(--bg2)',
+                        card: 'var(--card)',
+                        textMain: 'var(--text-main)',
+                        textMuted: 'var(--text-muted)',
+                        border: 'var(--border)'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --accent: #ff4d6d;
+            --accent-dark: #e63956;
+            --secondary: #6366f1;
+            --bg: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.85);
+            --bg2: #f8f9fa;
+            --bg3: #e9ecef;
+            --card: #ffffff;
+            --text-main: #2b2b2b;
+            --text-muted: #6c757d;
+            --border: rgba(0, 0, 0, 0.08);
+            --border-footer: rgba(0, 0, 0, 0.08);
+            --footer-bg: #f8f9fa;
+        }
+
+        [data-theme="dark"] {
+            --accent: #ff4d6d;
+            --accent-dark: #e63956;
+            --secondary: #6366f1;
+            --bg: #111827;
+            --bg-glass: rgba(17, 24, 39, 0.85);
+            --bg2: #1f2937;
+            --bg3: #374151;
+            --card: #1f2937;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-footer: rgba(255, 255, 255, 0.08);
+            --footer-bg: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* Nav & Footer Sync */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            height: 72px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 100%;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-mark {
+            width: 38px;
+            height: 38px;
+            background: var(--accent);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 77, 109, 0.3);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active { color: var(--text-main); }
+
+        .nav-actions { display: flex; align-items: center; gap: 12px; }
+
+        .icon-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg2);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .icon-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+        .btn-primary-custom {
+            background: var(--accent);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary-custom:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3); }
+
+        /* ===== DROPDOWN NAV CSS ===== */
+        .dropdown { position: relative; }
+
+        .dropdown-menu {
+            display: block !important;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            list-style: none;
+        }
+
+        /* Invisible bridge covering the gap so hover isn't lost */
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 0;
+            right: 0;
+            height: 12px;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            top: calc(100% + 8px);
+        }
+
+        .dropdown-item {
+            display: flex !important;
+            align-items: center;
+            gap: 8px;
+            padding: 0.6rem 1.2rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: var(--bg2);
+            color: var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        /* hamburger + drawer for mobile */
+        .hamburger {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+        .hamburger:hover { color: var(--accent); }
+
+        .desktop-only { display: flex; }
+
+        @media (max-width: 1024px) {
+            .nav-menu { display: none !important; }
+            .desktop-only { display: none !important; }
+            .hamburger { display: flex !important; align-items: center; justify-content: center; }
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 1100;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 340px;
+            height: 100%;
+            background: var(--card);
+            z-index: 1200;
+            display: flex;
+            flex-direction: column;
+            transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.2);
+            overflow-y: auto;
+        }
+        .mobile-drawer.active { right: 0; }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .mobile-nav-list { list-style: none; flex: 1; padding: 1rem; overflow-y: auto; }
+        .mobile-nav-link {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .mobile-nav-link:hover { background: var(--bg2); color: var(--accent); }
+        .mobile-dropdown-content { padding-left: 1.5rem; display: none; margin-top: 0.5rem; }
+        .mobile-dropdown-item {
+            display: block;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .mobile-dropdown-item:hover { color: var(--accent); }
+        .drawer-footer {
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        /* ===== END DROPDOWN NAV CSS ===== */
+
+        /* Drawer button styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0.65rem 1.2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            text-decoration: none;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+        .btn-outline a { color: inherit; text-decoration: none; }
+        .btn-primary-custom a { color: inherit; text-decoration: none; }
+        .w-full { width: 100%; }
+        .justify-center { justify-content: center; }
+        .gap-2 { gap: 0.5rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .flex-col { flex-direction: column; }
+        .flex { display: flex; }
+
+
+        /* Footer */
+        .site-footer {
+            background: var(--footer-bg);
+            border-top: 1px solid var(--border);
+            padding: 5rem 2rem 2rem;
+        }
+
+        .footer-main-grid {
+            max-width: 100%;
+            margin: 0 auto 4rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            padding: 0 2rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-main);
+        }
+
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+        .footer-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+        .footer-links a:hover { color: var(--accent); padding-left: 5px; }
+
+        .contact-item { display: flex; gap: 12px; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+        .social-icons { display: flex; gap: 1rem; margin-top: 1.5rem; }
+        .social-icons a { width: 40px; height: 40px; border-radius: 10px; background: var(--bg2); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text-main); transition: 0.3s; }
+        .social-icons a:hover { background: var(--accent); color: white; border-color: var(--accent); transform: translateY(-3px); }
+
+        .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.5rem; }
+        .bottom-wrapper { max-width: 100%; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.85rem; }
+
+        /* Membership Sections */
+        .glass-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('Asserts/Images/MemberBg1.avif') center/cover no-repeat fixed;
+            min-height: 70vh;
+        }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .pricing-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            padding: 2.5rem;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover { border-color: var(--accent); transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .pricing-card.popular { background: var(--accent); color: white; border: none; }
+        .pricing-card.popular .text-textMuted { color: rgba(255,255,255,0.7); }
+        .pricing-card.popular .text-textMain { color: white; }
+        .pricing-card.popular .border-border { border-color: rgba(255,255,255,0.1); }
+
+        .billing-switch {
+            display: inline-flex;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            padding: 4px;
+            border-radius: 1rem;
+            position: relative;
+        }
+
+        .billing-option {
+            padding: 0.75rem 1.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            z-index: 2;
+            transition: 0.3s;
+            color: var(--text-muted);
+        }
+
+        .billing-option.active { color: white; }
+        .billing-bg-pill {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            bottom: 4px;
+            width: calc(50% - 4px);
+            background: var(--accent);
+            border-radius: 12px;
+            z-index: 1;
+            transition: 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        }
+
+        #billingCheckbox:checked ~ .billing-bg-pill { transform: translateX(100%); }
+        #billingCheckbox:checked ~ #lblMonthly { color: var(--text-muted); }
+        #billingCheckbox:checked ~ #lblYearly { color: white; }
+
+        .compare-table tr:hover td { background: var(--bg2); }
+
+        /* Dropdowns */
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 8px;
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: 0.3s;
+            list-style: none;
+            z-index: 1001;
+        }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-item {
+            padding: 10px 16px;
+            border-radius: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        .dropdown-item:hover { background: var(--bg2); color: var(--accent); padding-left: 20px; }
+
+        @media (max-width: 1024px) {
+            .nav-menu, .nav-actions .desktop-only { display: none; }
+            .hamburger { display: flex !important; }
+        }
+
+        .hamburger { display: none; font-size: 1.8rem; background: none; border: none; color: var(--text-main); cursor: pointer; }
+
+        /* Drawer */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            height: 100%;
+            background: var(--bg);
+            z-index: 2000;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1999;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="404.html" class="nav-logo">
+                <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div>
+                <span class="logo-text">WaveKind FM</span>
+            </a>
+
+            <ul class="nav-menu">
+                <li class="dropdown">
+                    <a href="index.html" class="nav-link">Home <i class="bi bi-chevron-down"
+                            style="font-size: 0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html" class="dropdown-item">Home 1</a></li>
+                        <li><a href="Home2Page.html" class="dropdown-item">Home 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="AboutPage.html" class="nav-link">About</a></li>
+                <li><a href="ShowPage.html" class="nav-link">Shows</a></li>
+                <li><a href="PodcastPage.html" class="nav-link">Podcasts</a></li>
+                <li><a href="Fqa.html" class="nav-link">FAQ</a></li>
+                <li><a href="ContactPage.html" class="nav-link">Contact</a></li>
+                <li><a href="LivePage.html" class="nav-link" style="color:var(--accent);"><i
+                            class="bi bi-record-circle-fill"></i>
+                        Live</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">Dashboard <i class="bi bi-chevron-down"
+                            style="font-size: 0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Dashborad/User/User.html" class="dropdown-item"><i
+                                    class="bi bi-person-circle text-lg text-primary"></i>
+                                User Panel</a></li>
+                        <li><a href="Dashborad/Admin/AdminPage.html" class="dropdown-item"><i
+                                    class="bi bi-shield-lock text-lg text-primary"></i>
+                                Admin Panel</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" class="icon-btn desktop-only"><i class="bi bi-moon-stars-fill"
+                        id="theme-icon"></i></button>
+                <button id="rtl-toggle" class="icon-btn desktop-only"><i class="bi bi-text-paragraph"></i></button>
+
+                <div class="dropdown desktop-only">
+                    <button class="icon-btn"><i class="bi bi-person-circle text-lg"></i></button>
+                    <ul class="dropdown-menu" style="right: 0; left: auto; min-width: 160px;">
+                        <li><a href="LoginPage.html" class="dropdown-item" id="desktopLoginBtn"><i
+                                    class="bi bi-box-arrow-in-right text-primary text-lg"></i> Log In</a></li>
+                        <li><a href="RegistrationPage.html" class="dropdown-item"><i
+                                    class="bi bi-person-plus text-primary text-lg"></i>
+                                Sign Up</a></li>
+                    </ul>
+                </div>
+
+                <button class="hamburger" id="hamburgerBtn"><i class="bi bi-list"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <a href="404.html" class="nav-logo" style="font-size:1.3rem;">
+                <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div>
+                <span class="logo-text">WaveKind FM</span>
+            </a>
+            <button class="icon-btn border-none" id="closeDrawerBtn"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <ul class="mobile-nav-list">
+            <li>
+                <div onclick="toggleMobileDropdown('homeDropdown')" class="mobile-nav-link">Home <i
+                        class="bi bi-chevron-down"></i></div>
+                <div id="homeDropdown" class="mobile-dropdown-content">
+                    <a href="index.html" class="mobile-dropdown-item">Home 1</a>
+                    <a href="Home2Page.html" class="mobile-dropdown-item">Home 2</a>
+                </div>
+            </li>
+            <li><a href="AboutPage.html" class="mobile-nav-link">About</a></li>
+            <li><a href="ShowPage.html" class="mobile-nav-link">Shows</a></li>
+            <li><a href="PodcastPage.html" class="mobile-nav-link">Podcasts</a></li>
+            <li><a href="Fqa.html" class="mobile-nav-link">FAQ</a></li>
+            <li><a href="ContactPage.html" class="mobile-nav-link">Contact</a></li>
+            <li><a href="LivePage.html" class="mobile-nav-link" style="color:var(--accent);">Live Stream <i
+                        class="bi bi-record-circle-fill"></i></a></li>
+            <li>
+                <div onclick="toggleMobileDropdown('dashDropdown')" class="mobile-nav-link">Dashboard <i
+                        class="bi bi-chevron-down"></i></div>
+                <div id="dashDropdown" class="mobile-dropdown-content">
+                    <a href="Dashborad/User/User.html" class="mobile-dropdown-item"><i
+                            class="bi bi-person-circle text-primary"></i> User
+                        Panel</a>
+                    <a href="Dashborad/Admin/AdminPage.html" class="mobile-dropdown-item"><i
+                            class="bi bi-shield-lock text-primary"></i> Admin
+                        Panel</a>
+                </div>
+            </li>
+        </ul>
+        <div class="drawer-footer">
+            <div class="flex gap-2">
+                <button id="mobileThemeBtn" class="icon-btn flex-1 rounded-lg"><i class="bi bi-moon-stars-fill"></i>
+                    Theme</button>
+                <button id="mobileRtlBtn" class="icon-btn flex-1 rounded-lg"><i class="bi bi-text-paragraph"></i>
+                    RTL</button>
+            </div>
+            <div class="flex flex-col gap-2 mt-2">
+                <button class="btn btn-outline w-full justify-center" id="mobileLoginBtn"><i class="bi bi-person-fill"></i><a href="LoginPage.html"> Log In</a></button>
+                <button class="btn btn-primary-custom w-full justify-center"><i class="bi bi-person-plus-fill"></i><a
+                        href="RegistrationPage.html"> Sign Up</a></button>
+            </div>
+        </div>
+    </div>
+
+    <main class="mt-[72px]">
+        <section class="glass-hero relative flex items-center justify-center text-center px-6">
+            <div class="max-w-4xl relative z-10 py-32">
+                <div class="reveal">
+                    <span class="inline-block px-5 py-2 bg-accent/20 backdrop-blur-md rounded-full border border-white/20 text-accent text-xs font-black uppercase tracking-widest mb-8">WaveKind Premium</span>
+                    <h1 class="text-4xl md:text-8xl font-black text-white mb-8 leading-[1.05]">Pure Sound. <br>Zero <span class="text-accent">Noise.</span></h1>
+                    <p class="text-lg md:text-2xl text-white/80 font-medium mb-12 max-w-2xl mx-auto leading-relaxed">Support independent creators and enjoy an uninterrupted, high-fidelity experience.</p>
+                </div>
+
+                <div class="reveal" style="transition-delay: 200ms;">
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="#plans" class="btn-primary-custom px-12 py-5 text-xl no-underline shadow-2xl">See Our Plans</a>
+                        <a href="AboutPage.html" class="btn bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white hover:text-black px-12 py-5 text-xl rounded-xl no-underline transition-all">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="plans" class="py-24 bg-bg relative">
+            <div class="max-w-5xl mx-auto text-center px-6 reveal">
+                <h2 class="text-4xl md:text-6xl font-black mb-6">Choose Your <span class="text-primary">Plan</span></h2>
+                <p class="text-textMuted text-lg md:text-xl mb-16 font-medium">No hidden fees. Cancel anytime.</p>
+
+                <div class="billing-switch mb-20">
+                    <input type="checkbox" id="billingCheckbox" class="hidden" onchange="togglePricing()">
+                    <div class="billing-bg-pill"></div>
+                    <label for="billingCheckbox" id="lblMonthly" class="billing-option active w-40">Monthly</label>
+                    <label for="billingCheckbox" id="lblYearly" class="billing-option w-40">Yearly <span class="text-green-500">-20%</span></label>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Plan 1 -->
+                    <div class="pricing-card">
+                        <h3 class="text-2xl font-black mb-2">Listener</h3>
+                        <p class="text-textMuted text-sm mb-8 font-medium">Free forever community access.</p>
+                        <div class="mb-10 text-center">
+                            <span class="text-5xl font-black">$0</span>
+                            <span class="text-textMuted font-bold">/mo</span>
+                        </div>
+                        <ul class="space-y-5 mb-12 text-left">
+                            <li class="flex gap-4 font-bold text-sm"><i class="bi bi-check2-circle text-accent text-lg"></i> Unlimited Live Radio</li>
+                            <li class="flex gap-4 font-bold text-sm"><i class="bi bi-check2-circle text-accent text-lg"></i> Standard Quality</li>
+                            <li class="flex gap-4 font-bold text-sm text-textMuted opacity-50"><i class="bi bi-x-circle text-lg"></i> No Ads Experience</li>
+                        </ul>
+                        <button class="w-full py-4 rounded-2xl border-2 border-border font-black text-textMuted hover:border-accent hover:text-accent transition-all">Current Plan</button>
+                    </div>
+
+                    <!-- Plan 2 -->
+                    <div class="pricing-card popular">
+                        <div class="absolute top-6 right-6 bg-white text-accent px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl">Most Popular</div>
+                        <h3 class="text-2xl font-black mb-2">Supporter</h3>
+                        <p class="text-white/70 text-sm mb-8 font-bold">The ultimate audio journey.</p>
+                        <div class="mb-10 text-center">
+                            <span class="text-6xl font-black">$<span class="price-val" data-monthly="8" data-yearly="6">8</span></span>
+                            <span class="text-white/60 font-bold billing-period">/mo</span>
+                        </div>
+                        <ul class="space-y-5 mb-12 text-left">
+                            <li class="flex gap-4 font-bold text-sm"><i class="bi bi-check2-circle text-white text-lg"></i> <strong>Zero Audio Ads</strong></li>
+                            <li class="flex gap-4 font-bold text-sm"><i class="bi bi-check2-circle text-white text-lg"></i> Lossless 320kbps</li>
+                            <li class="flex gap-4 font-bold text-sm"><i class="bi bi-check2-circle text-white text-lg"></i> Offline Listening</li>
+                        </ul>
+                        <button class="w-full py-5 rounded-2xl bg-white text-accent font-black text-lg hover:scale-[1.02] transition-all shadow-2xl">Go Premium</button>
+                    </div>
+
+                    <!-- Plan 3 -->
+                    <div class="pricing-card">
+                        <h3 class="text-2xl font-black mb-2">Creator</h3>
+                        <p class="text-textMuted text-sm mb-8 font-medium">For DJs and Podcast hosts.</p>
+                        <div class="mb-10 text-center">
+                            <span class="text-5xl font-black">$<span class="price-val" data-monthly="15" data-yearly="12">15</span></span>
+                            <span class="text-textMuted font-bold billing-period">/mo</span>
+                        </div>
+                        <ul class="space-y-5 mb-12 text-left">
+                            <li class="flex gap-4 font-bold text-sm"><i class="bi bi-check2-circle text-accent text-lg"></i> Upload 50 episodes</li>
+                            <li class="flex gap-4 font-bold text-sm"><i class="bi bi-check2-circle text-accent text-lg"></i> Basic Analytics</li>
+                            <li class="flex gap-4 font-bold text-sm"><i class="bi bi-check2-circle text-accent text-lg"></i> Host 1 Live Show</li>
+                        </ul>
+                        <button class="w-full py-4 rounded-2xl border-2 border-border font-black text-textMuted hover:border-accent hover:text-accent transition-all">Start Creating</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-bg2 border-y border-border">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-12">
+                    <div class="max-w-md text-center md:text-left">
+                        <h2 class="text-3xl md:text-5xl font-black mb-6 leading-tight">Every Cent Supports <span class="text-primary">Indie Art.</span></h2>
+                        <p class="text-textMuted font-medium leading-relaxed">Unlike big streaming services, WaveKind FM reinvests 70% of subscription revenue directly back into local creators and platform innovation.</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 w-full md:w-auto">
+                        <div class="p-8 bg-card border border-border rounded-[2.5rem] text-center shadow-sm">
+                            <div class="text-4xl font-black text-accent mb-2">70%</div>
+                            <p class="text-xs font-black uppercase tracking-widest text-textMuted">To Creators</p>
+                        </div>
+                        <div class="p-8 bg-card border border-border rounded-[2.5rem] text-center shadow-sm">
+                            <div class="text-4xl font-black text-secondary mb-2">30k+</div>
+                            <p class="text-xs font-black uppercase tracking-widest text-textMuted">Subscribers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-main-grid">
+            <div class="footer-col">
+                <a href="index.html" class="nav-logo" style="margin-bottom: 1.5rem;">
+                    <div class="logo-mark"><i class="bi bi-broadcast-pin"></i></div>
+                    <span class="logo-text">WaveKind FM</span>
+                </a>
+                <div class="footer-brand">
+                    <p class="text-sm leading-relaxed font-medium">Independent, community-powered radio platform. Discover local voices and meaningful stories.</p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Station</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="AboutPage.html">Story</a></li>
+                    <li><a href="ShowPage.html">Schedule</a></li>
+                    <li><a href="PodcastPage.html">Podcasts</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul class="footer-links">
+                    <li><a href="MemperShip.html" class="text-accent font-bold">Membership</a></li>
+                    <li><a href="Fqa.html">FAQ</a></li>
+                    <li><a href="ContactPage.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>SOCIAL</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#"><i class="bi bi-spotify"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="bottom-wrapper">
+                <div class="copyright">© 2026 WaveKind FM. All rights reserved.</div>
+                <div class="trust-legal flex gap-4">
+                    <a href="#" class="no-underline text-textMuted">Privacy</a>
+                    <a href="#" class="no-underline text-textMuted">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const html = document.documentElement;
+            const themeBtn = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const mobileTheme = document.getElementById('mobileThemeBtn');
+
+            function updateTheme(theme) {
+                html.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                const isDark = theme === 'dark';
+                const iconClass = isDark ? 'bi bi-brightness-high-fill' : 'bi bi-moon-stars-fill';
+                if (themeIcon) themeIcon.className = iconClass;
+                if (mobileTheme) mobileTheme.innerHTML = `<i class="${iconClass}"></i> Theme`;
+            }
+
+            themeBtn?.addEventListener('click', () => updateTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+            mobileTheme?.addEventListener('click', () => updateTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+
+            const rtlBtn = document.getElementById('rtl-toggle');
+            const mobileRtl = document.getElementById('mobileRtlBtn');
+            function toggleRTL() {
+                const isRTL = html.getAttribute('dir') === 'rtl';
+                html.setAttribute('dir', isRTL ? 'ltr' : 'rtl');
+            }
+            rtlBtn?.addEventListener('click', toggleRTL);
+            mobileRtl?.addEventListener('click', toggleRTL);
+
+            const hamburger = document.getElementById('hamburgerBtn');
+            const drawer = document.getElementById('mobileDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            const close = document.getElementById('closeDrawerBtn');
+
+            function toggleDrawer(show) {
+                drawer.style.right = show ? '0' : '-100%';
+                overlay.style.visibility = show ? 'visible' : 'hidden';
+                overlay.style.opacity = show ? '1' : '0';
+                document.body.style.overflow = show ? 'hidden' : '';
+            }
+
+            hamburger?.addEventListener('click', () => toggleDrawer(true));
+            close?.addEventListener('click', () => toggleDrawer(false));
+            overlay?.addEventListener('click', () => toggleDrawer(false));
+
+            window.togglePricing = function () {
+                const isYearly = document.getElementById('billingCheckbox').checked;
+                document.querySelectorAll('.price-val').forEach(el => {
+                    el.innerText = el.getAttribute(isYearly ? 'data-yearly' : 'data-monthly');
+                });
+                document.querySelectorAll('.billing-period').forEach(el => {
+                    el.innerText = isYearly ? '/mo (billed yearly)' : '/mo';
+                });
+                document.getElementById('lblMonthly').classList.toggle('active', !isYearly);
+                document.getElementById('lblYearly').classList.toggle('active', isYearly);
+            };
+
+            const reveals = document.querySelectorAll('.reveal');
+            const obs = new IntersectionObserver(e => e.forEach(entry => entry.isIntersecting && entry.target.classList.add('active')), { threshold: 0.1 });
+            reveals.forEach(r => obs.observe(r));
+        })();
+    </script>
+</body>
+
+</html>
