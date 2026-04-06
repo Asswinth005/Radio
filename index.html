@@ -841,6 +841,25 @@
                 grid-template-columns: repeat(2, 1fr) !important;
                 gap: 2.5rem;
             }
+
+            .footer-col, .footer-brand {
+                align-items: center !important;
+                text-align: center !important;
+            }
+
+            .footer-brand p {
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .footer-links {
+                align-items: center !important;
+            }
+
+            .social-icons, .contact-item {
+                justify-content: center !important;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1164,7 +1183,7 @@
                     <a href="index.html" class="nav-link text-primary">Home <i class="bi bi-chevron-down"
                             style="font-size: 0.7rem;"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="index.html" class="dropdown-item">Home 1</a></li>
+                        <li><a href="index.html" class="dropdown-item text-primary bg-bg2">Home 1</a></li>
                         <li><a href="Home2Page.html" class="dropdown-item">Home 2</a></li>
                     </ul>
                 </li>
@@ -1225,7 +1244,7 @@
                 <div onclick="toggleMobileDropdown('homeDropdown')" class="mobile-nav-link text-primary">Home <i
                         class="bi bi-chevron-down"></i></div>
                 <div id="homeDropdown" class="mobile-dropdown-content" style="display:block;">
-                    <a href="index.html" class="mobile-dropdown-item">Home 1</a>
+                    <a href="index.html" class="mobile-dropdown-item text-primary font-bold">Home 1</a>
                     <a href="Home2Page.html" class="mobile-dropdown-item">Home 2</a>
                 </div>
             </li>
@@ -2092,6 +2111,12 @@
                 hamburger?.addEventListener('click', openDrawer);
                 closeDrawer?.addEventListener('click', closeDrawerFunc);
                 overlay?.addEventListener('click', closeDrawerFunc);
+
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth >= 1024) {
+                        closeDrawerFunc();
+                    }
+                });
 
                 window.toggleMobileDropdown = function (id) {
                     const el = document.getElementById(id);

@@ -808,6 +808,25 @@
                 grid-template-columns: repeat(2, 1fr) !important;
                 gap: 2.5rem;
             }
+
+            .footer-col, .footer-brand {
+                align-items: center !important;
+                text-align: center !important;
+            }
+
+            .footer-brand p {
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .footer-links {
+                align-items: center !important;
+            }
+
+            .social-icons, .contact-item {
+                justify-content: center !important;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1698,6 +1717,12 @@
                 hamburger?.addEventListener('click', openDrawer);
                 closeDrawer?.addEventListener('click', closeDrawerFunc);
                 overlay?.addEventListener('click', closeDrawerFunc);
+
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth >= 1024) {
+                        closeDrawerFunc();
+                    }
+                });
 
                 // Mobile dropdowns
                 window.toggleMobileDropdown = function (id) {

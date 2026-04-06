@@ -476,28 +476,6 @@
             }
         }
 
-        @media (max-width: 1024px) {
-            .nav-menu {
-                display: none !important;
-            }
-
-            .desktop-only {
-                display: none !important;
-            }
-
-            .nav-actions .icon-btn:not(.hamburger) {
-                display: none !important;
-            }
-
-            .hamburger {
-                display: flex !important;
-                align-items: center;
-                justify-content: center;
-                visibility: visible;
-                opacity: 1;
-            }
-        }
-
         /* REVEAL ANIMATION */
         .reveal {
             opacity: 0;
@@ -941,6 +919,25 @@
                 gap: 3rem;
                 padding: 3rem 1.5rem;
             }
+
+            .footer-col, .footer-brand {
+                align-items: center !important;
+                text-align: center !important;
+            }
+
+            .footer-brand p {
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .footer-links {
+                align-items: center !important;
+            }
+
+            .social-icons, .contact-item {
+                justify-content: center !important;
+            }
         }
 
         @media (max-width: 768px) {
@@ -982,7 +979,7 @@
                             style="font-size: 0.7rem;"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="index.html" class="dropdown-item">Home 1</a></li>
-                        <li><a href="Home2Page.html" class="dropdown-item text-accent bg-bg2">Home 2</a></li>
+                        <li><a href="Home2Page.html" class="dropdown-item text-primary bg-bg2">Home 2</a></li>
                     </ul>
                 </li>
                 <li><a href="AboutPage.html" class="nav-link">About</a></li>
@@ -1038,7 +1035,7 @@
                         class="bi bi-chevron-down"></i></div>
                 <div id="homeDropdown" class="mobile-dropdown-content" style="display:block;">
                     <a href="index.html" class="mobile-dropdown-item">Home 1</a>
-                    <a href="Home2Page.html" class="mobile-dropdown-item text-accent font-bold">Home 2</a>
+                    <a href="Home2Page.html" class="mobile-dropdown-item text-primary font-bold">Home 2</a>
                 </div>
             </li>
             <li><a href="AboutPage.html" class="mobile-nav-link">About</a></li>
@@ -1087,8 +1084,8 @@
             <!-- Background Text (Z-1) -->
             <div
                 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none opacity-20 dark:opacity-10 mix-blend-soft-light z-1 select-none">
-                <h1 class="text-[18vw] font-black leading-none tracking-tighter text-transparent"
-                    style="-webkit-text-stroke: 2px var(--accent); white-space: nowrap;">
+                <h1 class="text-[25vw] md:text-[18vw] font-black leading-none tracking-tighter text-transparent"
+                    style="-webkit-text-stroke: 2px var(--accent); opacity: 0.15;">
                     WAVEKIND
                 </h1>
             </div>
@@ -1594,6 +1591,12 @@
             hamburgerBtn?.addEventListener('click', openDrawer);
             closeDrawerBtn?.addEventListener('click', closeDrawer);
             drawerOverlay?.addEventListener('click', closeDrawer);
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 1024) {
+                    closeDrawer();
+                }
+            });
 
             window.toggleMobileDropdown = function (id) {
                 const el = document.getElementById(id);

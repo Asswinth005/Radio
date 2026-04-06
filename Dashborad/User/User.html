@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="scroll-smooth" data-theme="dark">
 
@@ -465,68 +466,6 @@
             transition: all 0.6s ease-out;
         }
 
-        /* Ambient Blobs & Glassmorphism */
-        .ambient-blob-container {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .blob {
-            position: absolute;
-            filter: blur(100px);
-            opacity: 0.6;
-            border-radius: 50%;
-            mix-blend-mode: screen;
-            animation: blobFloat 15s infinite alternate ease-in-out;
-        }
-
-        [data-theme="light"] .blob {
-            mix-blend-mode: multiply;
-            opacity: 0.4;
-            filter: blur(80px);
-        }
-
-        .blob-1 {
-            top: -10%;
-            left: -10%;
-            width: 50vw;
-            height: 50vw;
-            background: var(--accent);
-        }
-
-        .blob-2 {
-            bottom: -10%;
-            right: -10%;
-            width: 55vw;
-            height: 55vw;
-            background: var(--secondary);
-            animation-delay: -5s;
-            animation-direction: alternate-reverse;
-        }
-
-        .blob-3 {
-            top: 20%;
-            left: 30%;
-            width: 40vw;
-            height: 40vw;
-            background: #8b5cf6;
-            animation-delay: -10s;
-            animation-duration: 25s;
-            opacity: 0.3;
-        }
-
-        @keyframes blobFloat {
-            0% {
-                transform: scale(1) translate(0, 0) rotate(0deg);
-            }
-
-            100% {
-                transform: scale(1.1) translate(5%, 5%) rotate(10deg);
-            }
-        }
 
         .glass-panel {
             background: var(--card-glass);
@@ -555,26 +494,22 @@
 
 <body>
 
-    <div class="ambient-blob-container">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
+
 
     <div id="sidebarOverlay"
         class="fixed inset-0 bg-black/60 z-40 lg:hidden hidden opacity-0 transition-opacity duration-300 backdrop-blur-sm">
     </div>
 
     <aside id="appSidebar"
-        class="w-[280px] h-full glass-panel border-r border-border flex flex-col flex-shrink-0 fixed lg:relative z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out shadow-2xl lg:shadow-none">
+        class="w-[280px] h-full bg-bg border-r border-border flex flex-col flex-shrink-0 fixed lg:relative z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out shadow-2xl lg:shadow-none">
         <div class="h-[75px] flex items-center px-6 border-b border-border">
-            <a href="../../index.html" class="flex items-center gap-3 text-decoration-none group w-full">
+            <a href="../../index.html" class="flex items-center gap-[10px] text-decoration-none group w-full">
                 <div
-                    class="w-9 h-9 bg-accent rounded-xl flex items-center justify-center text-white shrink-0 shadow-md group-hover:scale-110 transition-transform">
+                    class="w-[38px] h-[38px] bg-accent rounded-[10px] flex items-center justify-center text-white shrink-0 shadow-md group-hover:scale-110 transition-transform">
                     <i class="bi bi-broadcast-pin text-lg"></i>
                 </div>
                 <span
-                    class="font-black text-xl tracking-tight text-textMain group-hover:text-accent transition-colors">WaveKind
+                    class="font-extrabold text-[1.5rem] tracking-tight text-textMain group-hover:text-accent transition-colors">WaveKind
                     FM</span>
             </a>
             <button id="closeSidebar" class="lg:hidden ml-auto text-textMuted hover:text-accent text-2xl"><i
@@ -601,6 +536,9 @@
                     class="bi bi-cup-hot-fill"></i><span>Donations</span></a>
             <a href="#" class="sidebar-link" data-page="settings"><i
                     class="bi bi-gear-fill"></i><span>Settings</span></a>
+            <button id="sidebarRtlBtn" class="sidebar-link w-full text-left bg-transparent border-none outline-none cursor-pointer">
+                <i class="bi bi-text-paragraph"></i><span>Toggle RTL</span>
+            </button>
 
             <div class="mt-auto pt-6"></div>
             <a href="#" class="sidebar-link logout" data-page="logout"><i class="bi bi-box-arrow-left"></i><span>Log
@@ -615,11 +553,11 @@
                         class="bi bi-list"></i></button>
                 <a href="../../index.html" class="lg:hidden flex items-center gap-2 text-decoration-none group">
                     <div
-                        class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center text-white shrink-0 shadow-md group-hover:scale-110 transition-transform">
+                        class="w-[34px] h-[34px] bg-accent rounded-[9px] flex items-center justify-center text-white shrink-0 shadow-md group-hover:scale-110 transition-transform">
                         <i class="bi bi-broadcast-pin"></i>
                     </div>
                     <span
-                        class="font-black text-lg tracking-tight text-textMain group-hover:text-accent transition-colors">WaveKind
+                        class="font-black text-xl tracking-tight text-textMain group-hover:text-accent transition-colors">WaveKind
                         FM</span>
                 </a>
                 <h2 class="font-bold text-xl text-textMain hidden lg:block hover-double-color cursor-default"
@@ -682,7 +620,7 @@
                             Jenkins</span>
                         <span class="text-xs text-textMuted">Pro Member</span>
                     </div>
-                    <img src="../../Asserts/Images/Home2User1.avif" alt="Profile"
+                    <img src="https://i.pinimg.com/474x/8c/5e/9d/8c5e9dd58ecd175df019b09f6bac72b6.jpg?nii=t" alt="Profile"
                         class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl object-cover border border-border shadow-sm">
                     <i class="bi bi-chevron-down text-textMuted text-xs hidden sm:block"></i>
                 </div>
@@ -1524,11 +1462,35 @@
             const openBtn = document.getElementById('openSidebar');
             const closeBtn = document.getElementById('closeSidebar');
 
-            function openSidebar() { sidebar.classList.remove('-translate-x-full'); overlay.classList.remove('hidden'); setTimeout(() => overlay.classList.add('opacity-100'), 10); }
-            function closeSidebar() { sidebar.classList.add('-translate-x-full'); overlay.classList.remove('opacity-100'); setTimeout(() => overlay.classList.add('hidden'), 300); }
+            function openSidebar() { sidebar.classList.remove('-translate-x-full', 'translate-x-full'); overlay.classList.remove('hidden'); setTimeout(() => overlay.classList.add('opacity-100'), 10); }
+            function closeSidebar() { 
+                if (html.getAttribute('dir') === 'rtl') {
+                    sidebar.classList.add('translate-x-full');
+                    sidebar.classList.remove('-translate-x-full');
+                } else {
+                    sidebar.classList.add('-translate-x-full');
+                    sidebar.classList.remove('translate-x-full');
+                }
+                overlay.classList.remove('opacity-100'); 
+                setTimeout(() => overlay.classList.add('hidden'), 300); 
+            }
             openBtn?.addEventListener('click', openSidebar);
             closeBtn?.addEventListener('click', closeSidebar);
             overlay?.addEventListener('click', closeSidebar);
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 1024) {
+                    closeSidebar();
+                }
+            });
+
+            // RTL Setup
+            let rtl = false;
+            const sidebarRtlBtn = document.getElementById('sidebarRtlBtn');
+            sidebarRtlBtn?.addEventListener('click', () => {
+                rtl = !rtl;
+                html.setAttribute('dir', rtl ? 'rtl' : 'ltr');
+            });
 
             // Notification Dropdown Toggle
             const notifToggle = document.getElementById('notifBtn');

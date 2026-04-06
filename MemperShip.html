@@ -507,6 +507,44 @@
         @media (max-width: 1024px) {
             .nav-menu, .nav-actions .desktop-only { display: none; }
             .hamburger { display: flex !important; }
+
+            .footer-main-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 2.5rem;
+                padding: 3rem 1.5rem;
+            }
+
+            .footer-col, .footer-brand {
+                align-items: center !important;
+                text-align: center !important;
+            }
+
+            .footer-brand p {
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .footer-links {
+                align-items: center !important;
+            }
+
+            .social-icons, .contact-item {
+                justify-content: center !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-main-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2.5rem;
+            }
+
+            .bottom-wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
         }
 
         .hamburger { display: none; font-size: 1.8rem; background: none; border: none; color: var(--text-main); cursor: pointer; }
@@ -848,6 +886,12 @@
             hamburger?.addEventListener('click', () => toggleDrawer(true));
             close?.addEventListener('click', () => toggleDrawer(false));
             overlay?.addEventListener('click', () => toggleDrawer(false));
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 1024) {
+                    toggleDrawer(false);
+                }
+            });
 
             window.togglePricing = function () {
                 const isYearly = document.getElementById('billingCheckbox').checked;
