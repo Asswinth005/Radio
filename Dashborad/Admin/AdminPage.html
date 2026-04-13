@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="scroll-smooth" data-theme="dark">
 
@@ -57,7 +57,7 @@
     <style>
         :root {
             --accent: #ff4d6d;
-            --accent-dark: #e63956;
+            --accent-dark: #ff4d6d;
             --secondary: #6366f1;
             --bg: #ffffff;
             --bg-glass: rgba(254, 252, 248, 0.7);
@@ -72,7 +72,7 @@
 
         [data-theme="dark"] {
             --accent: #ff4d6d;
-            --accent-dark: #e63956;
+            --accent-dark: #ff4d6d;
             --secondary: #6366f1;
             --bg: #111827;
             --bg-glass: rgba(20, 17, 14, 0.7);
@@ -346,7 +346,7 @@
                     <i class="bi bi-broadcast-pin text-lg"></i>
                 </div>
                 <span
-                    class="font-black text-xl tracking-tight text-textMain group-hover:text-accent transition-colors">WaveKind
+                    class="font-semibold text-xl tracking-tight text-textMain group-hover:text-accent transition-colors">WaveKind
                     FM</span>
             </a>
             <button id="closeSidebar" class="lg:hidden ml-auto text-textMuted hover:text-accent text-2xl"><i
@@ -354,13 +354,13 @@
         </div>
 
         <div class="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-1 hide-scrollbar">
-            <p class="text-xs font-bold text-textMuted uppercase tracking-widest px-2 mb-2 mt-2">Core</p>
+            <p class="text-xs font-semibold text-textMuted uppercase tracking-widest px-2 mb-2 mt-2">Core</p>
             <a href="#" class="sidebar-link active" data-page="dashboard"><i
                     class="bi bi-speedometer2"></i><span>Overview</span></a>
             <a href="#" class="sidebar-link" data-page="analytics"><i
                     class="bi bi-graph-up-arrow"></i><span>Analytics</span></a>
 
-            <p class="text-xs font-bold text-textMuted uppercase tracking-widest px-2 mb-2 mt-6">Management</p>
+            <p class="text-xs font-semibold text-textMuted uppercase tracking-widest px-2 mb-2 mt-6">Management</p>
             <a href="#" class="sidebar-link" data-page="shows"><i class="bi bi-mic-fill"></i><span>Top Shows</span></a>
             <a href="#" class="sidebar-link" data-page="schedule"><i
                     class="bi bi-calendar-event"></i><span>Schedule</span></a>
@@ -389,10 +389,10 @@
                         <i class="bi bi-broadcast-pin"></i>
                     </div>
                     <span
-                        class="font-black text-lg tracking-tight text-textMain group-hover:text-accent transition-colors">WaveKind
+                        class="font-semibold text-lg tracking-tight text-textMain group-hover:text-accent transition-colors">WaveKind
                         FM</span>
                 </a>
-                <h2 class="font-bold text-xl text-textMain hidden lg:block hover-double-color cursor-default"
+                <h2 class="font-semibold text-xl text-textMain hidden lg:block hover-double-color cursor-default"
                     id="pageTitle">Admin Dashboard</h2>
             </div>
             <div class="flex items-center gap-3 sm:gap-4">
@@ -406,7 +406,7 @@
                     <div id="notifDropdown"
                         class="absolute top-full right-0 mt-4 w-80 bg-card border border-border rounded-2xl shadow-xl opacity-0 invisible transition-all duration-200 z-50 transform translate-y-2">
                         <div class="p-4 border-b border-border flex justify-between items-center bg-bg2 rounded-t-2xl">
-                            <h4 class="font-bold text-textMain">System Alerts</h4>
+                            <h4 class="font-semibold text-textMain">System Alerts</h4>
                             <span class="text-xs text-accent font-semibold hover:underline">Clear</span>
                         </div>
                         <div class="p-2 max-h-72 overflow-y-auto">
@@ -416,7 +416,7 @@
                                         class="w-8 h-8 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center shrink-0 mt-1">
                                         <i class="bi bi-exclamation-triangle-fill"></i></div>
                                     <div>
-                                        <p class="text-sm font-bold text-textMain">Server Load High</p>
+                                        <p class="text-sm font-semibold text-textMain">Server Load High</p>
                                         <p class="text-xs text-textMuted mt-1 leading-relaxed">Stream server 02 is at
                                             95% capacity.</p>
                                         <p class="text-[10px] text-textMuted mt-2 font-mono">2 mins ago</p>
@@ -429,7 +429,7 @@
                                         class="w-8 h-8 rounded-full bg-accent/10 text-accent flex items-center justify-center shrink-0 mt-1">
                                         <i class="bi bi-cloud-arrow-up-fill"></i></div>
                                     <div>
-                                        <p class="text-sm font-bold text-textMain">System Backup</p>
+                                        <p class="text-sm font-semibold text-textMain">System Backup</p>
                                         <p class="text-xs text-textMuted mt-1 leading-relaxed">Database successfully
                                             backed up.</p>
                                         <p class="text-[10px] text-textMuted mt-2 font-mono">1 hour ago</p>
@@ -442,7 +442,7 @@
 
                 <div class="flex items-center gap-3 pl-2 sm:pl-4 border-l border-border cursor-pointer group">
                     <div class="hidden sm:flex flex-col items-end">
-                        <span class="text-sm font-bold text-textMain group-hover:text-accent transition-colors">Admin
+                        <span class="text-sm font-semibold text-textMain group-hover:text-accent transition-colors">Admin
                             Root</span>
                         <span class="text-xs text-textMuted font-mono">Superuser</span>
                     </div>
@@ -462,7 +462,7 @@
                     <div class="reveal pt-4">
                       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
     <div>
-        <h1 class="text-3xl md:text-4xl font-black text-textMain mb-2">
+        <h1 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">
             System <span class="text-accent">Overview</span>
         </h1>
 
@@ -477,7 +477,7 @@
     </div>
 
     <div class="flex gap-2">
-        <button class="btn-outline px-4 py-2 font-bold text-sm bg-card">
+        <button class="btn-outline px-4 py-2 font-semibold text-sm bg-card">
             <i class="bi bi-download"></i> Report
         </button>
     </div>
@@ -489,11 +489,11 @@
                                 <div
                                     class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-xl text-accent mb-4 group-hover:scale-110 transition-transform">
                                     <i class="bi bi-people-fill"></i></div>
-                                <p class="text-xs font-bold text-textMuted uppercase tracking-widest mb-1">Total Users
+                                <p class="text-xs font-semibold text-textMuted uppercase tracking-widest mb-1">Total Users
                                 </p>
-                                <h3 class="text-3xl font-black text-textMain mb-2">12,408</h3>
+                                <h3 class="text-3xl font-semibold text-textMain mb-2">12,408</h3>
                                 <div
-                                    class="text-xs font-bold text-green-500 bg-green-500/10 px-2 py-1 rounded inline-flex items-center gap-1">
+                                    class="text-xs font-semibold text-green-500 bg-green-500/10 px-2 py-1 rounded inline-flex items-center gap-1">
                                     <i class="bi bi-arrow-up-short text-sm"></i> 2.4% vs last week</div>
                             </div>
                             <div
@@ -501,11 +501,11 @@
                                 <div
                                     class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center text-xl text-secondary mb-4 group-hover:animate-pulse transition-transform">
                                     <i class="bi bi-broadcast"></i></div>
-                                <p class="text-xs font-bold text-textMuted uppercase tracking-widest mb-1">Active
+                                <p class="text-xs font-semibold text-textMuted uppercase tracking-widest mb-1">Active
                                     Listeners</p>
-                                <h3 class="text-3xl font-black text-textMain mb-2">2,451</h3>
+                                <h3 class="text-3xl font-semibold text-textMain mb-2">2,451</h3>
                                 <div
-                                    class="text-xs font-bold text-accent bg-accent/10 px-2 py-1 rounded inline-flex items-center gap-1">
+                                    class="text-xs font-semibold text-accent bg-accent/10 px-2 py-1 rounded inline-flex items-center gap-1">
                                     <i class="bi bi-broadcast-pin text-sm"></i> Live Now</div>
                             </div>
                             <div
@@ -513,11 +513,11 @@
                                 <div
                                     class="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center text-xl text-green-500 mb-4 group-hover:scale-110 transition-transform">
                                     <i class="bi bi-currency-dollar"></i></div>
-                                <p class="text-xs font-bold text-textMuted uppercase tracking-widest mb-1">Revenue (MTD)
+                                <p class="text-xs font-semibold text-textMuted uppercase tracking-widest mb-1">Revenue (MTD)
                                 </p>
-                                <h3 class="text-3xl font-black text-textMain mb-2">$8,240</h3>
+                                <h3 class="text-3xl font-semibold text-textMain mb-2">$8,240</h3>
                                 <div
-                                    class="text-xs font-bold text-green-500 bg-green-500/10 px-2 py-1 rounded inline-flex items-center gap-1">
+                                    class="text-xs font-semibold text-green-500 bg-green-500/10 px-2 py-1 rounded inline-flex items-center gap-1">
                                     <i class="bi bi-arrow-up-short text-sm"></i> 12% vs last month</div>
                             </div>
                             <div
@@ -525,21 +525,21 @@
                                 <div
                                     class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-xl text-blue-500 mb-4 group-hover:rotate-12 transition-transform">
                                     <i class="bi bi-mic-fill"></i></div>
-                                <p class="text-xs font-bold text-textMuted uppercase tracking-widest mb-1">Total Shows
+                                <p class="text-xs font-semibold text-textMuted uppercase tracking-widest mb-1">Total Shows
                                 </p>
-                                <h3 class="text-3xl font-black text-textMain mb-2">56</h3>
+                                <h3 class="text-3xl font-semibold text-textMain mb-2">56</h3>
                                 <div
-                                    class="text-xs font-bold text-textMuted border border-border px-2 py-1 rounded inline-flex items-center gap-1">
+                                    class="text-xs font-semibold text-textMuted border border-border px-2 py-1 rounded inline-flex items-center gap-1">
                                     +4 this month</div>
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
                             <div class="bg-card border border-border p-6 rounded-3xl shadow-sm h-full">
-                                <h3 class="font-bold text-lg mb-4 text-textMain">Quick Actions</h3>
+                                <h3 class="font-semibold text-lg mb-4 text-textMain">Quick Actions</h3>
                                 <div class="flex flex-col gap-3">
                                     <button
-                                        class="bg-bg2 border border-border p-4 rounded-2xl flex items-center gap-4 hover:border-accent hover:text-accent font-bold transition-all text-left group">
+                                        class="bg-bg2 border border-border p-4 rounded-2xl flex items-center gap-4 hover:border-accent hover:text-accent font-semibold transition-all text-left group">
                                         <div
                                             class="w-10 h-10 rounded-xl bg-card border border-border flex items-center justify-center text-textMuted group-hover:text-accent group-hover:scale-110 transition-all">
                                             <i class="bi bi-plus-lg"></i></div>
@@ -548,7 +548,7 @@
                                                 broadcast</span></div>
                                     </button>
                                     <button
-                                        class="bg-bg2 border border-border p-4 rounded-2xl flex items-center gap-4 hover:border-accent hover:text-accent font-bold transition-all text-left group">
+                                        class="bg-bg2 border border-border p-4 rounded-2xl flex items-center gap-4 hover:border-accent hover:text-accent font-semibold transition-all text-left group">
                                         <div
                                             class="w-10 h-10 rounded-xl bg-card border border-border flex items-center justify-center text-textMuted group-hover:text-accent group-hover:scale-110 transition-all">
                                             <i class="bi bi-cloud-arrow-up"></i></div>
@@ -557,7 +557,7 @@
                                                 MP3</span></div>
                                     </button>
                                     <button
-                                        class="bg-bg2 border border-border p-4 rounded-2xl flex items-center gap-4 hover:border-accent hover:text-accent font-bold transition-all text-left group">
+                                        class="bg-bg2 border border-border p-4 rounded-2xl flex items-center gap-4 hover:border-accent hover:text-accent font-semibold transition-all text-left group">
                                         <div
                                             class="w-10 h-10 rounded-xl bg-card border border-border flex items-center justify-center text-textMuted group-hover:text-accent group-hover:scale-110 transition-all">
                                             <i class="bi bi-people"></i></div>
@@ -569,15 +569,15 @@
                             </div>
 
                             <div class="lg:col-span-2 bg-accent border border-border p-6 rounded-3xl shadow-sm">
-                                <h3 class="font-bold text-lg mb-4 text-textMain flex justify-between items-center">
+                                <h3 class="font-semibold text-lg mb-4 text-textMain flex justify-between items-center">
                                     <span>System Health</span>   </h3>
                                 <div class="grid sm:grid-cols-2 gap-4 h-[calc(100%-2rem)]">
                                     <div
                                         class="bg-bg rounded-2xl p-4 border border-border flex flex-col justify-center">
-                                        <p class="text-sm font-bold text-textMuted tracking-wider uppercase mb-2">CPU
+                                        <p class="text-sm font-semibold text-textMuted tracking-wider uppercase mb-2">CPU
                                             Load</p>
                                         <div class="flex items-end gap-2 mb-2">
-                                            <h4 class="text-3xl font-black text-textMain">12%</h4>
+                                            <h4 class="text-3xl font-semibold text-textMain">12%</h4>
                                         </div>
                                         <div class="w-full bg-bg3 h-1.5 rounded-full">
                                             <div class="bg-accent h-full w-[12%] rounded-full"></div>
@@ -585,10 +585,10 @@
                                     </div>
                                     <div
                                         class="bg-bg rounded-2xl p-4 border border-border flex flex-col justify-center">
-                                        <p class="text-sm font-bold text-textMuted tracking-wider uppercase mb-2">
+                                        <p class="text-sm font-semibold text-textMuted tracking-wider uppercase mb-2">
                                             Bandwidth Use</p>
                                         <div class="flex items-end gap-2 mb-2">
-                                            <h4 class="text-3xl font-black text-textMain">4.2 <span
+                                            <h4 class="text-3xl font-semibold text-textMain">4.2 <span
                                                     class="text-base text-textMuted">GB/s</span></h4>
                                         </div>
                                         <div class="w-full bg-bg3 h-1.5 rounded-full">
@@ -604,15 +604,15 @@
 
                 <div id="analytics-page" class="page-section">
                     <div class="reveal pt-4">
-                        <h1 class="text-3xl md:text-4xl font-black text-textMain mb-2">Analytics & <span
+                        <h1 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Analytics & <span
                                 class="text-accent">Growth</span></h1>
                         <p class="text-textMuted mb-8 text-sm md:text-base">Deep dive into platforms stats.</p>
 
                         <div class="bg-card border border-border p-6 rounded-3xl shadow-sm mb-6">
                             <div class="flex justify-between items-center mb-6">
-                                <h3 class="font-bold text-lg text-textMain">Listener Growth (Simulated)</h3>
+                                <h3 class="font-semibold text-lg text-textMain">Listener Growth (Simulated)</h3>
                                 <select
-                                    class="bg-bg2 text-xs font-bold text-textMain px-2 py-1.5 rounded-lg border border-border outline-none">
+                                    class="bg-bg2 text-xs font-semibold text-textMain px-2 py-1.5 rounded-lg border border-border outline-none">
                                     <option>Last 7 Days</option>
                                 </select>
                             </div>
@@ -632,24 +632,24 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="bg-card border border-border p-6 rounded-3xl shadow-sm flex flex-col">
-                                <h3 class="font-bold text-lg text-textMain mb-6">Revenue Breakdown (MTD)</h3>
+                                <h3 class="font-semibold text-lg text-textMain mb-6">Revenue Breakdown (MTD)</h3>
                                 <div class="space-y-4 flex-1">
                                     <div>
-                                        <div class="flex justify-between text-sm font-bold mb-1"><span>Pro
+                                        <div class="flex justify-between text-sm font-semibold mb-1"><span>Pro
                                                 Memberships</span><span>$5,240</span></div>
                                         <div class="w-full bg-bg3 h-2 rounded-full overflow-hidden">
                                             <div class="bg-accent h-full w-[65%] rounded-full"></div>
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="flex justify-between text-sm font-bold mb-1"><span>Donations /
+                                        <div class="flex justify-between text-sm font-semibold mb-1"><span>Donations /
                                                 Coffee</span><span>$2,100</span></div>
                                         <div class="w-full bg-bg3 h-2 rounded-full overflow-hidden">
                                             <div class="bg-secondary h-full w-[25%] rounded-full"></div>
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="flex justify-between text-sm font-bold mb-1">
+                                        <div class="flex justify-between text-sm font-semibold mb-1">
                                             <span>Sponsors</span><span>$900</span></div>
                                         <div class="w-full bg-bg3 h-2 rounded-full overflow-hidden">
                                             <div class="bg-green-500 h-full w-[10%] rounded-full"></div>
@@ -658,7 +658,7 @@
                                 </div>
                             </div>
                             <div class="bg-card border border-border p-6 rounded-3xl shadow-sm">
-                                <h3 class="font-bold text-lg text-textMain mb-6">Popular Categories</h3>
+                                <h3 class="font-semibold text-lg text-textMain mb-6">Popular Categories</h3>
                                 <div class="flex items-center justify-center gap-8 h-[150px]">
                                     <div class="w-32 h-32 rounded-full shadow-inner border-4 border-bg"
                                         style="background: conic-gradient(var(--accent) 0% 45%, var(--secondary) 45% 75%, #3b82f6 75% 95%, var(--border) 95% 100%);">
@@ -666,16 +666,16 @@
                                     <div class="flex flex-col gap-2">
                                         <div class="flex items-center gap-2"><span
                                                 class="w-3 h-3 rounded-sm bg-accent"></span><span
-                                                class="text-sm font-bold">Electronic (45%)</span></div>
+                                                class="text-sm font-semibold">Electronic (45%)</span></div>
                                         <div class="flex items-center gap-2"><span
                                                 class="w-3 h-3 rounded-sm bg-secondary"></span><span
-                                                class="text-sm font-bold">Talk (30%)</span></div>
+                                                class="text-sm font-semibold">Talk (30%)</span></div>
                                         <div class="flex items-center gap-2"><span
                                                 class="w-3 h-3 rounded-sm bg-blue-500"></span><span
-                                                class="text-sm font-bold">News (20%)</span></div>
+                                                class="text-sm font-semibold">News (20%)</span></div>
                                         <div class="flex items-center gap-2"><span
                                                 class="w-3 h-3 rounded-sm bg-border"></span><span
-                                                class="text-sm font-bold">Other (5%)</span></div>
+                                                class="text-sm font-semibold">Other (5%)</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -687,13 +687,13 @@
                     <div class="reveal pt-4">
                         <div class="flex justify-between items-end mb-8">
                             <div>
-                                <h1 class="text-3xl md:text-4xl font-black text-textMain mb-2">Top <span
+                                <h1 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Top <span
                                         class="text-accent">Shows</span></h1>
                                 <p class="text-textMuted text-sm md:text-base">Ranked list of top performing content.
                                 </p>
                             </div>
                             <select
-                                class="bg-bg2 border border-border p-2 rounded-xl text-sm font-bold outline-none cursor-pointer">
+                                class="bg-bg2 border border-border p-2 rounded-xl text-sm font-semibold outline-none cursor-pointer">
                                 <option>Sort by: Listeners</option>
                                 <option>Sort by: Revenue</option>
                             </select>
@@ -704,55 +704,55 @@
                                 <table class="w-full text-left text-sm whitespace-nowrap">
                                     <thead class="bg-bg2 border-b border-border text-textMuted">
                                         <tr>
-                                            <th class="p-4 font-bold">Rank</th>
-                                            <th class="p-4 font-bold">Show Name</th>
-                                            <th class="p-4 font-bold">Host</th>
-                                            <th class="p-4 font-bold text-center">Avg Listeners</th>
-                                            <th class="p-4 font-bold text-center">Status</th>
-                                            <th class="p-4 font-bold text-right">Actions</th>
+                                            <th class="p-4 font-semibold">Rank</th>
+                                            <th class="p-4 font-semibold">Show Name</th>
+                                            <th class="p-4 font-semibold">Host</th>
+                                            <th class="p-4 font-semibold text-center">Avg Listeners</th>
+                                            <th class="p-4 font-semibold text-center">Status</th>
+                                            <th class="p-4 font-semibold text-right">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-border">
                                         <tr class="hover:bg-accent/5 transition-colors group/row">
-                                            <td class="p-4 font-black text-lg text-accent">1</td>
-                                            <td class="p-4 font-bold flex items-center gap-3"><img
+                                            <td class="p-4 font-semibold text-lg text-accent">1</td>
+                                            <td class="p-4 font-semibold flex items-center gap-3"><img
                                                     src="../../Asserts/Images/HomeLatest1.webp"
                                                     class="w-10 h-10 rounded-md object-cover">The Underground Hour</td>
                                             <td class="p-4 font-semibold text-textMuted">DJ Nova</td>
                                             <td class="p-4 font-mono text-center">12.4k</td>
                                             <td class="p-4 text-center"><span
-                                                    class="bg-green-500/10 text-green-500 font-bold px-2 py-1 text-xs rounded-lg uppercase">Active</span>
+                                                    class="bg-green-500/10 text-green-500 font-semibold px-2 py-1 text-xs rounded-lg uppercase">Active</span>
                                             </td>
                                             <td class="p-4 text-right"><button
-                                                    class="text-textMuted hover:text-accent font-bold px-3 py-1 rounded-md border border-transparent hover:border-accent transition-all">Edit</button>
+                                                    class="text-textMuted hover:text-accent font-semibold px-3 py-1 rounded-md border border-transparent hover:border-accent transition-all">Edit</button>
                                             </td>
                                         </tr>
                                         <tr class="hover:bg-accent/5 transition-colors group/row">
-                                            <td class="p-4 font-black text-lg text-textMuted/70">2</td>
-                                            <td class="p-4 font-bold flex items-center gap-3"><img
+                                            <td class="p-4 font-semibold text-lg text-textMuted/70">2</td>
+                                            <td class="p-4 font-semibold flex items-center gap-3"><img
                                                     src="../../Asserts/Images/Showsgrid5.avif"
                                                     class="w-10 h-10 rounded-md object-cover">Tech Unfiltered</td>
                                             <td class="p-4 font-semibold text-textMuted">Mike Tech</td>
                                             <td class="p-4 font-mono text-center">8.1k</td>
                                             <td class="p-4 text-center"><span
-                                                    class="bg-green-500/10 text-green-500 font-bold px-2 py-1 text-xs rounded-lg uppercase">Active</span>
+                                                    class="bg-green-500/10 text-green-500 font-semibold px-2 py-1 text-xs rounded-lg uppercase">Active</span>
                                             </td>
                                             <td class="p-4 text-right"><button
-                                                    class="text-textMuted hover:text-accent font-bold px-3 py-1 rounded-md border border-transparent hover:border-accent transition-all">Edit</button>
+                                                    class="text-textMuted hover:text-accent font-semibold px-3 py-1 rounded-md border border-transparent hover:border-accent transition-all">Edit</button>
                                             </td>
                                         </tr>
                                         <tr class="hover:bg-accent/5 transition-colors group/row">
-                                            <td class="p-4 font-black text-lg text-textMuted/70">3</td>
-                                            <td class="p-4 font-bold flex items-center gap-3"><img
+                                            <td class="p-4 font-semibold text-lg text-textMuted/70">3</td>
+                                            <td class="p-4 font-semibold flex items-center gap-3"><img
                                                     src="../../Asserts/Images/Showsgrid6.avif"
                                                     class="w-10 h-10 rounded-md object-cover">Mindful Mornings</td>
                                             <td class="p-4 font-semibold text-textMuted">Yoga Jen</td>
                                             <td class="p-4 font-mono text-center">4.2k</td>
                                             <td class="p-4 text-center"><span
-                                                    class="bg-textMuted/10 text-textMuted font-bold px-2 py-1 text-xs rounded-lg uppercase">Paused</span>
+                                                    class="bg-textMuted/10 text-textMuted font-semibold px-2 py-1 text-xs rounded-lg uppercase">Paused</span>
                                             </td>
                                             <td class="p-4 text-right"><button
-                                                    class="text-textMuted hover:text-accent font-bold px-3 py-1 rounded-md border border-transparent hover:border-accent transition-all">Edit</button>
+                                                    class="text-textMuted hover:text-accent font-semibold px-3 py-1 rounded-md border border-transparent hover:border-accent transition-all">Edit</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -764,14 +764,14 @@
 
                 <div id="schedule-page" class="page-section">
                     <div class="reveal pt-4">
-                        <h1 class="text-3xl md:text-4xl font-black text-textMain mb-2">Platform <span
+                        <h1 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Platform <span
                                 class="text-accent">Schedule</span></h1>
                         <p class="text-textMuted mb-8 text-sm md:text-base">Manage broadcast timeline.</p>
 
                         <div class="bg-card border border-border p-6 rounded-3xl shadow-sm">
                             <div class="flex justify-between items-center mb-6">
-                                <h3 class="font-bold text-lg text-textMain">Upcoming Timeline</h3>
-                                <button class="btn-primary-custom py-1.5 px-4 text-xs font-bold rounded-lg">+ Add
+                                <h3 class="font-semibold text-lg text-textMain">Upcoming Timeline</h3>
+                                <button class="btn-primary-custom py-1.5 px-4 text-xs font-semibold rounded-lg">+ Add
                                     Slot</button>
                             </div>
 
@@ -783,13 +783,13 @@
                                     <div
                                         class="bg-bg2 border border-border p-4 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 group hover:border-accent transition-colors">
                                         <div>
-                                            <p class="text-xs font-bold text-accent uppercase tracking-wider mb-1">Live
+                                            <p class="text-xs font-semibold text-accent uppercase tracking-wider mb-1">Live
                                                 Now (10:00 - 12:00)</p>
-                                            <h4 class="font-bold text-textMain text-lg mb-1">Tech Unfiltered</h4>
+                                            <h4 class="font-semibold text-textMain text-lg mb-1">Tech Unfiltered</h4>
                                             <p class="text-xs text-textMuted">Host: Mike Tech</p>
                                         </div>
                                         <button
-                                            class="px-4 py-2 bg-card border border-border rounded-lg text-xs font-bold hover:text-accent transition-colors">Manage
+                                            class="px-4 py-2 bg-card border border-border rounded-lg text-xs font-semibold hover:text-accent transition-colors">Manage
                                             Stream</button>
                                     </div>
                                 </div>
@@ -800,13 +800,13 @@
                                     <div
                                         class="bg-card border border-border p-4 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 group hover:border-secondary transition-colors">
                                         <div>
-                                            <p class="text-xs font-bold text-textMuted uppercase tracking-wider mb-1">
+                                            <p class="text-xs font-semibold text-textMuted uppercase tracking-wider mb-1">
                                                 12:30 - 14:00</p>
-                                            <h4 class="font-bold text-textMain text-lg mb-1">Indie Lunch Hour</h4>
+                                            <h4 class="font-semibold text-textMain text-lg mb-1">Indie Lunch Hour</h4>
                                             <p class="text-xs text-textMuted">Auto-Play Playlist</p>
                                         </div>
                                         <button
-                                            class="px-4 py-2 bg-bg2 border border-border rounded-lg text-xs font-bold hover:text-secondary transition-colors">Edit
+                                            class="px-4 py-2 bg-bg2 border border-border rounded-lg text-xs font-semibold hover:text-secondary transition-colors">Edit
                                             Slot</button>
                                     </div>
                                 </div>
@@ -817,14 +817,14 @@
                                     <div
                                         class="bg-card border border-border p-4 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 group hover:border-secondary transition-colors">
                                         <div>
-                                            <p class="text-xs font-bold text-textMuted uppercase tracking-wider mb-1">
+                                            <p class="text-xs font-semibold text-textMuted uppercase tracking-wider mb-1">
                                                 15:00 - 16:30</p>
-                                            <h4 class="font-bold text-textMain text-lg mb-1">City Soundscapes
+                                            <h4 class="font-semibold text-textMain text-lg mb-1">City Soundscapes
                                                 (Interviews)</h4>
                                             <p class="text-xs text-textMuted">Host: Sara L.</p>
                                         </div>
                                         <button
-                                            class="px-4 py-2 bg-bg2 border border-border rounded-lg text-xs font-bold hover:text-secondary transition-colors">Edit
+                                            class="px-4 py-2 bg-bg2 border border-border rounded-lg text-xs font-semibold hover:text-secondary transition-colors">Edit
                                             Slot</button>
                                     </div>
                                 </div>
@@ -835,13 +835,13 @@
 
                 <div id="activity-page" class="page-section">
                     <div class="reveal pt-4">
-                        <h1 class="text-3xl md:text-4xl font-black text-textMain mb-2">Recent <span
+                        <h1 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Recent <span
                                 class="text-accent">Activity</span></h1>
                         <p class="text-textMuted mb-8 text-sm md:text-base">System logs and user actions.</p>
 
                         <div class="bg-card border border-border rounded-3xl overflow-hidden shadow-sm">
                             <div
-                                class="p-4 border-b border-border bg-bg2 font-bold text-sm text-textMain flex items-center justify-between">
+                                class="p-4 border-b border-border bg-bg2 font-semibold text-sm text-textMain flex items-center justify-between">
                                 <span>Activity Log</span>
                                 <i class="bi bi-filter cursor-pointer hover:text-accent"></i>
                             </div>
@@ -851,7 +851,7 @@
                                         class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
                                         <i class="bi bi-cup-hot-fill"></i></div>
                                     <div class="flex-1">
-                                        <h4 class="font-bold text-sm text-textMain">New Donation</h4>
+                                        <h4 class="font-semibold text-sm text-textMain">New Donation</h4>
                                         <p class="text-xs text-textMuted">User @john_d donated $5.00.</p>
                                     </div>
                                     <span class="text-xs text-textMuted font-mono">10m ago</span>
@@ -861,7 +861,7 @@
                                         class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent">
                                         <i class="bi bi-cloud-upload-fill"></i></div>
                                     <div class="flex-1">
-                                        <h4 class="font-bold text-sm text-textMain">Podcast Uploaded</h4>
+                                        <h4 class="font-semibold text-sm text-textMain">Podcast Uploaded</h4>
                                         <p class="text-xs text-textMuted">DJ Nova uploaded 'Episode 42'.</p>
                                     </div>
                                     <span class="text-xs text-textMuted font-mono">1h ago</span>
@@ -871,7 +871,7 @@
                                         class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-500">
                                         <i class="bi bi-person-fill-add"></i></div>
                                     <div class="flex-1">
-                                        <h4 class="font-bold text-sm text-textMain">New User Registration</h4>
+                                        <h4 class="font-semibold text-sm text-textMain">New User Registration</h4>
                                         <p class="text-xs text-textMuted">User @mark_z created an account.</p>
                                     </div>
                                     <span class="text-xs text-textMuted font-mono">3h ago</span>
@@ -881,7 +881,7 @@
                                         class="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-500">
                                         <i class="bi bi-exclamation-octagon-fill"></i></div>
                                     <div class="flex-1">
-                                        <h4 class="font-bold text-sm text-textMain">Account Suspended</h4>
+                                        <h4 class="font-semibold text-sm text-textMain">Account Suspended</h4>
                                         <p class="text-xs text-textMuted">Admin suspended user @spammer99.</p>
                                     </div>
                                     <span class="text-xs text-textMuted font-mono">1d ago</span>
@@ -893,41 +893,41 @@
 
                 <div id="settings-page" class="page-section">
                     <div class="reveal pt-4">
-                        <h1 class="text-3xl md:text-4xl font-black text-textMain mb-2">Admin <span
+                        <h1 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Admin <span
                                 class="text-accent">Settings</span></h1>
                         <p class="text-textMuted mb-8 text-sm md:text-base">System configurations and profile</p>
 
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                             <div class="bg-card border border-border rounded-2xl p-6 h-fit">
-                                <h3 class="font-bold text-lg mb-4">Superuser Profile</h3>
+                                <h3 class="font-semibold text-lg mb-4">Superuser Profile</h3>
                                 <form class="space-y-4">
                                     <div>
-                                        <label class="block text-xs font-bold text-textMuted mb-1">Administrative
+                                        <label class="block text-xs font-semibold text-textMuted mb-1">Administrative
                                             Name</label>
                                         <input type="text"
                                             class="custom-input border border-border bg-bg2 rounded-lg p-2.5 w-full text-sm outline-none focus:border-accent"
                                             value="Admin Root">
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-bold text-textMuted mb-1">Recovery Email
+                                        <label class="block text-xs font-semibold text-textMuted mb-1">Recovery Email
                                             Target</label>
                                         <input type="email"
                                             class="custom-input border border-border bg-bg2 rounded-lg p-2.5 w-full text-sm outline-none focus:border-accent"
                                             value="sysadmin@wavekind.fm">
                                     </div>
                                     <button type="button"
-                                        class="btn-primary-custom py-2.5 px-6 rounded-xl font-bold text-sm">Save
+                                        class="btn-primary-custom py-2.5 px-6 rounded-xl font-semibold text-sm">Save
                                         Config</button>
                                 </form>
                             </div>
 
                             <div>
-                                <h3 class="font-bold text-lg mb-4">System Preferences</h3>
+                                <h3 class="font-semibold text-lg mb-4">System Preferences</h3>
                                 <div class="bg-card border border-border rounded-2xl overflow-hidden">
                                     <div
                                         class="flex items-center justify-between p-5 border-b border-border hover:bg-bg2 transition-colors">
                                         <div>
-                                            <h4 class="font-bold text-sm">Strict Security Mode</h4>
+                                            <h4 class="font-semibold text-sm">Strict Security Mode</h4>
                                             <p class="text-xs text-textMuted mt-1">Require 2FA for all dashboard modules
                                             </p>
                                         </div>
@@ -938,7 +938,7 @@
                                     <div
                                         class="flex items-center justify-between p-5 border-b border-border hover:bg-bg2 transition-colors">
                                         <div>
-                                            <h4 class="font-bold text-sm">Daily Backup Reports</h4>
+                                            <h4 class="font-semibold text-sm">Daily Backup Reports</h4>
                                             <p class="text-xs text-textMuted mt-1">Receive automated DB snapshots</p>
                                         </div>
                                         <div class="relative inline-block w-12"><input type="checkbox" id="setAdmin2"
@@ -947,7 +947,7 @@
                                     </div>
                                     <div class="flex items-center justify-between p-5 hover:bg-bg2 transition-colors">
                                         <div>
-                                            <h4 class="font-bold text-sm">Auto-Scale Servers</h4>
+                                            <h4 class="font-semibold text-sm">Auto-Scale Servers</h4>
                                             <p class="text-xs text-textMuted mt-1">Increase bandwidth upon high load</p>
                                         </div>
                                         <div class="relative inline-block w-12"><input type="checkbox" id="setAdmin3"
@@ -967,17 +967,17 @@
                                 class="w-24 h-24 rounded-full bg-secondary/10 flex items-center justify-center text-4xl text-secondary mx-auto mb-6">
                                 <i class="bi bi-shield-lock"></i>
                             </div>
-                            <h3 class="text-3xl font-black mb-3">Terminate Session?</h3>
+                            <h3 class="text-3xl font-semibold mb-3">Terminate Session?</h3>
                             <p class="text-textMuted mb-8 leading-relaxed">You will be securely logged out of the Admin
                                 Panel. Any unsaved system changes may be lost.</p>
 
                             <div class="flex flex-col gap-3">
                                 <button
-                                    class="bg-slate-900 border border-white/10 hover:bg-red-600 text-white px-8 py-3.5 rounded-xl font-bold w-full text-lg shadow-md transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"><i
+                                    class="bg-slate-900 border border-white/10 hover:bg-red-600 text-white px-8 py-3.5 rounded-xl font-semibold w-full text-lg shadow-md transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"><i
                                         class="bi bi-box-arrow-right mr-2"></i><a href="../../LoginPage.html"
-                                        class="text-white no-underline font-bold"> End Session</a></button>
+                                        class="text-white no-underline font-semibold"> End Session</a></button>
                                 <button onclick="document.querySelector('[data-page=\'dashboard\']').click()"
-                                    class="btn-outline px-8 py-3.5 rounded-xl font-bold w-full text-lg">Cancel</button>
+                                    class="btn-outline px-8 py-3.5 rounded-xl font-semibold w-full text-lg">Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -992,7 +992,7 @@
                     <div>&copy; 2026 WaveKind FM. All rights reserved.</div>
                     <div class="flex gap-6">
                         <a href="../../index.html"
-                            class="hover:text-accent transition-colors font-bold text-textMain"><i
+                            class="hover:text-accent transition-colors font-semibold text-textMain"><i
                                 class="bi bi-arrow-left-short"></i> Back to Main Site</a>
                         <a href="#" class="hover:text-accent transition-colors">Support</a>
                         <a href="#" class="hover:text-accent transition-colors">Terms</a>

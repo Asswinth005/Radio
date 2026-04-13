@@ -57,7 +57,7 @@
         /* ---------- STRICT SOLID COLOR PALETTE ---------- */
         :root {
             --accent: #ff4d6d;
-            --accent-dark: #e63956;
+            --accent-dark: #ff4d6d;
             --secondary: #6366f1;
             --bg: #ffffff;
             --bg-glass: rgba(255, 255, 255, 0.85);
@@ -73,7 +73,7 @@
 
         [data-theme="dark"] {
             --accent: #ff4d6d;
-            --accent-dark: #e63956;
+            --accent-dark: #ff4d6d;
             --secondary: #6366f1;
             --bg: #111827;
             --bg-glass: rgba(17, 24, 39, 0.85);
@@ -126,7 +126,7 @@
             justify-content: center;
             gap: 8px;
             padding: 0.75rem 1.5rem;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 0.95rem;
             border-radius: 40px;
             cursor: pointer;
@@ -202,7 +202,7 @@
             align-items: center;
             gap: 10px;
             text-decoration: none;
-            font-weight: 800;
+            font-weight: 600;
             font-size: 1.5rem;
         }
 
@@ -599,7 +599,7 @@
 
         .newsletter-text h3 {
             font-size: 1.5rem;
-            font-weight: 800;
+            font-weight: 600;
             color: var(--text-main);
             margin-bottom: 0.5rem;
         }
@@ -667,7 +667,7 @@
         .footer-col h4 {
             color: var(--text-main);
             font-size: 1.1rem;
-            font-weight: 800;
+            font-weight: 600;
             margin-bottom: 1.25rem;
         }
 
@@ -942,7 +942,7 @@
 
         .newsletter-text h3 {
             font-size: 1.5rem;
-            font-weight: 800;
+            font-weight: 600;
             color: var(--text-main);
             margin-bottom: 0.5rem;
         }
@@ -1012,7 +1012,7 @@
         .footer-col h4 {
             color: var(--text-main);
             font-size: 1.1rem;
-            font-weight: 800;
+            font-weight: 600;
             margin-bottom: 1.25rem;
         }
 
@@ -1245,7 +1245,7 @@
                 <div onclick="toggleMobileDropdown('homeDropdown')" class="mobile-nav-link text-primary">Home <i
                         class="bi bi-chevron-down"></i></div>
                 <div id="homeDropdown" class="mobile-dropdown-content" style="display:block;">
-                    <a href="index.html" class="mobile-dropdown-item text-primary font-bold">Home 1</a>
+                    <a href="index.html" class="mobile-dropdown-item text-primary font-semibold">Home 1</a>
                     <a href="Home2Page.html" class="mobile-dropdown-item">Home 2</a>
                 </div>
             </li>
@@ -1295,30 +1295,58 @@
                     alt="Studio">
             </div>
 
-            <div class="relative z-10 px-6 max-w-[1200px] mx-auto text-center">
-                <div
-                    class="bg-[#26201b] border border-[#3a3129] rounded-full px-5 py-2 inline-flex items-center gap-3 mb-8 shadow-lg">
-                    <div class="wave-bars">
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
-                        <div class="wave-bar"></div>
+            <div class="relative z-10 px-6 max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <div
+                        class="bg-[#26201b] border border-[#3a3129] rounded-full px-5 py-2 inline-flex items-center gap-3 mb-8 shadow-lg">
+                        <div class="wave-bars">
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                        </div>
+                        <span class="text-white text-sm font-semibold tracking-wide">LIVE: Evening Flow with DJ Nova</span>
+                        <i class="bi bi-play-circle-fill text-accent text-xl ml-2"></i>
                     </div>
-                    <span class="text-white text-sm font-bold tracking-wide">LIVE: Evening Flow with DJ Nova</span>
-                    <i class="bi bi-play-circle-fill text-accent text-xl ml-2"></i>
+
+                    <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-white mb-6">
+                        Your Soundtrack.<br><span class="text-accent">Independent & Local.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 mb-10 font-medium">
+                        Discover underground artists, compelling stories, and live broadcasts — free from corporate
+                        playlists.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button class="btn btn-primary-custom px-10 py-4 text-lg rounded-full border-0">
+                            <i class="bi bi-headphones"></i> Listen Live
+                        </button>
+                    </div>
                 </div>
 
-                <h1 class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white mb-6">
-                    Your Soundtrack.<br><span class="text-accent">Independent & Local.</span>
-                </h1>
-                <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 font-medium">
-                    Discover underground artists, compelling stories, and live broadcasts — free from corporate
-                    playlists.
-                </p>
-
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button class="btn btn-primary-custom px-10 py-4 text-lg rounded-full border-0">
-                        <i class="bi bi-headphones"></i> Listen Live
-                    </button>
+                <div class="grid grid-cols-2 gap-4 lg:gap-6 text-center">
+                    <div class="pro-card p-6 bg-[#1a1614]/60 backdrop-blur-md border !border-white/10 border-t-4 !border-t-accent"><i
+                            class="bi bi-broadcast-pin text-4xl text-accent mb-4 block icon-hover"></i>
+                        <div class="text-4xl font-semibold text-white mb-1 counter" data-target="24">0</div>
+                        <p class="text-gray-400 text-xs font-semibold tracking-widest uppercase">Hours Live</p>
+                    </div>
+                    <div class="pro-card p-6 bg-[#1a1614]/60 backdrop-blur-md border !border-white/10 border-t-4 !border-t-accent"><i
+                            class="bi bi-mic text-4xl text-accent mb-4 block icon-hover"></i>
+                        <div class="text-4xl font-semibold text-white mb-1"><span class="counter"
+                                data-target="140">0</span>+</div>
+                        <p class="text-gray-400 text-xs font-semibold tracking-widest uppercase">Active Shows</p>
+                    </div>
+                    <div class="pro-card p-6 bg-[#1a1614]/60 backdrop-blur-md border !border-white/10 border-t-4 !border-t-accent"><i
+                            class="bi bi-headphones text-4xl text-accent mb-4 block icon-hover"></i>
+                        <div class="text-4xl font-semibold text-white mb-1"><span class="counter"
+                                data-target="65">0</span>k</div>
+                        <p class="text-gray-400 text-xs font-semibold tracking-widest uppercase">Monthly Listeners</p>
+                    </div>
+                    <div class="pro-card p-6 bg-[#1a1614]/60 backdrop-blur-md border !border-white/10 border-t-4 !border-t-accent"><i
+                            class="bi bi-collection-play text-4xl text-accent mb-4 block icon-hover"></i>
+                        <div class="text-4xl font-semibold text-white mb-1"><span class="counter"
+                                data-target="1250">0</span>+</div>
+                        <p class="text-gray-400 text-xs font-semibold tracking-widest uppercase">Episodes</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1336,9 +1364,9 @@
                 </div>
 
                 <div class="flex-1 text-center md:text-left z-10 w-full">
-                    <div class="text-primary font-bold tracking-wider text-xs mb-2 uppercase text-accent">Now Playing
+                    <div class="text-primary font-semibold tracking-wider text-xs mb-2 uppercase text-accent">Now Playing
                     </div>
-                    <h3 class="text-2xl font-extrabold mb-1 text-textMain">The Underground <span
+                    <h3 class="text-2xl font-semibold mb-1 text-textMain">The Underground <span
                             class="text-primary">Hour</span></h3>
                     <p class="text-textMuted mb-6 font-medium">Featuring Sarah Jenkins & The Local Crew</p>
 
@@ -1371,7 +1399,7 @@
                 <div
                     class="flex flex-col sm:flex-row justify-between items-center sm:items-end mb-12 text-center sm:text-left gap-4">
                     <div>
-                        <h2 class="text-3xl md:text-4xl font-extrabold text-textMain mb-2">Featured <span
+                        <h2 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Featured <span
                                 class="text-primary">Shows</span></h2>
                         <p class="text-textMuted font-medium text-sm sm:text-base">Curated broadcasts from our
                             community.</p>
@@ -1388,8 +1416,8 @@
                         </div>
                         <div class="p-6 bg-card flex flex-col justify-center">
                             <span
-                                class="text-accent text-xs font-bold tracking-wider mb-2 block uppercase">Electronic</span>
-                            <h3 class="text-xl font-bold text-textMain flex justify-between items-center">
+                                class="text-accent text-xs font-semibold tracking-wider mb-2 block uppercase">Electronic</span>
+                            <h3 class="text-xl font-semibold text-textMain flex justify-between items-center">
                                 Midnight Waves <i
                                     class="bi bi-arrow-right-short text-3xl opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-accent"></i>
                             </h3>
@@ -1403,8 +1431,8 @@
                                 style="background-image:url('Asserts/Images/HomeFutue2.avif');"></div>
                         </div>
                         <div class="p-6 bg-card flex flex-col justify-center">
-                            <span class="text-accent text-xs font-bold tracking-wider mb-2 block uppercase">Talk</span>
-                            <h3 class="text-xl font-bold text-textMain flex justify-between items-center">
+                            <span class="text-accent text-xs font-semibold tracking-wider mb-2 block uppercase">Talk</span>
+                            <h3 class="text-xl font-semibold text-textMain flex justify-between items-center">
                                 Morning Brew <i
                                     class="bi bi-arrow-right-short text-3xl opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-accent"></i>
                             </h3>
@@ -1419,8 +1447,8 @@
                         </div>
                         <div class="p-6 bg-card flex flex-col justify-center">
                             <span
-                                class="text-accent text-xs font-bold tracking-wider mb-2 block uppercase">Culture</span>
-                            <h3 class="text-xl font-bold text-textMain flex justify-between items-center">
+                                class="text-accent text-xs font-semibold tracking-wider mb-2 block uppercase">Culture</span>
+                            <h3 class="text-xl font-semibold text-textMain flex justify-between items-center">
                                 City Soundscapes <i
                                     class="bi bi-arrow-right-short text-3xl opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-accent"></i>
                             </h3>
@@ -1437,7 +1465,7 @@
                 <div
                     class="flex flex-col sm:flex-row justify-between items-center mb-12 gap-4 text-center sm:text-left">
                     <div>
-                        <h2 class="text-3xl md:text-4xl font-extrabold text-textMain mb-2">Meet the <span
+                        <h2 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Meet the <span
                                 class="text-primary">Voices</span></h2>
                         <p class="text-textMuted font-medium">The personalities behind your favorite shows.</p>
                     </div>
@@ -1454,7 +1482,7 @@
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform"
                                 alt="Host">
                         </div>
-                        <h4 class="font-bold text-lg text-textMain">DJ Nova</h4>
+                        <h4 class="font-semibold text-lg text-textMain">DJ Nova</h4>
                         <p class="text-accent text-xs font-semibold uppercase tracking-widest mb-4">Evening Flow</p>
                         <div class="flex justify-center gap-4 border-t border-border pt-4">
                             <a href="#" class="text-textMuted hover:text-primary transition-colors text-lg"><i
@@ -1471,7 +1499,7 @@
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform"
                                 alt="Host">
                         </div>
-                        <h4 class="font-bold text-lg text-textMain">Sarah Jenkins</h4>
+                        <h4 class="font-semibold text-lg text-textMain">Sarah Jenkins</h4>
                         <p class="text-accent text-xs font-semibold uppercase tracking-widest mb-4">Morning Brew</p>
                         <div class="flex justify-center gap-4 border-t border-border pt-4">
                             <a href="#" class="text-textMuted hover:text-primary transition-colors text-lg"><i
@@ -1488,7 +1516,7 @@
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform"
                                 alt="Host">
                         </div>
-                        <h4 class="font-bold text-lg text-textMain">Chloe Bennett</h4>
+                        <h4 class="font-semibold text-lg text-textMain">Chloe Bennett</h4>
                         <p class="text-accent text-xs font-semibold uppercase tracking-widest mb-4">City Soundscapes</p>
                         <div class="flex justify-center gap-4 border-t border-border pt-4">
                             <a href="#" class="text-textMuted hover:text-primary transition-colors text-lg"><i
@@ -1505,7 +1533,7 @@
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform"
                                 alt="Host">
                         </div>
-                        <h4 class="font-bold text-lg text-textMain">Marcus Ray</h4>
+                        <h4 class="font-semibold text-lg text-textMain">Marcus Ray</h4>
                         <p class="text-accent text-xs font-semibold uppercase tracking-widest mb-4">Tech Unfiltered</p>
                         <div class="flex justify-center gap-4 border-t border-border pt-4">
                             <a href="#" class="text-textMuted hover:text-primary transition-colors text-lg"><i
@@ -1522,7 +1550,7 @@
         <section class="bg-bg2 py-24 px-6 border-b border-border reveal">
             <div class="max-w-[1200px] mx-auto">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-textMain mb-2">Latest <span
+                    <h2 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Latest <span
                             class="text-primary">Soundwaves</span></h2>
                     <p class="text-textMuted font-medium text-lg">Music news, artist interviews, and station updates.
                     </p>
@@ -1536,19 +1564,19 @@
                                 style="background-image:url('Asserts/Images/HomeLatest1.webp');">
                             </div>
                             <div
-                                class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">
+                                class="absolute top-4 left-4 bg-primary text-white text-[10px] font-semibold px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">
                                 Interview</div>
                         </div>
                         <div class="p-6 flex flex-col flex-1">
                             <span class="text-textMuted text-xs font-semibold mb-3 flex items-center gap-2"><i
                                     class="bi bi-calendar3 text-accent"></i> Oct 12, 2026</span>
-                            <h3 class="text-xl font-bold text-textMain mb-3 group-hover:text-primary transition-colors">
+                            <h3 class="text-xl font-semibold text-textMain mb-3 group-hover:text-primary transition-colors">
                                 The Rise of Indie Synthpop in Brooklyn</h3>
                             <p class="text-textMuted text-sm mb-6 line-clamp-3">We sat down with local producers to
                                 discuss the sudden resurgence of analog synths in the underground scene and what it
                                 means for the future of live performances.</p>
                             <span
-                                class="mt-auto text-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Read
+                                class="mt-auto text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Read
                                 Full Article <i class="bi bi-arrow-right"></i></span>
                         </div>
                     </div>
@@ -1559,19 +1587,19 @@
                                 style="background-image:url('Asserts/Images/HomeLatest2.avif');">
                             </div>
                             <div
-                                class="absolute top-4 left-4 bg-[#14110e] text-white text-[10px] font-bold px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm border border-border">
+                                class="absolute top-4 left-4 bg-[#14110e] text-white text-[10px] font-semibold px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm border border-border">
                                 Station News</div>
                         </div>
                         <div class="p-6 flex flex-col flex-1">
                             <span class="text-textMuted text-xs font-semibold mb-3 flex items-center gap-2"><i
                                     class="bi bi-calendar3 text-accent"></i> Oct 05, 2026</span>
-                            <h3 class="text-xl font-bold text-textMain mb-3 group-hover:text-primary transition-colors">
+                            <h3 class="text-xl font-semibold text-textMain mb-3 group-hover:text-primary transition-colors">
                                 WaveKind Announces Fall Festival Lineup</h3>
                             <p class="text-textMuted text-sm mb-6 line-clamp-3">Get ready for three days of
                                 uninterrupted live music, live podcast tapings, and community events coming to the
                                 historic downtown district.</p>
                             <span
-                                class="mt-auto text-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Read
+                                class="mt-auto text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Read
                                 Full Article <i class="bi bi-arrow-right"></i></span>
                         </div>
                     </div>
@@ -1582,19 +1610,19 @@
                                 style="background-image:url('Asserts/Images/HomeLatest3.avif');">
                             </div>
                             <div
-                                class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">
+                                class="absolute top-4 left-4 bg-primary text-white text-[10px] font-semibold px-3 py-1.5 rounded-md uppercase tracking-wider shadow-sm">
                                 Review</div>
                         </div>
                         <div class="p-6 flex flex-col flex-1">
                             <span class="text-textMuted text-xs font-semibold mb-3 flex items-center gap-2"><i
                                     class="bi bi-calendar3 text-accent"></i> Sep 28, 2026</span>
-                            <h3 class="text-xl font-bold text-textMain mb-3 group-hover:text-primary transition-colors">
+                            <h3 class="text-xl font-semibold text-textMain mb-3 group-hover:text-primary transition-colors">
                                 Album of the Week: "Echoes" by The Midnight</h3>
                             <p class="text-textMuted text-sm mb-6 line-clamp-3">Our resident music critics break down
                                 the highly anticipated debut album that's been dominating the local airwaves this month.
                             </p>
                             <span
-                                class="mt-auto text-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Read
+                                class="mt-auto text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Read
                                 Full Article <i class="bi bi-arrow-right"></i></span>
                         </div>
                     </div>
@@ -1607,14 +1635,14 @@
             <div class="max-w-[1200px] mx-auto relative z-10">
                 <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
                     <div class="text-center md:text-left">
-                        <h2 class="text-3xl md:text-4xl font-extrabold mb-3 text-textMain">Broadcast <span
+                        <h2 class="text-3xl md:text-4xl font-semibold mb-3 text-textMain">Broadcast <span
                                 class="text-primary">Schedule</span></h2>
                         <p class="text-textMuted text-lg font-medium">Your weekly guide to on-air shows.</p>
                     </div>
                     <div
                         class="flex flex-wrap justify-center gap-2 p-1.5 bg-card rounded-xl border border-border shadow-sm w-full md:w-auto">
                         <button
-                            class="btn btn-primary-custom px-5 py-2.5 rounded-lg text-sm font-bold border-0">MON</button>
+                            class="btn btn-primary-custom px-5 py-2.5 rounded-lg text-sm font-semibold border-0">MON</button>
                         <button
                             class="px-5 py-2.5 rounded-lg text-sm font-semibold text-textMain hover:bg-bg2 border-0 bg-transparent transition-colors">TUE</button>
                         <button
@@ -1631,24 +1659,24 @@
                         <div class="bg-bg2 border-b border-border p-4 flex justify-between items-center">
                             <div class="flex items-center gap-2">
                                 <i class="bi bi-clock text-textMuted"></i>
-                                <span class="text-lg font-extrabold text-textMain">07:00 AM</span>
+                                <span class="text-lg font-semibold text-textMain">07:00 AM</span>
                             </div>
-                            <span class="bg-primary/10 text-primary text-xs font-bold px-2 py-1 rounded">LIVE NOW</span>
+                            <span class="bg-primary/10 text-primary text-xs font-semibold px-2 py-1 rounded">LIVE NOW</span>
                         </div>
                         <div class="p-6 flex flex-col flex-1">
                             <div
                                 class="w-14 h-14 rounded-xl bg-bg border border-border flex items-center justify-center text-3xl text-primary mb-5 icon-hover">
                                 <i class="bi bi-cup-hot"></i>
                             </div>
-                            <div class="text-primary font-bold tracking-widest text-xs mb-1 uppercase">Morning Show
+                            <div class="text-primary font-semibold tracking-widest text-xs mb-1 uppercase">Morning Show
                             </div>
-                            <h4 class="text-xl font-bold text-textMain mb-2">Morning Brew</h4>
+                            <h4 class="text-xl font-semibold text-textMain mb-2">Morning Brew</h4>
                             <p class="text-textMuted text-sm mb-6 line-clamp-2">Local news, coffee reviews, and
                                 community interviews.</p>
                             <div class="mt-auto border-t border-border pt-5 flex items-center justify-between">
-                                <span class="text-sm font-bold text-textMuted">Studio A</span>
+                                <span class="text-sm font-semibold text-textMuted">Studio A</span>
                                 <button
-                                    class="text-sm font-bold text-textMain group-hover:text-primary transition-colors flex items-center gap-1 border-0 bg-transparent">
+                                    class="text-sm font-semibold text-textMain group-hover:text-primary transition-colors flex items-center gap-1 border-0 bg-transparent">
                                     Tune In <i class="bi bi-play-circle-fill"></i>
                                 </button>
                             </div>
@@ -1658,24 +1686,24 @@
                         <div class="bg-bg2 border-b border-border p-4 flex justify-between items-center">
                             <div class="flex items-center gap-2">
                                 <i class="bi bi-clock text-textMuted"></i>
-                                <span class="text-lg font-extrabold text-textMain">10:00 AM</span>
+                                <span class="text-lg font-semibold text-textMain">10:00 AM</span>
                             </div>
                             <span
-                                class="bg-card border border-border text-textMuted text-xs font-bold px-2 py-1 rounded">UPCOMING</span>
+                                class="bg-card border border-border text-textMuted text-xs font-semibold px-2 py-1 rounded">UPCOMING</span>
                         </div>
                         <div class="p-6 flex flex-col flex-1">
                             <div
                                 class="w-14 h-14 rounded-xl bg-bg border border-border flex items-center justify-center text-3xl text-primary mb-5 icon-hover">
                                 <i class="bi bi-vinyl"></i>
                             </div>
-                            <div class="text-primary font-bold tracking-widest text-xs mb-1 uppercase">Music</div>
-                            <h4 class="text-xl font-bold text-textMain mb-2">The Vinyl Frontier</h4>
+                            <div class="text-primary font-semibold tracking-widest text-xs mb-1 uppercase">Music</div>
+                            <h4 class="text-xl font-semibold text-textMain mb-2">The Vinyl Frontier</h4>
                             <p class="text-textMuted text-sm mb-6 line-clamp-2">Deep dives into classic and rare records
                                 with Host Ben.</p>
                             <div class="mt-auto border-t border-border pt-5 flex items-center justify-between">
-                                <span class="text-sm font-bold text-textMuted">Studio B</span>
+                                <span class="text-sm font-semibold text-textMuted">Studio B</span>
                                 <button
-                                    class="text-sm font-bold text-textMain group-hover:text-primary transition-colors flex items-center gap-1 border-0 bg-transparent">
+                                    class="text-sm font-semibold text-textMain group-hover:text-primary transition-colors flex items-center gap-1 border-0 bg-transparent">
                                     Remind Me <i class="bi bi-bell"></i>
                                 </button>
                             </div>
@@ -1685,24 +1713,24 @@
                         <div class="bg-bg2 border-b border-border p-4 flex justify-between items-center">
                             <div class="flex items-center gap-2">
                                 <i class="bi bi-clock text-textMuted"></i>
-                                <span class="text-lg font-extrabold text-textMain">02:00 PM</span>
+                                <span class="text-lg font-semibold text-textMain">02:00 PM</span>
                             </div>
                             <span
-                                class="bg-card border border-border text-textMuted text-xs font-bold px-2 py-1 rounded">UPCOMING</span>
+                                class="bg-card border border-border text-textMuted text-xs font-semibold px-2 py-1 rounded">UPCOMING</span>
                         </div>
                         <div class="p-6 flex flex-col flex-1">
                             <div
                                 class="w-14 h-14 rounded-xl bg-bg border border-border flex items-center justify-center text-3xl text-primary mb-5 icon-hover">
                                 <i class="bi bi-globe"></i>
                             </div>
-                            <div class="text-primary font-bold tracking-widest text-xs mb-1 uppercase">Culture</div>
-                            <h4 class="text-xl font-bold text-textMain mb-2">City Soundscapes</h4>
+                            <div class="text-primary font-semibold tracking-widest text-xs mb-1 uppercase">Culture</div>
+                            <h4 class="text-xl font-semibold text-textMain mb-2">City Soundscapes</h4>
                             <p class="text-textMuted text-sm mb-6 line-clamp-2">Exploring the diverse cultural heartbeat
                                 of our city.</p>
                             <div class="mt-auto border-t border-border pt-5 flex items-center justify-between">
-                                <span class="text-sm font-bold text-textMuted">Studio A</span>
+                                <span class="text-sm font-semibold text-textMuted">Studio A</span>
                                 <button
-                                    class="text-sm font-bold text-textMain group-hover:text-primary transition-colors flex items-center gap-1 border-0 bg-transparent">
+                                    class="text-sm font-semibold text-textMain group-hover:text-primary transition-colors flex items-center gap-1 border-0 bg-transparent">
                                     Remind Me <i class="bi bi-bell"></i>
                                 </button>
                             </div>
@@ -1715,7 +1743,7 @@
         <section class="bg-bg py-24 px-6 border-b border-border reveal">
             <div class="max-w-[1200px] mx-auto">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-textMain mb-2">Station <span
+                    <h2 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Station <span
                             class="text-primary">Events</span></h2>
                     <p class="text-textMuted font-medium text-lg">Join us in person or tune in for special live
                         broadcasts.</p>
@@ -1724,11 +1752,11 @@
                     <div class="pro-card p-6 flex flex-col md:flex-row items-center gap-6">
                         <div
                             class="bg-bg2 text-textMain rounded-xl p-4 min-w-[100px] text-center border border-border w-full md:w-auto">
-                            <div class="text-xs font-bold uppercase tracking-wider text-primary">OCT</div>
-                            <div class="text-3xl font-extrabold mt-1">14</div>
+                            <div class="text-xs font-semibold uppercase tracking-wider text-primary">OCT</div>
+                            <div class="text-3xl font-semibold mt-1">14</div>
                         </div>
                         <div class="flex-1 text-center md:text-left w-full">
-                            <h4 class="text-xl font-bold text-textMain mb-2">Local Artist Showcase: Indie Rock</h4>
+                            <h4 class="text-xl font-semibold text-textMain mb-2">Local Artist Showcase: Indie Rock</h4>
                             <p class="text-textMuted text-sm font-medium"><i
                                     class="bi bi-geo-alt-fill text-primary mr-1 icon-hover"></i> Main Broadcast Studio
                                 (Live Audience)</p>
@@ -1739,11 +1767,11 @@
                     <div class="pro-card p-6 flex flex-col md:flex-row items-center gap-6">
                         <div
                             class="bg-bg2 text-textMain rounded-xl p-4 min-w-[100px] text-center border border-border w-full md:w-auto">
-                            <div class="text-xs font-bold uppercase tracking-wider text-primary">NOV</div>
-                            <div class="text-3xl font-extrabold mt-1">02</div>
+                            <div class="text-xs font-semibold uppercase tracking-wider text-primary">NOV</div>
+                            <div class="text-3xl font-semibold mt-1">02</div>
                         </div>
                         <div class="flex-1 text-center md:text-left w-full">
-                            <h4 class="text-xl font-bold text-textMain mb-2">Podcast Mastery Workshop</h4>
+                            <h4 class="text-xl font-semibold text-textMain mb-2">Podcast Mastery Workshop</h4>
                             <p class="text-textMuted text-sm font-medium"><i
                                     class="bi bi-camera-video-fill text-primary mr-1 icon-hover"></i> Virtual Webinar
                                 (Online)</p>
@@ -1763,7 +1791,7 @@
                         <i class="bi bi-music-note-beamed" style="font-size: 16rem;"></i>
                     </div>
                     <div class="relative z-10 text-center md:text-left">
-                        <h3 class="text-3xl sm:text-4xl font-extrabold text-textMain mb-4">Are You an <span
+                        <h3 class="text-3xl sm:text-4xl font-semibold text-textMain mb-4">Are You an <span
                                 class="text-primary">Artist?</span></h3>
                         <p class="text-textMuted text-lg mb-10 max-w-sm mx-auto md:mx-0 font-medium">We're always
                             looking for fresh, local sounds. Submit your unreleased tracks for a chance to be featured
@@ -1780,7 +1808,7 @@
                         <i class="bi bi-mic-fill" style="font-size: 16rem;"></i>
                     </div>
                     <div class="relative z-10 text-center md:text-left">
-                        <h3 class="text-3xl sm:text-4xl font-extrabold text-textMain mb-4">Join the <span
+                        <h3 class="text-3xl sm:text-4xl font-semibold text-textMain mb-4">Join the <span
                                 class="text-primary">Crew</span></h3>
                         <p class="text-textMuted text-lg mb-10 max-w-sm mx-auto md:mx-0 font-medium">WaveKind is built
                             by the community, for the community. We need local producers, event organizers, and
@@ -1794,38 +1822,12 @@
             </div>
         </section>
 
-        <section class="bg-bg py-20 px-6 border-b border-border reveal">
-            <div class="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-                <div class="pro-card p-8 border-t-4 border-t-accent"><i
-                        class="bi bi-broadcast-pin text-4xl text-accent mb-4 block icon-hover"></i>
-                    <div class="text-4xl font-extrabold text-textMain mb-1 counter" data-target="24">0</div>
-                    <p class="text-textMuted text-xs font-bold tracking-widest uppercase">Hours Live</p>
-                </div>
-                <div class="pro-card p-8 border-t-4 border-t-accent"><i
-                        class="bi bi-mic text-4xl text-accent mb-4 block icon-hover"></i>
-                    <div class="text-4xl font-extrabold text-textMain mb-1"><span class="counter"
-                            data-target="140">0</span>+</div>
-                    <p class="text-textMuted text-xs font-bold tracking-widest uppercase">Active Shows</p>
-                </div>
-                <div class="pro-card p-8 border-t-4 border-t-accent"><i
-                        class="bi bi-headphones text-4xl text-accent mb-4 block icon-hover"></i>
-                    <div class="text-4xl font-extrabold text-textMain mb-1"><span class="counter"
-                            data-target="65">0</span>k</div>
-                    <p class="text-textMuted text-xs font-bold tracking-widest uppercase">Monthly Listeners</p>
-                </div>
-                <div class="pro-card p-8 border-t-4 border-t-accent"><i
-                        class="bi bi-collection-play text-4xl text-accent mb-4 block icon-hover"></i>
-                    <div class="text-4xl font-extrabold text-textMain mb-1"><span class="counter"
-                            data-target="1250">0</span>+</div>
-                    <p class="text-textMuted text-xs font-bold tracking-widest uppercase">Episodes</p>
-                </div>
-            </div>
-        </section>
+
 
         <section id="faq" class="bg-bg py-24 px-6 border-b border-border reveal">
             <div class="max-w-3xl mx-auto">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-textMain mb-2">Frequently Asked <span
+                    <h2 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Frequently Asked <span
                             class="text-primary">Questions</span></h2>
                     <p class="text-textMuted font-medium text-lg">Everything you need to know about WaveKind FM.</p>
                 </div>
@@ -1833,7 +1835,7 @@
                 <div class="flex flex-col gap-4">
                     <details class="pro-card bg-card group [&_summary::-webkit-details-marker]:hidden">
                         <summary
-                            class="flex justify-between items-center p-6 cursor-pointer list-none font-bold text-lg text-textMain group-hover:text-primary transition-colors">
+                            class="flex justify-between items-center p-6 cursor-pointer list-none font-semibold text-lg text-textMain group-hover:text-primary transition-colors">
                             How do I submit my music to WaveKind FM?
                             <span class="transition transform group-open:rotate-180"><i
                                     class="bi bi-chevron-down text-textMuted group-hover:text-primary"></i></span>
@@ -1846,7 +1848,7 @@
 
                     <details class="pro-card bg-card group [&_summary::-webkit-details-marker]:hidden">
                         <summary
-                            class="flex justify-between items-center p-6 cursor-pointer list-none font-bold text-lg text-textMain group-hover:text-primary transition-colors">
+                            class="flex justify-between items-center p-6 cursor-pointer list-none font-semibold text-lg text-textMain group-hover:text-primary transition-colors">
                             Is WaveKind FM free to listen to?
                             <span class="transition transform group-open:rotate-180"><i
                                     class="bi bi-chevron-down text-textMuted group-hover:text-primary"></i></span>
@@ -1859,7 +1861,7 @@
 
                     <details class="pro-card bg-card group [&_summary::-webkit-details-marker]:hidden">
                         <summary
-                            class="flex justify-between items-center p-6 cursor-pointer list-none font-bold text-lg text-textMain group-hover:text-primary transition-colors">
+                            class="flex justify-between items-center p-6 cursor-pointer list-none font-semibold text-lg text-textMain group-hover:text-primary transition-colors">
                             How can I become a volunteer?
                             <span class="transition transform group-open:rotate-180"><i
                                     class="bi bi-chevron-down text-textMuted group-hover:text-primary"></i></span>
@@ -1872,7 +1874,7 @@
 
                     <details class="pro-card bg-card group [&_summary::-webkit-details-marker]:hidden">
                         <summary
-                            class="flex justify-between items-center p-6 cursor-pointer list-none font-bold text-lg text-textMain group-hover:text-primary transition-colors">
+                            class="flex justify-between items-center p-6 cursor-pointer list-none font-semibold text-lg text-textMain group-hover:text-primary transition-colors">
                             Does the station host live events?
                             <span class="transition transform group-open:rotate-180"><i
                                     class="bi bi-chevron-down text-textMuted group-hover:text-primary"></i></span>
@@ -1896,7 +1898,7 @@
                 </div>
 
                 <div class="relative z-10">
-                    <h2 class="text-3xl md:text-5xl font-extrabold mb-5 text-white">Support <span
+                    <h2 class="text-3xl md:text-5xl font-semibold mb-5 text-white">Support <span
                             class="text-[#14110e]">Independent Radio</span></h2>
                     <p class="text-lg text-white mb-10 max-w-2xl mx-auto font-medium">Become a member. Enjoy ad-free
                         podcasts, early event access, and high-quality streams from $5/month.</p>
@@ -1985,14 +1987,14 @@
                     <div class="absolute inset-0 border border-white/10 rounded-2xl pointer-events-none"></div>
                 </div>
                 <span
-                    class="text-[10px] font-bold text-accent uppercase tracking-widest mb-1 bg-accent/10 px-2 py-0.5 rounded border border-accent/20"
+                    class="text-[10px] font-semibold text-accent uppercase tracking-widest mb-1 bg-accent/10 px-2 py-0.5 rounded border border-accent/20"
                     id="playerStatus"><i class="bi bi-broadcast me-1"></i>Now On Air</span>
-                <h3 class="text-2xl sm:text-3xl font-black text-textMain mb-1 text-center truncate w-full"
+                <h3 class="text-2xl sm:text-3xl font-semibold text-textMain mb-1 text-center truncate w-full"
                     id="playerTitle">The Underground Hour</h3>
                 <p class="text-textMuted font-medium text-sm mb-6 text-center" id="playerShow">WaveKind FM Live</p>
 
                 <div class="w-full mb-6 relative">
-                    <div class="flex justify-between text-xs font-mono font-bold text-textMuted mb-2">
+                    <div class="flex justify-between text-xs font-mono font-semibold text-textMuted mb-2">
                         <span id="playerCurrentTime" class="text-accent">LIVE</span>
                         <span id="playerDuration">--:--</span>
                     </div>
@@ -2026,7 +2028,7 @@
             <div class="flex items-center gap-3 overflow-hidden cursor-pointer" id="miniPlayerTrackInfo">
                 <img src="Asserts/Images/Hero1.avif" alt="Cover" class="w-12 h-12 rounded-lg object-cover shadow-md flex-shrink-0">
                 <div class="overflow-hidden">
-                    <p class="text-sm font-bold text-textMain truncate leading-tight">The Underground Hour</p>
+                    <p class="text-sm font-semibold text-textMain truncate leading-tight">The Underground Hour</p>
                     <p class="text-xs text-textMuted font-medium truncate">WaveKind FM • LIVE</p>
                 </div>
             </div>

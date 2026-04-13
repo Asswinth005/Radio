@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="scroll-smooth" data-theme="dark">
 
@@ -57,7 +57,7 @@
     <style>
         :root {
             --accent: #ff4d6d;
-            --accent-dark: #e63956;
+            --accent-dark: #ff4d6d;
             --secondary: #6366f1;
             --bg: #ffffff;
             --bg-glass: rgba(254, 252, 248, 0.7);
@@ -72,7 +72,7 @@
 
         [data-theme="dark"] {
             --accent: #ff4d6d;
-            --accent-dark: #e63956;
+            --accent-dark: #ff4d6d;
             --secondary: #6366f1;
             --bg: #111827;
             --bg-glass: rgba(20, 17, 14, 0.7);
@@ -509,7 +509,7 @@
                     <i class="bi bi-broadcast-pin text-lg"></i>
                 </div>
                 <span
-                    class="font-extrabold text-[1.5rem] tracking-tight text-textMain group-hover:text-accent transition-colors">WaveKind
+                    class="font-semibold text-[1.5rem] tracking-tight text-textMain group-hover:text-accent transition-colors">WaveKind
                     FM</span>
             </a>
             <button id="closeSidebar" class="lg:hidden ml-auto text-textMuted hover:text-accent text-2xl"><i
@@ -517,7 +517,7 @@
         </div>
 
         <div class="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-1 hide-scrollbar">
-            <p class="text-xs font-bold text-textMuted uppercase tracking-widest px-2 mb-2 mt-2">Main</p>
+            <p class="text-xs font-semibold text-textMuted uppercase tracking-widest px-2 mb-2 mt-2">Main</p>
             <a href="#" class="sidebar-link active" data-page="dashboard"><i
                     class="bi bi-grid-1x2-fill"></i><span>Dashboard</span></a>
             <a href="#" class="sidebar-link" data-page="nowplaying"><i class="bi bi-play-circle-fill"></i><span>Now
@@ -525,7 +525,7 @@
             <a href="#" class="sidebar-link" data-page="subscriptions"><i
                     class="bi bi-collection-play-fill"></i><span>Subscriptions</span></a>
 
-            <p class="text-xs font-bold text-textMuted uppercase tracking-widest px-2 mb-2 mt-6">Library & Account</p>
+            <p class="text-xs font-semibold text-textMuted uppercase tracking-widest px-2 mb-2 mt-6">Library & Account</p>
             <a href="#" class="sidebar-link" data-page="history"><i
                     class="bi bi-clock-history"></i><span>History</span></a>
             <a href="#" class="sidebar-link" data-page="saved"><i class="bi bi-bookmark-heart-fill"></i><span>Saved
@@ -557,10 +557,10 @@
                         <i class="bi bi-broadcast-pin"></i>
                     </div>
                     <span
-                        class="font-black text-xl tracking-tight text-textMain group-hover:text-accent transition-colors">WaveKind
+                        class="font-semibold text-xl tracking-tight text-textMain group-hover:text-accent transition-colors">WaveKind
                         FM</span>
                 </a>
-                <h2 class="font-bold text-xl text-textMain hidden lg:block hover-double-color cursor-default"
+                <h2 class="font-semibold text-xl text-textMain hidden lg:block hover-double-color cursor-default"
                     id="pageTitle">My Dashboard</h2>
             </div>
             <div class="flex items-center gap-3 sm:gap-4">
@@ -574,7 +574,7 @@
                     <div id="notifDropdown"
                         class="absolute top-full right-0 mt-4 w-80 bg-card border border-border rounded-2xl shadow-xl opacity-0 invisible transition-all duration-200 z-50 transform translate-y-2">
                         <div class="p-4 border-b border-border flex justify-between items-center bg-bg2 rounded-t-2xl">
-                            <h4 class="font-bold text-textMain">Notifications</h4>
+                            <h4 class="font-semibold text-textMain">Notifications</h4>
                             <span class="text-xs text-accent font-semibold hover:underline">Mark all read</span>
                         </div>
                         <div class="p-2 max-h-72 overflow-y-auto">
@@ -586,7 +586,7 @@
                                     </div>
                                     <div>
                                         <p
-                                            class="text-sm font-bold text-textMain group-hover:text-accent transition-colors">
+                                            class="text-sm font-semibold text-textMain group-hover:text-accent transition-colors">
                                             New Episode Released!</p>
                                         <p class="text-xs text-textMuted mt-1 leading-relaxed">Tech Unfiltered Ep 42 is
                                             out now. Dive into the latest web trends.</p>
@@ -602,7 +602,7 @@
                                     </div>
                                     <div>
                                         <p
-                                            class="text-sm font-bold text-textMain group-hover:text-secondary transition-colors">
+                                            class="text-sm font-semibold text-textMain group-hover:text-secondary transition-colors">
                                             PRO Pass Expiring Soon</p>
                                         <p class="text-xs text-textMuted mt-1 leading-relaxed">Your premium membership
                                             expires in 3 days. Renew now to keep ad-free listening.</p>
@@ -616,7 +616,7 @@
 
                 <div class="flex items-center gap-3 pl-2 sm:pl-4 sm:border-l border-border cursor-pointer group">
                     <div class="hidden sm:flex flex-col items-end">
-                        <span class="text-sm font-bold text-textMain group-hover:text-accent transition-colors">Sarah
+                        <span class="text-sm font-semibold text-textMain group-hover:text-accent transition-colors">Sarah
                             Jenkins</span>
                         <span class="text-xs text-textMuted">Pro Member</span>
                     </div>
@@ -632,7 +632,7 @@
 
                 <div id="dashboard-page" class="page-section active-section">
                     <div class="reveal pt-4">
-                        <h1 class="text-3xl md:text-5xl font-black text-textMain mb-2 leading-tight">Good evening, <span
+                        <h1 class="text-3xl md:text-5xl font-semibold text-textMain mb-2 leading-tight">Good evening, <span
                                 class="text-accent underline decoration-secondary decoration-4 underline-offset-8">Sarah!</span>
                             👋</h1>
                         <p class="text-textMuted mb-10 text-sm md:text-lg font-medium opacity-80">Discover your next
@@ -646,9 +646,9 @@
                                     <i class="bi bi-soundwave text-[12rem]"></i>
                                 </div>
                                 <div>
-                                    <p class="text-xs font-bold text-white/80 uppercase tracking-widest mb-1">Total
+                                    <p class="text-xs font-semibold text-white/80 uppercase tracking-widest mb-1">Total
                                         Listening Time</p>
-                                    <h3 class="text-4xl sm:text-5xl font-black text-white">124 <span
+                                    <h3 class="text-4xl sm:text-5xl font-semibold text-white">124 <span
                                             class="text-lg sm:text-xl font-semibold text-white/80">hours</span></h3>
                                 </div>
                                 <div class="mt-8 flex items-end justify-between relative z-10">
@@ -659,7 +659,7 @@
                                         <div class="bar bg-white/60"></div>
                                         <div class="bar bg-white/90"></div>
                                     </div><span
-                                        class="bg-white/10 backdrop-blur-md text-white font-bold px-4 py-2 rounded-xl text-sm border border-white/20 shadow-lg">Top
+                                        class="bg-white/10 backdrop-blur-md text-white font-semibold px-4 py-2 rounded-xl text-sm border border-white/20 shadow-lg">Top
                                         5% Listener</span>
                                 </div>
                             </div>
@@ -667,9 +667,9 @@
                                 <div
                                     class="bg-card border border-border p-5 rounded-3xl shadow-sm flex items-center justify-between hover:border-secondary transition-colors group cursor-pointer">
                                     <div>
-                                        <p class="text-[10px] font-bold text-textMuted uppercase tracking-widest mb-1">
+                                        <p class="text-[10px] font-semibold text-textMuted uppercase tracking-widest mb-1">
                                             Saved Shows</p>
-                                        <h3 class="text-3xl font-black text-textMain">18</h3>
+                                        <h3 class="text-3xl font-semibold text-textMain">18</h3>
                                     </div>
                                     <div
                                         class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center text-xl text-secondary group-hover:rotate-12 transition-transform">
@@ -679,9 +679,9 @@
                                 <div
                                     class="bg-card border border-border p-5 rounded-3xl shadow-sm flex items-center justify-between hover:border-accent transition-colors group cursor-pointer">
                                     <div>
-                                        <p class="text-[10px] font-bold text-textMuted uppercase tracking-widest mb-1">
+                                        <p class="text-[10px] font-semibold text-textMuted uppercase tracking-widest mb-1">
                                             Current Streak</p>
-                                        <h3 class="text-3xl font-black text-textMain">12 <span
+                                        <h3 class="text-3xl font-semibold text-textMain">12 <span
                                                 class="text-sm font-semibold text-textMuted">days</span></h3>
                                     </div>
                                     <div
@@ -693,7 +693,7 @@
                         </div>
 
                         <div class="flex justify-between items-end mb-4">
-                            <h3 class="text-xl font-bold text-textMain">Recommended for You</h3>
+                            <h3 class="text-xl font-semibold text-textMain">Recommended for You</h3>
                             <a href="#" class="text-sm text-accent hover:underline font-semibold">View All</a>
                         </div>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -701,28 +701,28 @@
                                 class="bg-card border border-border p-3 rounded-2xl cursor-pointer group hover:shadow-xl hover:border-accent/40 transition-all transform hover:-translate-y-1">
                                 <img src="../../Asserts/Images/Showsgrid1.webp"
                                     class="w-full aspect-square object-cover rounded-xl mb-3 group-hover:scale-105 transition-transform duration-500">
-                                <h4 class="font-bold text-sm truncate">The Frontend Shift</h4>
+                                <h4 class="font-semibold text-sm truncate">The Frontend Shift</h4>
                                 <p class="text-xs text-textMuted">Code & Coffee</p>
                             </div>
                             <div
                                 class="bg-card border border-border p-3 rounded-2xl cursor-pointer group hover:shadow-xl hover:border-accent/40 transition-all transform hover:-translate-y-1">
                                 <img src="../../Asserts/Images/Showsgrid2.avif"
                                     class="w-full aspect-square object-cover rounded-xl mb-3 group-hover:scale-105 transition-transform duration-500">
-                                <h4 class="font-bold text-sm truncate">Mindful Mornings</h4>
+                                <h4 class="font-semibold text-sm truncate">Mindful Mornings</h4>
                                 <p class="text-xs text-textMuted">Wellness Daily</p>
                             </div>
                             <div
                                 class="bg-card border border-border p-3 rounded-2xl cursor-pointer group hover:shadow-xl hover:border-accent/40 transition-all transform hover:-translate-y-1">
                                 <img src="../../Asserts/Images/Showsgrid3.webp"
                                     class="w-full aspect-square object-cover rounded-xl mb-3 group-hover:scale-105 transition-transform duration-500">
-                                <h4 class="font-bold text-sm truncate">Indie Beats</h4>
+                                <h4 class="font-semibold text-sm truncate">Indie Beats</h4>
                                 <p class="text-xs text-textMuted">Music Weekly</p>
                             </div>
                             <div
                                 class="bg-card border border-border p-3 rounded-2xl cursor-pointer group hover:shadow-xl hover:border-accent/40 transition-all transform hover:-translate-y-1">
                                 <img src="../../Asserts/Images/Showsgrid4.avif"
                                     class="w-full aspect-square object-cover rounded-xl mb-3 group-hover:scale-105 transition-transform duration-500">
-                                <h4 class="font-bold text-sm truncate">Market Movers</h4>
+                                <h4 class="font-semibold text-sm truncate">Market Movers</h4>
                                 <p class="text-xs text-textMuted">Finance Today</p>
                             </div>
                         </div>
@@ -731,10 +731,10 @@
                             <div
                                 class="bg-card border border-border p-6 rounded-3xl flex flex-col h-full shadow-sm hover:border-accent transition-colors group">
                                 <div class="flex justify-between items-center mb-6">
-                                    <h3 class="text-xl font-bold text-textMain"><i
+                                    <h3 class="text-xl font-semibold text-textMain"><i
                                             class="bi bi-broadcast text-accent mr-2"></i>Upcoming Live</h3>
                                     <span
-                                        class="text-xs font-bold text-secondary bg-secondary/10 px-3 py-1 rounded-full flex items-center gap-1.5"><span
+                                        class="text-xs font-semibold text-secondary bg-secondary/10 px-3 py-1 rounded-full flex items-center gap-1.5"><span
                                             class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>Live
                                         Now</span>
                                 </div>
@@ -742,7 +742,7 @@
                                     <div
                                         class="flex gap-4 items-center cursor-pointer hover:bg-bg2 p-2 -mx-2 rounded-xl transition-colors group/item">
                                         <div class="w-12 text-center shrink-0">
-                                            <p class="text-[10px] font-bold text-secondary uppercase animate-pulse">Now
+                                            <p class="text-[10px] font-semibold text-secondary uppercase animate-pulse">Now
                                             </p>
                                         </div>
                                         <div
@@ -750,7 +750,7 @@
                                         </div>
                                         <div class="flex-1">
                                             <h4
-                                                class="font-bold text-sm text-textMain group-hover/item:text-accent transition-colors">
+                                                class="font-semibold text-sm text-textMain group-hover/item:text-accent transition-colors">
                                                 Morning Mix w/ Nova</h4>
                                             <p class="text-xs text-textMuted mt-0.5">Electronic & Ambient</p>
                                         </div>
@@ -761,7 +761,7 @@
                                     <div
                                         class="flex gap-4 items-center cursor-pointer hover:bg-bg2 p-2 -mx-2 rounded-xl transition-colors group/item">
                                         <div class="w-12 text-center shrink-0">
-                                            <p class="text-xs font-bold text-textMain">10:00</p>
+                                            <p class="text-xs font-semibold text-textMain">10:00</p>
                                             <p class="text-[9px] text-textMuted uppercase tracking-wider">AM</p>
                                         </div>
                                         <div
@@ -769,7 +769,7 @@
                                         </div>
                                         <div class="flex-1">
                                             <h4
-                                                class="font-bold text-sm text-textMain group-hover/item:text-accent transition-colors">
+                                                class="font-semibold text-sm text-textMain group-hover/item:text-accent transition-colors">
                                                 Tech Unfiltered Live</h4>
                                             <p class="text-xs text-textMuted mt-0.5">Gadgets & Code Talk</p>
                                         </div>
@@ -779,7 +779,7 @@
                                     <div
                                         class="flex gap-4 items-center cursor-pointer hover:bg-bg2 p-2 -mx-2 rounded-xl transition-colors group/item">
                                         <div class="w-12 text-center shrink-0">
-                                            <p class="text-xs font-bold text-textMain">12:30</p>
+                                            <p class="text-xs font-semibold text-textMain">12:30</p>
                                             <p class="text-[9px] text-textMuted uppercase tracking-wider">PM</p>
                                         </div>
                                         <div
@@ -787,7 +787,7 @@
                                         </div>
                                         <div class="flex-1">
                                             <h4
-                                                class="font-bold text-sm text-textMain group-hover/item:text-accent transition-colors">
+                                                class="font-semibold text-sm text-textMain group-hover/item:text-accent transition-colors">
                                                 Indie Lunch Hour</h4>
                                             <p class="text-xs text-textMuted mt-0.5">Alternative Rock</p>
                                         </div>
@@ -796,64 +796,64 @@
                                     </div>
                                 </div>
                                 <button
-                                    class="w-full mt-4 py-3 rounded-xl border-2 border-dashed border-border text-sm font-bold text-textMain hover:bg-bg2 hover:border-accent hover:text-accent transition-all mt-auto">View
+                                    class="w-full mt-4 py-3 rounded-xl border-2 border-dashed border-border text-sm font-semibold text-textMain hover:bg-bg2 hover:border-accent hover:text-accent transition-all mt-auto">View
                                     Full Schedule</button>
                             </div>
 
                             <div
                                 class="bg-card border border-border p-6 rounded-3xl flex flex-col h-full shadow-sm hover:border-accent transition-colors group">
                                 <div class="flex justify-between items-center mb-6">
-                                    <h3 class="text-xl font-bold text-textMain"><i
+                                    <h3 class="text-xl font-semibold text-textMain"><i
                                             class="bi bi-bar-chart-fill text-accent mr-2"></i>Top Charts</h3>
                                     <select
-                                        class="bg-bg2 text-xs font-bold text-textMain px-2 py-1.5 rounded-lg border border-border outline-none focus:border-accent cursor-pointer">
+                                        class="bg-bg2 text-xs font-semibold text-textMain px-2 py-1.5 rounded-lg border border-border outline-none focus:border-accent cursor-pointer">
                                         <option>This Week</option>
                                         <option>This Month</option>
                                     </select>
                                 </div>
                                 <div class="space-y-4 flex-1 mt-1">
                                     <div class="flex items-center gap-4 group/item cursor-pointer">
-                                        <span class="w-6 text-center font-black text-xl text-accent">1</span>
+                                        <span class="w-6 text-center font-semibold text-xl text-accent">1</span>
                                         <img src="../../Asserts/Images/HomeLatest1.webp"
                                             class="w-12 h-12 rounded-xl object-cover shadow-sm group-hover/item:scale-110 transition-transform duration-300" />
                                         <div class="flex-1">
                                             <h4
-                                                class="font-bold text-sm text-textMain group-hover/item:text-accent transition-colors">
+                                                class="font-semibold text-sm text-textMain group-hover/item:text-accent transition-colors">
                                                 The Social Outage</h4>
                                             <p class="text-xs text-textMuted mt-0.5">Tech Unfiltered</p>
                                         </div>
                                         <div
-                                            class="text-[10px] bg-accent/10 text-accent font-bold px-2 py-1 rounded border border-accent/20 flex items-center gap-0.5">
+                                            class="text-[10px] bg-accent/10 text-accent font-semibold px-2 py-1 rounded border border-accent/20 flex items-center gap-0.5">
                                             <i class="bi bi-arrow-up-short text-sm -my-1"></i>2
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-4 group/item cursor-pointer">
-                                        <span class="w-6 text-center font-black text-xl text-textMuted/70">2</span>
+                                        <span class="w-6 text-center font-semibold text-xl text-textMuted/70">2</span>
                                         <img src="../../Asserts/Images/Showsgrid5.avif"
                                             class="w-12 h-12 rounded-xl object-cover shadow-sm group-hover/item:scale-110 transition-transform duration-300" />
                                         <div class="flex-1">
                                             <h4
-                                                class="font-bold text-sm text-textMain group-hover/item:text-accent transition-colors">
+                                                class="font-semibold text-sm text-textMain group-hover/item:text-accent transition-colors">
                                                 Mindful Mornings Ep 5</h4>
                                             <p class="text-xs text-textMuted mt-0.5">Wellness Daily</p>
                                         </div>
                                         <div
-                                            class="text-[10px] bg-textMuted/10 text-textMuted font-bold px-2 py-1 rounded border border-border flex items-center gap-0.5">
+                                            class="text-[10px] bg-textMuted/10 text-textMuted font-semibold px-2 py-1 rounded border border-border flex items-center gap-0.5">
                                             <i class="bi bi-dash text-sm -my-1"></i>
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-4 group/item cursor-pointer">
-                                        <span class="w-6 text-center font-black text-xl text-textMuted/70">3</span>
+                                        <span class="w-6 text-center font-semibold text-xl text-textMuted/70">3</span>
                                         <img src="../../Asserts/Images/Showsgrid6.avif"
                                             class="w-12 h-12 rounded-xl object-cover shadow-sm group-hover/item:scale-110 transition-transform duration-300" />
                                         <div class="flex-1">
                                             <h4
-                                                class="font-bold text-sm text-textMain group-hover/item:text-accent transition-colors">
+                                                class="font-semibold text-sm text-textMain group-hover/item:text-accent transition-colors">
                                                 Indie Beats Weekly</h4>
                                             <p class="text-xs text-textMuted mt-0.5">Music Weekly</p>
                                         </div>
                                         <div
-                                            class="text-[10px] bg-secondary/10 text-secondary font-bold px-2 py-1 rounded border border-secondary/20 flex items-center gap-0.5">
+                                            class="text-[10px] bg-secondary/10 text-secondary font-semibold px-2 py-1 rounded border border-secondary/20 flex items-center gap-0.5">
                                             <i class="bi bi-arrow-down-short text-sm -my-1"></i>1
                                         </div>
                                     </div>
@@ -865,7 +865,7 @@
 
                 <div id="nowplaying-page" class="page-section">
                     <div class="reveal pt-4">
-                        <h1 class="text-3xl md:text-4xl font-black text-textMain mb-2">Now <span
+                        <h1 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Now <span
                                 class="text-accent">Playing</span></h1>
                         <p class="text-textMuted mb-8 text-sm md:text-base">What's currently on air</p>
 
@@ -883,9 +883,9 @@
                                         alt="Cover">
                                 </div>
                                 <div class="flex-1 w-full text-center md:text-left"><span
-                                        class="text-[10px] font-bold text-accent uppercase tracking-widest mb-1 block">Tech
+                                        class="text-[10px] font-semibold text-accent uppercase tracking-widest mb-1 block">Tech
                                         Unfiltered</span>
-                                    <h3 class="text-2xl sm:text-3xl font-black text-textMain mb-6">Ep 41: The Social
+                                    <h3 class="text-2xl sm:text-3xl font-semibold text-textMain mb-6">Ep 41: The Social
                                         Outage</h3>
                                     <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
                                         <button
@@ -893,7 +893,7 @@
                                                 class="bi bi-play-fill ml-1"></i></button>
                                         <div class="w-full flex-1">
                                             <div
-                                                class="flex justify-between text-xs font-mono font-bold text-textMain mb-2">
+                                                class="flex justify-between text-xs font-mono font-semibold text-textMain mb-2">
                                                 <span>38:12</span><span>-19:48</span>
                                             </div>
                                             <div
@@ -910,7 +910,7 @@
                             </div>
                         </div>
 
-                        <h3 class="text-xl font-bold text-textMain mb-4">Up Next in Queue</h3>
+                        <h3 class="text-xl font-semibold text-textMain mb-4">Up Next in Queue</h3>
                         <div class="flex flex-col gap-3">
                             <div
                                 class="bg-card border border-border p-3 pr-6 rounded-2xl flex items-center justify-between group hover:border-accent cursor-pointer transition-colors">
@@ -918,7 +918,7 @@
                                     <img src="../../Asserts/Images/Showsgrid7.avif"
                                         class="w-12 h-12 rounded-lg object-cover group-hover:scale-110 transition-transform">
                                     <div>
-                                        <h4 class="font-bold text-sm">Vinyl Frontier - 80s Classics</h4>
+                                        <h4 class="font-semibold text-sm">Vinyl Frontier - 80s Classics</h4>
                                         <p class="text-xs text-textMuted">Music • 45 min</p>
                                     </div>
                                 </div>
@@ -930,7 +930,7 @@
                                     <img src="../../Asserts/Images/Showsgrid8.avif"
                                         class="w-12 h-12 rounded-lg object-cover group-hover:scale-110 transition-transform">
                                     <div>
-                                        <h4 class="font-bold text-sm">Design Thinkers - Ep 12</h4>
+                                        <h4 class="font-semibold text-sm">Design Thinkers - Ep 12</h4>
                                         <p class="text-xs text-textMuted">Design • 32 min</p>
                                     </div>
                                 </div>
@@ -942,7 +942,7 @@
 
                 <div id="subscriptions-page" class="page-section">
                     <div class="reveal pt-4">
-                        <h1 class="text-3xl md:text-4xl font-black text-textMain mb-2">Your <span
+                        <h1 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Your <span
                                 class="text-accent">Subscriptions</span></h1>
                         <p class="text-textMuted mb-8 text-sm md:text-base">Shows you follow</p>
 
@@ -952,7 +952,7 @@
                                     class="story-ring transition-transform group-hover:scale-110 ring-offset-2 ring-offset-bg ring-2 ring-accent/30">
                                     <img src="../../Asserts/Images/AboutMember1.jpg.jpeg"
                                         class="w-20 h-20 rounded-full border-2 border-bg object-cover shadow-md"></div>
-                                <span class="text-sm font-bold text-textMain">Design Thinkers</span><span
+                                <span class="text-sm font-semibold text-textMain">Design Thinkers</span><span
                                     class="text-xs text-textMuted">24 episodes</span>
                             </div>
                             <div class="flex flex-col items-center gap-2 cursor-pointer group shrink-0">
@@ -960,7 +960,7 @@
                                     class="story-ring transition-transform group-hover:scale-110 ring-offset-2 ring-offset-bg ring-2 ring-accent/30">
                                     <img src="../../Asserts/Images/AboutMember2.jpg.jpeg"
                                         class="w-20 h-20 rounded-full border-2 border-bg object-cover shadow-md"></div>
-                                <span class="text-sm font-bold text-textMain">Daily Pulse</span><span
+                                <span class="text-sm font-semibold text-textMain">Daily Pulse</span><span
                                     class="text-xs text-textMuted">156 episodes</span>
                             </div>
                             <div class="flex flex-col items-center gap-2 cursor-pointer group shrink-0">
@@ -968,7 +968,7 @@
                                     class="story-ring transition-transform group-hover:scale-110 ring-offset-2 ring-offset-bg ring-2 ring-accent/30">
                                     <img src="../../Asserts/Images/AboutMember3.jpg.jpeg"
                                         class="w-20 h-20 rounded-full border-2 border-bg object-cover shadow-md"></div>
-                                <span class="text-sm font-bold text-textMain">The Indie Pulse</span><span
+                                <span class="text-sm font-semibold text-textMain">The Indie Pulse</span><span
                                     class="text-xs text-textMuted">89 episodes</span>
                             </div>
                             <div class="flex flex-col items-center gap-2 cursor-pointer group shrink-0">
@@ -976,27 +976,27 @@
                                     class="story-ring transition-transform group-hover:scale-110 ring-offset-2 ring-offset-bg ring-2 ring-accent/30">
                                     <img src="../../Asserts/Images/AboutMember4.jpg.jpeg"
                                         class="w-20 h-20 rounded-full border-2 border-bg object-cover shadow-md"></div>
-                                <span class="text-sm font-bold text-textMain">Code Talk</span><span
+                                <span class="text-sm font-semibold text-textMain">Code Talk</span><span
                                     class="text-xs text-textMuted">12 episodes</span>
                             </div>
                         </div>
 
-                        <h3 class="text-xl font-bold text-textMain mb-4">Explore Categories</h3>
+                        <h3 class="text-xl font-semibold text-textMain mb-4">Explore Categories</h3>
                         <div class="flex flex-wrap gap-3 mb-10">
                             <span
-                                class="px-5 py-2.5 bg-card border border-border rounded-full text-sm font-bold cursor-pointer hover:border-accent transition-colors">💻
+                                class="px-5 py-2.5 bg-card border border-border rounded-full text-sm font-semibold cursor-pointer hover:border-accent transition-colors">💻
                                 Technology</span>
                             <span
-                                class="px-5 py-2.5 bg-card border border-border rounded-full text-sm font-bold cursor-pointer hover:border-accent transition-colors">🎨
+                                class="px-5 py-2.5 bg-card border border-border rounded-full text-sm font-semibold cursor-pointer hover:border-accent transition-colors">🎨
                                 Design</span>
                             <span
-                                class="px-5 py-2.5 bg-card border border-border rounded-full text-sm font-bold cursor-pointer hover:border-accent transition-colors">🎵
+                                class="px-5 py-2.5 bg-card border border-border rounded-full text-sm font-semibold cursor-pointer hover:border-accent transition-colors">🎵
                                 Music</span>
                             <span
-                                class="px-5 py-2.5 bg-card border border-border rounded-full text-sm font-bold cursor-pointer hover:border-accent transition-colors">📈
+                                class="px-5 py-2.5 bg-card border border-border rounded-full text-sm font-semibold cursor-pointer hover:border-accent transition-colors">📈
                                 Business</span>
                             <span
-                                class="px-5 py-2.5 bg-card border border-border rounded-full text-sm font-bold cursor-pointer hover:border-accent transition-colors">🧘
+                                class="px-5 py-2.5 bg-card border border-border rounded-full text-sm font-semibold cursor-pointer hover:border-accent transition-colors">🧘
                                 Wellness</span>
                         </div>
 
@@ -1008,12 +1008,12 @@
                                     <i class="bi bi-star-fill"></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-black text-lg">Premium Early Access</h3>
+                                    <h3 class="font-semibold text-lg">Premium Early Access</h3>
                                     <p class="text-sm text-textMuted">Get episodes 24 hours before public release</p>
                                 </div>
                             </div>
                             <button
-                                class="btn-primary-custom py-2 px-6 rounded-xl font-bold w-full md:w-auto">Upgrade</button>
+                                class="btn-primary-custom py-2 px-6 rounded-xl font-semibold w-full md:w-auto">Upgrade</button>
                         </div>
                     </div>
                 </div>
@@ -1021,10 +1021,10 @@
                 <div id="history-page" class="page-section">
                     <div class="reveal pt-4">
                         <div class="flex justify-between items-end mb-2">
-                            <h1 class="text-3xl md:text-4xl font-black text-textMain">Listening <span
+                            <h1 class="text-3xl md:text-4xl font-semibold text-textMain">Listening <span
                                     class="text-accent">History</span></h1>
                             <button
-                                class="text-sm text-textMuted hover:text-secondary font-bold flex items-center gap-1 transition-colors"><i
+                                class="text-sm text-textMuted hover:text-secondary font-semibold flex items-center gap-1 transition-colors"><i
                                     class="bi bi-trash3"></i> Clear</button>
                         </div>
                         <p class="text-textMuted mb-8 text-sm md:text-base">Your recently played episodes</p>
@@ -1035,13 +1035,13 @@
                                     <div
                                         class="absolute left-[11px] top-1.5 w-2.5 h-2.5 rounded-full bg-accent ring-4 ring-bg">
                                     </div>
-                                    <p class="text-[10px] font-bold text-textMuted mb-1">Today, 9:30 AM</p>
+                                    <p class="text-[10px] font-semibold text-textMuted mb-1">Today, 9:30 AM</p>
                                     <div
                                         class="bg-card border border-border p-4 rounded-2xl flex gap-4 items-center hover:border-accent cursor-pointer transition-colors">
                                         <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&h=100&fit=crop"
                                             class="w-12 h-12 rounded-lg object-cover">
                                         <div>
-                                            <h4 class="font-bold text-sm">The Underground Hour (Live)</h4>
+                                            <h4 class="font-semibold text-sm">The Underground Hour (Live)</h4>
                                             <p class="text-xs text-textMuted">DJ Nova • Electronic</p>
                                         </div>
                                     </div>
@@ -1050,13 +1050,13 @@
                                     <div
                                         class="absolute left-[11px] top-1.5 w-2.5 h-2.5 rounded-full bg-border ring-4 ring-bg">
                                     </div>
-                                    <p class="text-[10px] font-bold text-textMuted mb-1">Yesterday, 8:15 PM</p>
+                                    <p class="text-[10px] font-semibold text-textMuted mb-1">Yesterday, 8:15 PM</p>
                                     <div
                                         class="bg-card border border-border p-4 rounded-2xl flex gap-4 items-center hover:border-accent cursor-pointer transition-colors">
                                         <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=100&h=100&fit=crop"
                                             class="w-12 h-12 rounded-lg object-cover">
                                         <div>
-                                            <h4 class="font-bold text-sm">Tech Unfiltered - Ep 41</h4>
+                                            <h4 class="font-semibold text-sm">Tech Unfiltered - Ep 41</h4>
                                             <p class="text-xs text-textMuted">Technology • 58 min</p>
                                         </div>
                                     </div>
@@ -1065,13 +1065,13 @@
                                     <div
                                         class="absolute left-[11px] top-1.5 w-2.5 h-2.5 rounded-full bg-border ring-4 ring-bg">
                                     </div>
-                                    <p class="text-[10px] font-bold text-textMuted mb-1">Monday, 10:00 AM</p>
+                                    <p class="text-[10px] font-semibold text-textMuted mb-1">Monday, 10:00 AM</p>
                                     <div
                                         class="bg-card border border-border p-4 rounded-2xl flex gap-4 items-center hover:border-accent cursor-pointer transition-colors">
                                         <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=100&h=100&fit=crop"
                                             class="w-12 h-12 rounded-lg object-cover">
                                         <div>
-                                            <h4 class="font-bold text-sm">Vinyl Frontier - 80s Classics</h4>
+                                            <h4 class="font-semibold text-sm">Vinyl Frontier - 80s Classics</h4>
                                             <p class="text-xs text-textMuted">Music • 45 min</p>
                                         </div>
                                     </div>
@@ -1080,13 +1080,13 @@
                                     <div
                                         class="absolute left-[11px] top-1.5 w-2.5 h-2.5 rounded-full bg-border ring-4 ring-bg">
                                     </div>
-                                    <p class="text-[10px] font-bold text-textMuted mb-1">Sunday, 2:00 PM</p>
+                                    <p class="text-[10px] font-semibold text-textMuted mb-1">Sunday, 2:00 PM</p>
                                     <div
                                         class="bg-card border border-border p-4 rounded-2xl flex gap-4 items-center hover:border-accent cursor-pointer transition-colors">
                                         <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=100&h=100&fit=crop"
                                             class="w-12 h-12 rounded-lg object-cover">
                                         <div>
-                                            <h4 class="font-bold text-sm">Mindful Mornings - Ep 5</h4>
+                                            <h4 class="font-semibold text-sm">Mindful Mornings - Ep 5</h4>
                                             <p class="text-xs text-textMuted">Wellness • 20 min</p>
                                         </div>
                                     </div>
@@ -1094,17 +1094,17 @@
                             </div>
 
                             <div class="bg-bg2 border border-border p-6 rounded-3xl h-fit">
-                                <h3 class="font-bold text-lg mb-4">This Week</h3>
+                                <h3 class="font-semibold text-lg mb-4">This Week</h3>
                                 <div class="space-y-4">
                                     <div class="flex justify-between items-center"><span
                                             class="text-sm text-textMuted">Episodes finished</span><span
-                                            class="font-bold">14</span></div>
+                                            class="font-semibold">14</span></div>
                                     <div class="flex justify-between items-center"><span
-                                            class="text-sm text-textMuted">Total time</span><span class="font-bold">12h
+                                            class="text-sm text-textMuted">Total time</span><span class="font-semibold">12h
                                             30m</span></div>
                                     <div class="flex justify-between items-center"><span
                                             class="text-sm text-textMuted">Top Genre</span><span
-                                            class="font-bold text-accent">Technology</span></div>
+                                            class="font-semibold text-accent">Technology</span></div>
                                 </div>
                             </div>
                         </div>
@@ -1113,7 +1113,7 @@
 
                 <div id="saved-page" class="page-section">
                     <div class="reveal pt-4">
-                        <h1 class="text-3xl md:text-4xl font-black text-textMain mb-2">Saved <span
+                        <h1 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Saved <span
                                 class="text-accent">Shows</span></h1>
                         <p class="text-textMuted mb-8 text-sm md:text-base">Your curated collection</p>
 
@@ -1126,7 +1126,7 @@
                                 </div>
                                 <div
                                     class="absolute inset-0 p-8 flex flex-col justify-end transform group-hover:translate-y-[-8px] transition-transform duration-500">
-                                    <h4 class="text-white font-black text-2xl tracking-tight">Ambient Nights</h4>
+                                    <h4 class="text-white font-semibold text-2xl tracking-tight">Ambient Nights</h4>
                                     <p class="text-white/70 text-sm font-semibold uppercase tracking-widest mt-1">12
                                         Episodes • 8h 45m</p>
                                 </div>
@@ -1143,7 +1143,7 @@
                                 </div>
                                 <div
                                     class="absolute inset-0 p-8 flex flex-col justify-end transform group-hover:translate-y-[-8px] transition-transform duration-500">
-                                    <h4 class="text-white font-black text-2xl tracking-tight">Synth History</h4>
+                                    <h4 class="text-white font-semibold text-2xl tracking-tight">Synth History</h4>
                                     <p class="text-white/70 text-sm font-semibold uppercase tracking-widest mt-1">8
                                         Episodes • 6h 20m</p>
                                 </div>
@@ -1159,7 +1159,7 @@
                                     class="w-12 h-12 rounded-full bg-border group-hover:bg-accent/20 flex items-center justify-center text-2xl text-textMuted group-hover:text-accent transition-colors">
                                     <i class="bi bi-plus-lg"></i>
                                 </div>
-                                <h4 class="font-bold text-textMain group-hover:text-accent transition-colors">Create
+                                <h4 class="font-semibold text-textMain group-hover:text-accent transition-colors">Create
                                     Playlist</h4>
                             </div>
                         </div>
@@ -1168,7 +1168,7 @@
 
                 <div id="membership-page" class="page-section">
                     <div class="reveal pt-4">
-                        <h1 class="text-3xl md:text-4xl font-black text-textMain mb-2">Membership <span
+                        <h1 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Membership <span
                                 class="text-accent">Status</span></h1>
                         <p class="text-textMuted mb-8 text-sm md:text-base">Your premium benefits</p>
 
@@ -1181,31 +1181,31 @@
                                             class="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center text-2xl text-white mb-4">
                                             <i class="bi bi-gem-fill"></i>
                                         </div>
-                                        <h4 class="text-xs font-bold text-white/80 uppercase tracking-widest mb-1">
+                                        <h4 class="text-xs font-semibold text-white/80 uppercase tracking-widest mb-1">
                                             Current Plan</h4>
-                                        <h3 class="text-3xl font-black text-white mb-2">PRO Pass</h3>
+                                        <h3 class="text-3xl font-semibold text-white mb-2">PRO Pass</h3>
                                         <p class="text-sm text-white/80">Active until May 15, 2026</p>
                                     </div>
                                     <div class="vip-stub"><span
-                                            class="text-xs font-mono font-bold tracking-[0.3em] text-textMuted uppercase">MEMBER#8921</span>
+                                            class="text-xs font-mono font-semibold tracking-[0.3em] text-textMuted uppercase">MEMBER#8921</span>
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-2 gap-4">
                                     <div class="bg-card border border-border p-4 rounded-xl text-center"><i
                                             class="bi bi-headphones text-2xl text-accent"></i>
-                                        <p class="text-sm font-bold mt-2">Ad-free</p>
+                                        <p class="text-sm font-semibold mt-2">Ad-free</p>
                                         <p class="text-xs text-textMuted">Uninterrupted listening</p>
                                     </div>
                                     <div class="bg-card border border-border p-4 rounded-xl text-center"><i
                                             class="bi bi-download text-2xl text-accent"></i>
-                                        <p class="text-sm font-bold mt-2">Offline</p>
+                                        <p class="text-sm font-semibold mt-2">Offline</p>
                                         <p class="text-xs text-textMuted">Download episodes</p>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="bg-card border border-border rounded-3xl p-6">
-                                <h3 class="font-bold text-lg mb-4">Billing History</h3>
+                                <h3 class="font-semibold text-lg mb-4">Billing History</h3>
                                 <div class="overflow-x-auto">
                                     <table class="w-full text-left text-sm">
                                         <thead>
@@ -1220,28 +1220,28 @@
                                                 <td class="py-3">May 15, 2025</td>
                                                 <td class="py-3 font-mono">$12.00</td>
                                                 <td class="py-3"><span
-                                                        class="px-2 py-1 bg-green-500/10 text-green-600 dark:text-green-400 rounded-md text-xs font-bold">Paid</span>
+                                                        class="px-2 py-1 bg-green-500/10 text-green-600 dark:text-green-400 rounded-md text-xs font-semibold">Paid</span>
                                                 </td>
                                             </tr>
                                             <tr class="border-b border-border/50">
                                                 <td class="py-3">Apr 15, 2025</td>
                                                 <td class="py-3 font-mono">$12.00</td>
                                                 <td class="py-3"><span
-                                                        class="px-2 py-1 bg-green-500/10 text-green-600 dark:text-green-400 rounded-md text-xs font-bold">Paid</span>
+                                                        class="px-2 py-1 bg-green-500/10 text-green-600 dark:text-green-400 rounded-md text-xs font-semibold">Paid</span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="py-3">Mar 15, 2025</td>
                                                 <td class="py-3 font-mono">$12.00</td>
                                                 <td class="py-3"><span
-                                                        class="px-2 py-1 bg-green-500/10 text-green-600 dark:text-green-400 rounded-md text-xs font-bold">Paid</span>
+                                                        class="px-2 py-1 bg-green-500/10 text-green-600 dark:text-green-400 rounded-md text-xs font-semibold">Paid</span>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                                 <button
-                                    class="w-full mt-4 py-2 border border-border rounded-xl text-sm font-bold hover:bg-bg2 transition-colors">Download
+                                    class="w-full mt-4 py-2 border border-border rounded-xl text-sm font-semibold hover:bg-bg2 transition-colors">Download
                                     Invoices</button>
                             </div>
                         </div>
@@ -1250,7 +1250,7 @@
 
                 <div id="donations-page" class="page-section">
                     <div class="reveal pt-4">
-                        <h1 class="text-3xl md:text-4xl font-black text-textMain mb-2">Support the <span
+                        <h1 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Support the <span
                                 class="text-accent">Station</span></h1>
                         <p class="text-textMuted mb-8 text-sm md:text-base">Keep independent radio alive</p>
 
@@ -1264,34 +1264,34 @@
                                     class="w-20 h-20 rounded-full bg-secondary/10 flex items-center justify-center text-3xl text-secondary mx-auto mb-4">
                                     <i class="bi bi-cup-hot-fill"></i>
                                 </div>
-                                <h3 class="text-2xl font-black">You've bought <span class="text-secondary">15
+                                <h3 class="text-2xl font-semibold">You've bought <span class="text-secondary">15
                                         coffees</span></h3>
                                 <p class="text-textMuted mt-2 mb-6 text-sm">Thank you for keeping us ad-free and running
                                     24/7!</p>
                                 <div class="flex flex-wrap gap-3 justify-center">
-                                    <button class="btn-outline py-2 px-5 rounded-xl font-bold text-sm">☕ $5</button>
-                                    <button class="btn-outline py-2 px-5 rounded-xl font-bold text-sm">🎙️ $25</button>
+                                    <button class="btn-outline py-2 px-5 rounded-xl font-semibold text-sm">☕ $5</button>
+                                    <button class="btn-outline py-2 px-5 rounded-xl font-semibold text-sm">🎙️ $25</button>
                                     <button
-                                        class="btn-primary-custom py-2 px-5 rounded-xl font-bold text-sm shadow-md">⭐
+                                        class="btn-primary-custom py-2 px-5 rounded-xl font-semibold text-sm shadow-md">⭐
                                         $50</button>
                                 </div>
                             </div>
 
                             <div class="bg-bg2 border border-border rounded-3xl p-6">
-                                <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i
+                                <h3 class="font-semibold text-lg mb-4 flex items-center gap-2"><i
                                         class="bi bi-people-fill text-accent"></i> Community Impact</h3>
                                 <p class="text-sm text-textMuted mb-6">Your contributions help us fund new indie
                                     creators and expand our bandwidth.</p>
                                 <div class="space-y-4">
                                     <div>
-                                        <div class="flex justify-between text-xs font-bold mb-1"><span>Server
+                                        <div class="flex justify-between text-xs font-semibold mb-1"><span>Server
                                                 Goal</span><span>80%</span></div>
                                         <div class="w-full h-2 bg-border rounded-full overflow-hidden">
                                             <div class="h-full bg-accent w-[80%] rounded-full"></div>
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="flex justify-between text-xs font-bold mb-1"><span>New Creator
+                                        <div class="flex justify-between text-xs font-semibold mb-1"><span>New Creator
                                                 Fund</span><span>45%</span></div>
                                         <div class="w-full h-2 bg-border rounded-full overflow-hidden">
                                             <div class="h-full bg-secondary w-[45%] rounded-full"></div>
@@ -1299,14 +1299,14 @@
                                     </div>
                                 </div>
                                 <div class="mt-6 pt-6 border-t border-border flex items-center justify-between">
-                                    <span class="text-sm font-bold text-textMain">Recent Supporters</span>
+                                    <span class="text-sm font-semibold text-textMain">Recent Supporters</span>
                                     <div class="flex -space-x-2">
                                         <img class="w-8 h-8 rounded-full border-2 border-bg object-cover"
                                             src="../../Asserts/Images/Home2User2.avif">
                                         <img class="w-8 h-8 rounded-full border-2 border-bg object-cover"
                                             src="../../Asserts/Images/Home2User3.avif">
                                         <div
-                                            class="w-8 h-8 rounded-full border-2 border-bg bg-bg3 text-xs flex items-center justify-center font-bold">
+                                            class="w-8 h-8 rounded-full border-2 border-bg bg-bg3 text-xs flex items-center justify-center font-semibold">
                                             +12</div>
                                     </div>
                                 </div>
@@ -1317,40 +1317,40 @@
 
                 <div id="settings-page" class="page-section">
                     <div class="reveal pt-4">
-                        <h1 class="text-3xl md:text-4xl font-black text-textMain mb-2">App <span
+                        <h1 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">App <span
                                 class="text-accent">Settings</span></h1>
                         <p class="text-textMuted mb-8 text-sm md:text-base">Customize your experience</p>
 
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                             <div class="bg-card border border-border rounded-2xl p-6 h-fit">
-                                <h3 class="font-bold text-lg mb-4">Profile Information</h3>
+                                <h3 class="font-semibold text-lg mb-4">Profile Information</h3>
                                 <form class="space-y-4">
                                     <div>
-                                        <label class="block text-xs font-bold text-textMuted mb-1">Full Name</label>
+                                        <label class="block text-xs font-semibold text-textMuted mb-1">Full Name</label>
                                         <input type="text" class="custom-input" value="Sarah Jenkins">
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-bold text-textMuted mb-1">Email Address</label>
+                                        <label class="block text-xs font-semibold text-textMuted mb-1">Email Address</label>
                                         <input type="email" class="custom-input" value="sarah.j@example.com">
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-bold text-textMuted mb-1">Bio</label>
+                                        <label class="block text-xs font-semibold text-textMuted mb-1">Bio</label>
                                         <textarea
                                             class="custom-input h-20 resize-none">Audiophile, developer, and coffee enthusiast.</textarea>
                                     </div>
                                     <button type="button"
-                                        class="btn-primary-custom py-2.5 px-6 rounded-xl font-bold text-sm">Save
+                                        class="btn-primary-custom py-2.5 px-6 rounded-xl font-semibold text-sm">Save
                                         Changes</button>
                                 </form>
                             </div>
 
                             <div>
-                                <h3 class="font-bold text-lg mb-4">Preferences</h3>
+                                <h3 class="font-semibold text-lg mb-4">Preferences</h3>
                                 <div class="bg-card border border-border rounded-2xl overflow-hidden">
                                     <div
                                         class="flex items-center justify-between p-5 border-b border-border hover:bg-bg2 transition-colors">
                                         <div>
-                                            <h4 class="font-bold text-sm">High Quality Audio</h4>
+                                            <h4 class="font-semibold text-sm">High Quality Audio</h4>
                                             <p class="text-xs text-textMuted mt-1">320kbps streaming (Uses more data)
                                             </p>
                                         </div>
@@ -1363,7 +1363,7 @@
                                     <div
                                         class="flex items-center justify-between p-5 border-b border-border hover:bg-bg2 transition-colors">
                                         <div>
-                                            <h4 class="font-bold text-sm">Email Digest</h4>
+                                            <h4 class="font-semibold text-sm">Email Digest</h4>
                                             <p class="text-xs text-textMuted mt-1">Receive weekly recommended updates
                                             </p>
                                         </div>
@@ -1375,7 +1375,7 @@
                                     </div>
                                     <div class="flex items-center justify-between p-5 hover:bg-bg2 transition-colors">
                                         <div>
-                                            <h4 class="font-bold text-sm">Auto-Play Queue</h4>
+                                            <h4 class="font-semibold text-sm">Auto-Play Queue</h4>
                                             <p class="text-xs text-textMuted mt-1">Play the next episode automatically
                                             </p>
                                         </div>
@@ -1398,17 +1398,17 @@
                                 class="w-24 h-24 rounded-full bg-secondary/10 flex items-center justify-center text-4xl text-secondary mx-auto mb-6">
                                 <i class="bi bi-box-arrow-left"></i>
                             </div>
-                            <h3 class="text-3xl font-black mb-3">Ready to leave?</h3>
+                            <h3 class="text-3xl font-semibold mb-3">Ready to leave?</h3>
                             <p class="text-textMuted mb-8 leading-relaxed">You'll be signed out of your account on this
                                 device. Your downloaded episodes will be preserved.</p>
 
                             <div class="flex flex-col gap-3">
                                 <button
-                                    class="bg-slate-900 border border-white/10 hover:bg-red-600 text-white px-8 py-3.5 rounded-xl font-bold w-full text-lg shadow-md transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"><i
+                                    class="bg-slate-900 border border-white/10 hover:bg-red-600 text-white px-8 py-3.5 rounded-xl font-semibold w-full text-lg shadow-md transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"><i
                                         class="bi bi-box-arrow-right mr-2"></i><a href="../../LoginPage.html"> Sign
                                         Out</a></button>
                                 <button onclick="document.querySelector('[data-page=\'dashboard\']').click()"
-                                    class="btn-outline px-8 py-3.5 rounded-xl font-bold w-full text-lg">Cancel, go
+                                    class="btn-outline px-8 py-3.5 rounded-xl font-semibold w-full text-lg">Cancel, go
                                     back</button>
                             </div>
                         </div>
@@ -1424,7 +1424,7 @@
                     <div>&copy; 2026 WaveKind FM. All rights reserved.</div>
                     <div class="flex gap-6">
                         <a href="../../index.html"
-                            class="hover:text-accent transition-colors font-bold text-textMain"><i
+                            class="hover:text-accent transition-colors font-semibold text-textMain"><i
                                 class="bi bi-arrow-left-short"></i> Back to Main Site</a>
                         <a href="#" class="hover:text-accent transition-colors">Support</a>
                         <a href="#" class="hover:text-accent transition-colors">Terms</a>

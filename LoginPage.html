@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="dark" dir="ltr" class="dark">
 <head>
     <meta charset="UTF-8">
@@ -58,7 +58,7 @@
                 @apply absolute top-1/2 -translate-y-1/2 text-gray-400 left-3 text-sm;
             }
             .form-label {
-                @apply block text-[var(--text-heading)] font-bold mb-0.5 text-[10px] md:text-xs uppercase tracking-wider;
+                @apply block text-[var(--text-heading)] font-semibold mb-0.5 text-[10px] md:text-xs uppercase tracking-wider;
             }
         }
     </style>
@@ -160,7 +160,7 @@
                 <div class="w-14 h-14 bg-[#ff4d6d]/10 rounded-2xl flex items-center justify-center mx-auto mb-3">
                     <i class="bi bi-headphones text-2xl text-[#ff4d6d]"></i>
                 </div>
-                <h1 class="text-xl md:text-2xl font-black text-[var(--text-heading)] mb-0.5">Welcome Back</h1>
+                <h1 class="text-xl md:text-2xl font-semibold text-[var(--text-heading)] mb-0.5">Welcome Back</h1>
                 <p class="text-[var(--text-main)] opacity-80 text-[11px] font-medium">Sign in to continue listening</p>
             </div>
 
@@ -191,10 +191,10 @@
                             <input type="checkbox" class="w-3.5 h-3.5 text-[#ff4d6d] rounded border-[var(--border-color)] focus:ring-[#ff4d6d] bg-transparent">
                             <span class="text-[var(--text-main)]">Remember me</span>
                         </label>
-                        <a href="#" class="text-[#ff4d6d] hover:underline font-bold transition-colors" onclick="showPasswordReset()">Forgot Password?</a>
+                        <a href="#" class="text-[#ff4d6d] hover:underline font-semibold transition-colors" onclick="showPasswordReset()">Forgot Password?</a>
                     </div>
 
-                    <button type="submit" class="w-full bg-[#ff4d6d] text-white hover:bg-white hover:text-[#ff4d6d] hover:border hover:border-[#ff4d6d] py-2 rounded-xl font-black text-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 border border-transparent cursor-pointer" id="loginButton">
+                    <button type="submit" class="w-full bg-[#ff4d6d] text-white hover:bg-white hover:text-[#ff4d6d] hover:border hover:border-[#ff4d6d] py-2 rounded-xl font-semibold text-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 border border-transparent cursor-pointer" id="loginButton">
                         <i class="bi bi-box-arrow-in-right mr-2"></i> Login Securely
                     </button>
                 </form>
@@ -202,7 +202,7 @@
                 <div class="mt-4 shrink-0">
                     <div class="relative flex items-center py-1.5 mb-3">
                         <div class="flex-grow border-t border-[var(--border-color)]"></div>
-                        <span class="flex-shrink-0 mx-3 text-[var(--text-main)] opacity-60 text-[9px] font-bold uppercase tracking-wider">Or continue with</span>
+                        <span class="flex-shrink-0 mx-3 text-[var(--text-main)] opacity-60 text-[9px] font-semibold uppercase tracking-wider">Or continue with</span>
                         <div class="flex-grow border-t border-[var(--border-color)]"></div>
                     </div>
 
@@ -222,7 +222,7 @@
 
                     <p class="text-center text-xs text-[var(--text-main)] font-medium pt-2 border-t border-[var(--border-color)]">
                         Don't have an account? 
-                        <a href="RegistrationPage.html" class="text-[#ff4d6d] font-bold hover:underline ml-1">Create Account</a>
+                        <a href="RegistrationPage.html" class="text-[#ff4d6d] font-semibold hover:underline ml-1">Create Account</a>
                     </p>
                 </div>
             </div>
@@ -236,7 +236,7 @@
             <div class="absolute top-0 left-0 w-full h-1.5 bg-[#ff4d6d]"></div>
             
             <div class="flex justify-between items-center mb-3 mt-1">
-                <h3 class="text-lg font-black text-[var(--text-heading)]">Reset Password</h3>
+                <h3 class="text-lg font-semibold text-[var(--text-heading)]">Reset Password</h3>
                 <button onclick="closePasswordReset()" class="text-[var(--text-main)] hover:text-[#ff4d6d] transition-colors cursor-pointer border-0 bg-transparent">
                     <i class="fas fa-times text-lg"></i>
                 </button>
@@ -251,7 +251,7 @@
                     <i class="fas fa-envelope input-icon"></i>
                     <input type="email" placeholder="alex@example.com" class="form-input py-2.5" id="resetEmail">
                 </div>
-                <button onclick="sendResetLink(event)" class="w-full bg-[#ff4d6d] hover:bg-white hover:text-[#ff4d6d] hover:border hover:border-[#ff4d6d] text-white py-2.5 rounded-xl font-black transition-all duration-300 text-sm shadow-md cursor-pointer border border-transparent">
+                <button onclick="sendResetLink(event)" class="w-full bg-[#ff4d6d] hover:bg-white hover:text-[#ff4d6d] hover:border hover:border-[#ff4d6d] text-white py-2.5 rounded-xl font-semibold transition-all duration-300 text-sm shadow-md cursor-pointer border border-transparent">
                     Send Reset Link
                 </button>
             </div>
