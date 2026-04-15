@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr" class="scroll-smooth" data-theme="dark">
 
 <head>
@@ -183,7 +183,7 @@
             -webkit-backdrop-filter: blur(16px);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
             border-bottom: 1px solid var(--border);
-            height: 75px;
+            height: 65px;
             transition: all 0.3s ease;
         }
 
@@ -363,7 +363,27 @@
         .pro-card:hover {
             border-color: var(--accent);
             transform: translateY(-4px);
-            box-shadow: 0 12px 20px -5px rgba(255, 77, 109, 0.15);
+            box-shadow: 0 12px 25px -5px rgba(255, 77, 109, 0.2);
+        }
+
+        .hero-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .hero-card:hover {
+            border-color: var(--accent) !important;
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 20px 40px -10px rgba(255, 77, 109, 0.3) !important;
+        }
+
+        @keyframes live-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(217, 4, 41, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(217, 4, 41, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(217, 4, 41, 0); }
+        }
+
+        .btn-pulse {
+            animation: live-pulse 2s infinite;
         }
 
         .show-img {
@@ -578,7 +598,7 @@
 
         .footer-newsletter {
             background: var(--bg2);
-            padding: 3rem 0;
+            padding: 2rem 0;
             border-bottom: 1px solid var(--border-footer);
         }
 
@@ -638,7 +658,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
-            padding: 4rem 2rem;
+            padding: 2.5rem 2rem;
             max-width: 100%;
             margin: 0 auto;
         }
@@ -1288,7 +1308,7 @@
     <main>
 
         <section id="hero"
-            class="relative w-full min-h-[65vh] md:min-h-screen flex items-center justify-center overflow-hidden border-b border-border group pt-16">
+            class="relative w-full min-h-[50vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden border-b border-border group pt-8">
             <div class="absolute inset-0 z-0 bg-[#14110e]"></div>
             <div class="absolute inset-0 z-0">
                 <img src="Asserts/Images/HomeHeroBG.avif"
@@ -1318,31 +1338,31 @@
                     </p>
 
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <button class="btn btn-primary-custom px-10 py-4 text-lg rounded-full border-0">
+                        <button class="btn btn-primary-custom btn-pulse px-10 py-4 text-lg rounded-full border-0">
                             <i class="bi bi-headphones"></i> Listen Live
                         </button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4 lg:gap-6 text-center">
-                    <div class="pro-card p-6 bg-[#1a1614]/60 backdrop-blur-md border !border-white/10 border-t-4 !border-t-accent"><i
+                    <div class="pro-card hero-card p-6 bg-[#1a1614]/60 backdrop-blur-md border !border-white/10 border-t-4 !border-t-accent"><i
                             class="bi bi-broadcast-pin text-4xl text-accent mb-4 block icon-hover"></i>
                         <div class="text-4xl font-semibold text-white mb-1 counter" data-target="24">0</div>
                         <p class="text-gray-400 text-xs font-semibold tracking-widest uppercase">Hours Live</p>
                     </div>
-                    <div class="pro-card p-6 bg-[#1a1614]/60 backdrop-blur-md border !border-white/10 border-t-4 !border-t-accent"><i
+                    <div class="pro-card hero-card p-6 bg-[#1a1614]/60 backdrop-blur-md border !border-white/10 border-t-4 !border-t-accent"><i
                             class="bi bi-mic text-4xl text-accent mb-4 block icon-hover"></i>
                         <div class="text-4xl font-semibold text-white mb-1"><span class="counter"
                                 data-target="140">0</span>+</div>
                         <p class="text-gray-400 text-xs font-semibold tracking-widest uppercase">Active Shows</p>
                     </div>
-                    <div class="pro-card p-6 bg-[#1a1614]/60 backdrop-blur-md border !border-white/10 border-t-4 !border-t-accent"><i
+                    <div class="pro-card hero-card p-6 bg-[#1a1614]/60 backdrop-blur-md border !border-white/10 border-t-4 !border-t-accent"><i
                             class="bi bi-headphones text-4xl text-accent mb-4 block icon-hover"></i>
                         <div class="text-4xl font-semibold text-white mb-1"><span class="counter"
                                 data-target="65">0</span>k</div>
                         <p class="text-gray-400 text-xs font-semibold tracking-widest uppercase">Monthly Listeners</p>
                     </div>
-                    <div class="pro-card p-6 bg-[#1a1614]/60 backdrop-blur-md border !border-white/10 border-t-4 !border-t-accent"><i
+                    <div class="pro-card hero-card p-6 bg-[#1a1614]/60 backdrop-blur-md border !border-white/10 border-t-4 !border-t-accent"><i
                             class="bi bi-collection-play text-4xl text-accent mb-4 block icon-hover"></i>
                         <div class="text-4xl font-semibold text-white mb-1"><span class="counter"
                                 data-target="1250">0</span>+</div>
@@ -1352,8 +1372,8 @@
             </div>
         </section>
 
-        <section class="px-6 max-w-4xl mx-auto -mt-10 sm:-mt-16 mb-16 sm:mb-20 reveal z-20 relative">
-            <div class="pro-card p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 relative shadow-xl">
+        <section class="px-6 max-w-4xl mx-auto -mt-6 sm:-mt-10 mb-10 sm:mb-8 reveal z-20 relative">
+            <div class="pro-card hero-card p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 relative shadow-xl">
                 <div
                     class="w-32 h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden flex-shrink-0 relative shadow-md bg-bg2 border border-border mx-auto sm:mx-0">
                     <div class="w-full h-full bg-cover bg-center show-img"
@@ -1395,10 +1415,10 @@
             </div>
         </section>
 
-        <section class="bg-bg2 py-16 px-6 border-y border-border reveal">
+        <section class="bg-bg2 py-8 px-6 border-y border-border reveal">
             <div class="max-w-[1200px] mx-auto">
                 <div
-                    class="flex flex-col sm:flex-row justify-between items-center sm:items-end mb-12 text-center sm:text-left gap-4">
+                    class="flex flex-col sm:flex-row justify-between items-center sm:items-end mb-8 text-center sm:text-left gap-4">
                     <div>
                         <h2 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Featured <span
                                 class="text-primary">Shows</span></h2>
@@ -1461,10 +1481,10 @@
             </div>
         </section>
 
-        <section class="bg-bg py-16 px-6 border-b border-border reveal">
+        <section class="bg-bg py-8 px-6 border-b border-border reveal">
             <div class="max-w-[1200px] mx-auto">
                 <div
-                    class="flex flex-col sm:flex-row justify-between items-center mb-12 gap-4 text-center sm:text-left">
+                    class="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4 text-center sm:text-left">
                     <div>
                         <h2 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Meet the <span
                                 class="text-primary">Voices</span></h2>
@@ -1548,9 +1568,9 @@
             </div>
         </section>
 
-        <section class="bg-bg2 py-16 px-6 border-b border-border reveal">
+        <section class="bg-bg2 py-8 px-6 border-b border-border reveal">
             <div class="max-w-[1200px] mx-auto">
-                <div class="text-center mb-12">
+                <div class="text-center mb-8">
                     <h2 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Latest <span
                             class="text-primary">Soundwaves</span></h2>
                     <p class="text-textMuted font-medium text-lg">Music news, artist interviews, and station updates.
@@ -1632,9 +1652,9 @@
             </div>
         </section>
 
-        <section id="schedule" class="bg-bg3 py-16 px-6 border-y border-border reveal relative">
+        <section id="schedule" class="bg-bg3 py-12 px-6 border-y border-border reveal relative">
             <div class="max-w-[1200px] mx-auto relative z-10">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
                     <div class="text-center md:text-left">
                         <h2 class="text-3xl md:text-4xl font-semibold mb-3 text-textMain">Broadcast <span
                                 class="text-primary">Schedule</span></h2>
@@ -1741,9 +1761,9 @@
             </div>
         </section>
 
-        <section class="bg-bg py-16 px-6 border-b border-border reveal">
+        <section class="bg-bg py-12 px-6 border-b border-border reveal">
             <div class="max-w-[1200px] mx-auto">
-                <div class="text-center mb-12">
+                <div class="text-center mb-8">
                     <h2 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Station <span
                             class="text-primary">Events</span></h2>
                     <p class="text-textMuted font-medium text-lg">Join us in person or tune in for special live
@@ -1783,7 +1803,7 @@
             </div>
         </section>
 
-        <section class="bg-bg2 py-16 px-6 border-b border-border reveal">
+        <section class="bg-bg2 py-8 px-6 border-b border-border reveal">
             <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
 
                 <div class="pro-card p-10 md:p-14 relative overflow-hidden group bg-card">
@@ -1825,9 +1845,9 @@
 
 
 
-        <section id="faq" class="bg-bg py-16 px-6 border-b border-border reveal">
+        <section id="faq" class="bg-bg py-8 px-6 border-b border-border reveal">
             <div class="max-w-3xl mx-auto">
-                <div class="text-center mb-12">
+                <div class="text-center mb-6">
                     <h2 class="text-3xl md:text-4xl font-semibold text-textMain mb-2">Frequently Asked <span
                             class="text-primary">Questions</span></h2>
                     <p class="text-textMuted font-medium text-lg">Everything you need to know about WaveKind FM.</p>
@@ -1889,9 +1909,9 @@
             </div>
         </section>
 
-        <section class="py-16 px-6 bg-bg2 reveal">
+        <section class="py-10 px-6 bg-bg2 reveal">
             <div
-                class="max-w-5xl mx-auto bg-[var(--accent)] rounded-3xl p-12 md:p-16 text-center relative overflow-hidden shadow-[0_20px_40px_-10px_rgba(224,124,60,0.3)] border border-[var(--accent-dark)]">
+                class="max-w-5xl mx-auto bg-[var(--accent)] rounded-3xl p-10 md:p-14 text-center relative overflow-hidden shadow-[0_20px_40px_-10px_rgba(224,124,60,0.3)] border border-[var(--accent-dark)]">
                 <div class="absolute -top-24 -right-24 w-64 h-64 bg-white opacity-10 rounded-full pointer-events-none">
                 </div>
                 <div
