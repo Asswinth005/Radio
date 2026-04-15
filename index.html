@@ -1649,112 +1649,137 @@
             </div>
         </section>
 
-        <section id="schedule" class="bg-bg3 py-12 px-6 border-y border-border reveal relative">
+        <section id="schedule" class="bg-bg3 py-16 px-6 border-y border-border reveal relative overflow-hidden">
+            <!-- Decorative Background Element -->
+            <div class="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/5 rounded-full blur-[100px] -mr-32 -mt-32"></div>
+            
             <div class="max-w-[1200px] mx-auto relative z-10">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
+                <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
                     <div class="text-center md:text-left">
-                        <h2 class="text-3xl md:text-4xl font-semibold mb-3 text-textMain">Broadcast <span
-                                class="text-primary">Schedule</span></h2>
-                        <p class="text-textMuted text-lg font-medium">Your weekly guide to on-air shows.</p>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4">
+                            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span> On-Air Updates
+                        </div>
+                        <h2 class="text-3xl md:text-5xl font-semibold mb-3 text-textMain tracking-tight">Broadcast <span class="text-primary">Schedule</span></h2>
+                        <p class="text-textMuted text-lg font-medium max-w-md">Your weekly guide to live sessions and guest curators.</p>
                     </div>
-                    <div
-                        class="flex flex-wrap justify-center gap-2 p-1.5 bg-card rounded-xl border border-border shadow-sm w-full md:w-auto">
-                        <button
-                            class="btn btn-primary-custom px-5 py-2.5 rounded-lg text-sm font-semibold border-0">MON</button>
-                        <button
-                            class="px-5 py-2.5 rounded-lg text-sm font-semibold text-textMain hover:bg-bg2 border-0 bg-transparent transition-colors">TUE</button>
-                        <button
-                            class="px-5 py-2.5 rounded-lg text-sm font-semibold text-textMain hover:bg-bg2 border-0 bg-transparent transition-colors">WED</button>
-                        <button
-                            class="px-5 py-2.5 rounded-lg text-sm font-semibold text-textMain hover:bg-bg2 border-0 bg-transparent transition-colors">THU</button>
-                        <button
-                            class="px-5 py-2.5 rounded-lg text-sm font-semibold text-textMain hover:bg-bg2 border-0 bg-transparent transition-colors">FRI</button>
+                    <div class="flex flex-wrap justify-center gap-2 p-1.5 bg-card/50 backdrop-blur-md rounded-2xl border border-white/5 shadow-xl w-full md:w-auto">
+                        <button class="btn btn-primary-custom px-6 py-2.5 rounded-xl text-sm font-bold border-0">MON</button>
+                        <button class="px-6 py-2.5 rounded-xl text-sm font-bold text-textMuted hover:text-textMain hover:bg-white/5 transition-all">TUE</button>
+                        <button class="px-6 py-2.5 rounded-xl text-sm font-bold text-textMuted hover:text-textMain hover:bg-white/5 transition-all">WED</button>
+                        <button class="px-6 py-2.5 rounded-xl text-sm font-bold text-textMuted hover:text-textMain hover:bg-white/5 transition-all">THU</button>
+                        <button class="px-6 py-2.5 rounded-xl text-sm font-bold text-textMuted hover:text-textMain hover:bg-white/5 transition-all">FRI</button>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="pro-card group flex flex-col">
-                        <div class="bg-bg2 border-b border-border p-4 flex justify-between items-center">
-                            <div class="flex items-center gap-2">
-                                <i class="bi bi-clock text-textMuted"></i>
-                                <span class="text-lg font-semibold text-textMain">07:00 AM</span>
-                            </div>
-                            <span class="bg-primary/10 text-primary text-xs font-semibold px-2 py-1 rounded">LIVE NOW</span>
-                        </div>
-                        <div class="p-6 flex flex-col flex-1">
-                            <div
-                                class="w-14 h-14 rounded-xl bg-bg border border-border flex items-center justify-center text-3xl text-primary mb-5 icon-hover">
-                                <i class="bi bi-cup-hot"></i>
-                            </div>
-                            <div class="text-primary font-semibold tracking-widest text-xs mb-1 uppercase">Morning Show
-                            </div>
-                            <h4 class="text-xl font-semibold text-textMain mb-2">Morning Brew</h4>
-                            <p class="text-textMuted text-sm mb-6 line-clamp-2">Local news, coffee reviews, and
-                                community interviews.</p>
-                            <div class="mt-auto border-t border-border pt-5 flex items-center justify-between">
-                                <span class="text-sm font-semibold text-textMuted">Studio A</span>
-                                <button
-                                    class="text-sm font-semibold text-textMain group-hover:text-primary transition-colors flex items-center gap-1 border-0 bg-transparent">
-                                    Tune In <i class="bi bi-play-circle-fill"></i>
-                                </button>
-                            </div>
-                        </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <!-- Schedule Card 1 -->
+    <div class="group flex flex-col bg-card rounded-[2rem] overflow-hidden border border-white/5 transition-all duration-500 hover:translate-y-[-10px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
+        <div class="relative h-56 overflow-hidden">
+            <img src="/Asserts/Images/coff.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Morning Brew">
+
+            <!-- Removed gradient overlay -->
+
+            <div class="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-widest">
+                <i class="bi bi-clock-fill text-primary"></i> 07:00 AM
+            </div>
+
+            <div class="absolute top-4 right-4 animate-pulse">
+                <span class="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-lg">LIVE NOW</span>
+            </div>
+        </div>
+
+        <div class="p-8 flex flex-col flex-1">
+            <div class="text-primary font-bold tracking-[0.2em] text-[10px] mb-2 uppercase">Morning Show</div>
+            <h4 class="text-2xl font-semibold text-textMain mb-3">Morning Brew</h4>
+            <p class="text-textMuted text-base mb-8 leading-relaxed">
+                Local news, coffee reviews, and community interviews to start your day right.
+            </p>
+
+            <div class="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                        <i class="bi bi-mic-fill text-sm"></i>
                     </div>
-                    <div class="pro-card group flex flex-col">
-                        <div class="bg-bg2 border-b border-border p-4 flex justify-between items-center">
-                            <div class="flex items-center gap-2">
-                                <i class="bi bi-clock text-textMuted"></i>
-                                <span class="text-lg font-semibold text-textMain">10:00 AM</span>
-                            </div>
-                            <span
-                                class="bg-card border border-border text-textMuted text-xs font-semibold px-2 py-1 rounded">UPCOMING</span>
-                        </div>
-                        <div class="p-6 flex flex-col flex-1">
-                            <div
-                                class="w-14 h-14 rounded-xl bg-bg border border-border flex items-center justify-center text-3xl text-primary mb-5 icon-hover">
-                                <i class="bi bi-vinyl"></i>
-                            </div>
-                            <div class="text-primary font-semibold tracking-widest text-xs mb-1 uppercase">Music</div>
-                            <h4 class="text-xl font-semibold text-textMain mb-2">The Vinyl Frontier</h4>
-                            <p class="text-textMuted text-sm mb-6 line-clamp-2">Deep dives into classic and rare records
-                                with Host Ben.</p>
-                            <div class="mt-auto border-t border-border pt-5 flex items-center justify-between">
-                                <span class="text-sm font-semibold text-textMuted">Studio B</span>
-                                <button
-                                    class="text-sm font-semibold text-textMain group-hover:text-primary transition-colors flex items-center gap-1 border-0 bg-transparent">
-                                    Remind Me <i class="bi bi-bell"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pro-card group flex flex-col hidden md:flex">
-                        <div class="bg-bg2 border-b border-border p-4 flex justify-between items-center">
-                            <div class="flex items-center gap-2">
-                                <i class="bi bi-clock text-textMuted"></i>
-                                <span class="text-lg font-semibold text-textMain">02:00 PM</span>
-                            </div>
-                            <span
-                                class="bg-card border border-border text-textMuted text-xs font-semibold px-2 py-1 rounded">UPCOMING</span>
-                        </div>
-                        <div class="p-6 flex flex-col flex-1">
-                            <div
-                                class="w-14 h-14 rounded-xl bg-bg border border-border flex items-center justify-center text-3xl text-primary mb-5 icon-hover">
-                                <i class="bi bi-globe"></i>
-                            </div>
-                            <div class="text-primary font-semibold tracking-widest text-xs mb-1 uppercase">Culture</div>
-                            <h4 class="text-xl font-semibold text-textMain mb-2">City Soundscapes</h4>
-                            <p class="text-textMuted text-sm mb-6 line-clamp-2">Exploring the diverse cultural heartbeat
-                                of our city.</p>
-                            <div class="mt-auto border-t border-border pt-5 flex items-center justify-between">
-                                <span class="text-sm font-semibold text-textMuted">Studio A</span>
-                                <button
-                                    class="text-sm font-semibold text-textMain group-hover:text-primary transition-colors flex items-center gap-1 border-0 bg-transparent">
-                                    Remind Me <i class="bi bi-bell"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <span class="text-sm font-bold text-textMuted uppercase tracking-widest">Studio A</span>
                 </div>
+
+                <button class="p-3 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all">
+                    <i class="bi bi-play-fill text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Card 2 -->
+    <div class="group flex flex-col bg-card rounded-[2rem] overflow-hidden border border-white/5 transition-all duration-500 hover:translate-y-[-10px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
+        <div class="relative h-56 overflow-hidden">
+            <img src="/Asserts/Images/rec.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Vinyl Frontier">
+
+            <!-- Removed gradient overlay -->
+
+            <div class="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-widest">
+                <i class="bi bi-clock-fill text-primary"></i> 10:00 AM
+            </div>
+        </div>
+
+        <div class="p-8 flex flex-col flex-1">
+            <div class="text-primary font-bold tracking-[0.2em] text-[10px] mb-2 uppercase">Music Curation</div>
+            <h4 class="text-2xl font-semibold text-textMain mb-3">The Vinyl Frontier</h4>
+            <p class="text-textMuted text-base mb-8 leading-relaxed">
+                Deep dives into classic and rare records with Host Ben. Analog sounds only.
+            </p>
+
+            <div class="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                        <i class="bi bi-vinyl-fill text-sm"></i>
+                    </div>
+                    <span class="text-sm font-bold text-textMuted uppercase tracking-widest">Studio B</span>
+                </div>
+
+                <button class="p-3 rounded-full bg-white/5 text-textMuted hover:bg-primary hover:text-white transition-all">
+                    <i class="bi bi-bell-fill text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Card 3 -->
+    <div class="group flex flex-col bg-card rounded-[2rem] overflow-hidden border border-white/5 transition-all duration-500 hover:translate-y-[-10px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
+        <div class="relative h-56 overflow-hidden">
+            <img src="/Asserts/Images/rec1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="City Soundscapes">
+
+            <!-- Removed gradient overlay -->
+
+            <div class="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-widest">
+                <i class="bi bi-clock-fill text-primary"></i> 02:00 PM
+            </div>
+        </div>
+
+        <div class="p-8 flex flex-col flex-1">
+            <div class="text-primary font-bold tracking-[0.2em] text-[10px] mb-2 uppercase">Culture</div>
+            <h4 class="text-2xl font-semibold text-textMain mb-3">City Soundscapes</h4>
+            <p class="text-textMuted text-base mb-8 leading-relaxed">
+                Exploring the diverse cultural heartbeat and hidden audio gems of our city.
+            </p>
+
+            <div class="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                        <i class="bi bi-globe-americas text-sm"></i>
+                    </div>
+                    <span class="text-sm font-bold text-textMuted uppercase tracking-widest">Studio A</span>
+                </div>
+
+                <button class="p-3 rounded-full bg-white/5 text-textMuted hover:bg-primary hover:text-white transition-all">
+                    <i class="bi bi-bell-fill text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
             </div>
         </section>
 
